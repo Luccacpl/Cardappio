@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+this project is a TCC from analisis and systems development.
+when you get the project run this command on the web folder.
+```bash
+yarn add @material-ui/core @testing-library/jest-dom @testing-library/react @testing-library/user-event @types/jest @types/node @types/react @types/react-dom react react-dom react-router-dom @types/react-router-dom react-scripts typescript web-vitals
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
