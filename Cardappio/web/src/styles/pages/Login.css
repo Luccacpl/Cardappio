@@ -1,7 +1,9 @@
 #page-login {
     width: 100vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-image: url("../../Images/FundoEmbaçado.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #page-login header {
@@ -19,10 +21,12 @@
 
 #page-login .login-box {
     width: 400px;
-    height: 400px;
+    height: 420px;
 
     border: 1px solid black;
     border-radius: 25px;
+
+    background-color: rgba(255, 255, 255, 0.9);
 
     margin: auto;
     margin-top: 10%;
@@ -98,4 +102,13 @@
 ::-webkit-input-placeholder {
     color: black;
     opacity: 0.5;
+ }
+
+ #page-login .login-box a {
+     padding: auto;
+     margin-left: 35%;
+    
+     font-family: 'Roboto', sans-serif;
+     font-weight: bold;
+     color: #BD2323;
  }
