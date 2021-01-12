@@ -3,13 +3,13 @@ import Grid from '@material-ui/core/Grid';
 
 import '../styles/pages/Login.css';
 
+import CustomHeader from '../components/CustomHeader';
+
 function Login() {
     return(
         <div id="page-login">
 
-            <header>
-                <h1>Embarcação</h1>
-            </header>
+           <CustomHeader/>
 
             <div className="login-box">
                 <Grid container spacing={3}>

@@ -1,0 +1,30 @@
+#page-cadastro {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+}
+
+#page-cadastro header {
+    width: 100vw;
+    height: 10vh;
+    background-color: #BD2323;
+}
+
+#page-cadastro header h1 {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding-top: 3vh;
+}
+
+#page-cadastro aside {
+    width: 10vw;
+    height: 100vh;
+    background-color: #333333;
+}
+
+#page-cadastro aside li {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
