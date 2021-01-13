@@ -13,4 +13,11 @@
     font-family: 'Roboto', sans-serif;
 
     padding-left: 8%;   
+
+    cursor: pointer;
+    outline: none;
+}
+
+.menuButton:hover {
+    background: #4F4F4F;
 }
