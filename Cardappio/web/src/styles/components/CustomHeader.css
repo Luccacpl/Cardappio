@@ -1,0 +1,18 @@
+header {
+    width: 100vw;
+    height: 10vh;
+    background-color: #BD2323;
+    
+    position: fixed;
+    top: 0;
+
+    z-index: 1;
+
+}
+
+header h1 {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    padding-top: 3vh;
+}

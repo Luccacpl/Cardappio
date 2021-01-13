@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import '../styles/pages/Cadastro.css';
 
 import CustomHeader from '../components/CustomHeader';
+import CustomAside from '../components/CustomAside';
 
 function Cadastro() {
     return(
@@ -11,15 +12,7 @@ function Cadastro() {
             
             <CustomHeader/>
 
-            <aside>
-                <ul>
-                    <li> Início </li>
-                    <li> Gerenciar Itens </li>
-                    <li> Comandas </li>
-                    <li> Usuários </li>
-                    <li> Pedidos </li>
-                </ul>
-            </aside>
+            <CustomAside/>
 
             <form>
                 <Grid container spacing={3}>

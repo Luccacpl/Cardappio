@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../styles/components/CustomHeader.css';
+
 function CustomHeader() {
     return(
         <header>
