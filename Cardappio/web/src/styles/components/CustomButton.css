@@ -1,0 +1,26 @@
+.CustomButton {
+    width: 40%;
+    height: 50px;
+    
+    background-color: #bd2323;
+    border: 0px;
+    border-radius: 20px;
+
+    margin-left: 30%;
+    margin-top: 3%;
+
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;  
+
+    cursor: pointer;
+    outline: none;
+}
+
+.CustomButton:hover {
+    background: #4F4F4F;
+
+    transition: 0.3s;
+}

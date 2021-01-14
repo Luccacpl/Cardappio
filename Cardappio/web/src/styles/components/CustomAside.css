@@ -4,12 +4,14 @@
 
     background-color: #333333;
 
-    position: fixed;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    float: left;
+    clear: right;
 
-    top: 10.1vh;
+
 }
 
 #page-cadastro aside .menuDiv {

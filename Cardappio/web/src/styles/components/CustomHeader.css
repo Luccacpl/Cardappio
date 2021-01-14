@@ -3,7 +3,7 @@ header {
     height: 10vh;
     background-color: #BD2323;
     
-    position: fixed;
+    position: relative;
     top: 0;
 
     z-index: 1;

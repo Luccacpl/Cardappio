@@ -20,4 +20,6 @@
 
 .menuButton:hover {
     background: #4F4F4F;
+
+    transition: 0.3s;
 }
