@@ -20,7 +20,7 @@
     position: relative;
 
     margin: auto;
-    margin-top: 15%;
+    margin-top: 12.5%;
 
     z-index: 0;
 
@@ -106,3 +106,32 @@
      font-weight: bold;
      color: #BD2323;
  }
+
+
+/************************************************************* Media Carries *************************************************************/
+
+@media only screen and (max-width: 1367px) {  
+    #page-login .login-box {
+        margin-top: 7%;
+    }
+    
+    #page-login .login-box input {
+        height: 6.5vh;
+        
+        margin-top: 1%; 
+    }
+    
+    #page-login .login-box button {
+        height: 6.5vh;
+
+        margin-top: 1%;
+    
+        font-size: 2.5vh;
+    }
+    
+    #page-login .login-box button:hover {
+        margin-top: 1%;
+    
+        font-size: 2.5vh; 
+    }
+}

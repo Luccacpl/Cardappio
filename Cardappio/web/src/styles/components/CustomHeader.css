@@ -16,3 +16,9 @@ header h1 {
     text-align: center;
     padding-top: 3vh;
 }
+
+@media only screen and (max-width: 1367px) {
+    header {
+        height: 12vh;
+    }
+}

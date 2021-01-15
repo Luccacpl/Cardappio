@@ -26,7 +26,7 @@ function Login() {
                         <button type="button"> Realizar Login </button>
                     </Grid>
                     <Grid item xs={12}>
-                        <a href="/">Realizar Cadastro </a>
+                        <a href="/cadastro">Realizar Cadastro </a>
                     </Grid>
                 </Grid> 
             </div>

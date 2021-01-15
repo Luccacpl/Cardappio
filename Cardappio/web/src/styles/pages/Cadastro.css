@@ -61,3 +61,20 @@
 ::-webkit-input-placeholder {
 	color: rgba(0, 0, 0, 1);
 }
+
+@media only screen and (max-width: 1367px) {
+    #page-cadastro form {
+        width: 40vw;
+        height: 165vh;
+    }
+
+    #page-cadastro form input {
+        margin: auto 10%;
+        margin-top: 15px;
+        margin-bottom: 10px;
+    
+        font-size: 100%;
+    
+        max-height: 50px;
+    }
+}
