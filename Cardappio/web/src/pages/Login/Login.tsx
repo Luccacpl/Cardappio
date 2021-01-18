@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import '../styles/pages/Login.css';
+import './Login.css';
 
-import CustomHeader from '../components/CustomHeader';
+import CustomHeader from '../../components/CustomHeader/CustomHeader';
 
 function Login() {
     return(
