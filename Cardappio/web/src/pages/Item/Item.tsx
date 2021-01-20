@@ -18,7 +18,29 @@ function Item() {
                 </ButtonAdd>
             </Link>
 
-            <div className="divItem">
+            <div className="accordionSection">
+                <h1>Porções</h1>
+                <button className="btnExcluir">
+                    <p>Excluir</p>
+                </button>
+                <button className="btnEditar">
+                    <p>Editar</p>
+                </button>
+                <button className="btnAccordion">
+                    <p>Ampliar</p>
+                </button>
+
+                <div className="accordionContent"></div>
+            </div>
+        </div>
+    );
+}
+
+export default Item;
+
+
+/* 
+<div className="Accordion">
                 <div className="divItem_Titulo">
                     <h1>Porções</h1>
                 </div>
@@ -28,8 +50,4 @@ function Item() {
                     <p>Editar</p>
                 </div>
             </div>
-        </div>
-    );
-}
-
-export default Item;
+*/
