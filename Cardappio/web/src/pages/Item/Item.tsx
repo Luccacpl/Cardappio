@@ -19,7 +19,14 @@ function Item() {
             </Link>
 
             <div className="divItem">
-
+                <div className="divItem_Titulo">
+                    <h1>Porções</h1>
+                </div>
+                <div className="divItem_Direita">
+                    <p>Ampliar</p>
+                    <p>Excluir</p>
+                    <p>Editar</p>
+                </div>
             </div>
         </div>
     );

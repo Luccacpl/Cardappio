@@ -33,3 +33,12 @@
     margin-left: 33%;
     margin-top: 37%;
 }
+
+p.children {
+    color: #BD2323;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: underline;
+
+    margin-top: 10%;
+}
