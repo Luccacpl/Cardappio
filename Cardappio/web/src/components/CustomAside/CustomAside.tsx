@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import ButtonMenu from './ButtonMenu';
+import ButtonMenu from '../ButtonMenu/ButtonMenu';
 
-import '../styles/components/CustomAside.css';
+import './CustomAside.css';
 
 
 function CustomAside() {

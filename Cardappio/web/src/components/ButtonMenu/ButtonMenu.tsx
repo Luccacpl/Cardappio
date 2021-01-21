@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/components/ButtonMenu.css';
+import './ButtonMenu.css';
 
 function ButtonMenu(props:any) {
     return(

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/components/CustomButton.css';
+import './CustomButton.css';
 
 function CustomButton(props:any) {
     return(

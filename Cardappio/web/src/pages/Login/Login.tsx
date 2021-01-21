@@ -1,9 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import '../styles/pages/Login.css';
+import './Login.css';
 
-import CustomHeader from '../components/CustomHeader';
+import CustomHeader from '../../components/CustomHeader/CustomHeader';
 
 function Login() {
     return(
@@ -26,7 +26,7 @@ function Login() {
                         <button type="button"> Realizar Login </button>
                     </Grid>
                     <Grid item xs={12}>
-                        <a href="/">Realizar Cadastro </a>
+                        <a href="/cadastro">Realizar Cadastro </a>
                     </Grid>
                 </Grid> 
             </div>

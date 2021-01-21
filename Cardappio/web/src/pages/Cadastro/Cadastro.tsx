@@ -1,11 +1,11 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import '../styles/pages/Cadastro.css';
+import './Cadastro.css';
 
-import CustomHeader from '../components/CustomHeader';
-import CustomAside from '../components/CustomAside';
-import CustomButton from '../components/CustomButton';
+import CustomHeader from '../../components/CustomHeader/CustomHeader';
+import CustomAside from '../../components/CustomAside/CustomAside';
+import CustomButton from '../../components/CustomButton/CustomButton';
 
 function Cadastro() {
     return(
