@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
@@ -8,6 +8,8 @@ import CustomAside from '../../components/CustomAside/CustomAside';
 import './Item.css';
 
 function Item() {
+    const [isOpen, setIsOpen] = useState(false);
+
     return(
         <div id="page-item">
             <CustomHeader />
@@ -19,18 +21,25 @@ function Item() {
             </Link>
 
             <div className="accordionSection">
-                <h1>Porções</h1>
-                <button className="btnExcluir">
-                    <p>Excluir</p>
-                </button>
-                <button className="btnEditar">
-                    <p>Editar</p>
-                </button>
-                <button className="btnAccordion">
-                    <p>Ampliar</p>
-                </button>
-
-                <div className="accordionContent"></div>
+                <div className="accordionHeader">
+                    <h1>Porções</h1>
+                    <button className="btnExcluir">
+                        <p>Excluir</p>
+                    </button>
+                    <button className="btnEditar">
+                        <p>Editar</p>
+                    </button>
+                    <button onClick={() => setIsOpen(!isOpen)} className="btnAccordion">
+                        <p>Ampliar</p>
+                    </button>
+                </div>
+                {isOpen && (
+                <div className="accordionContent">
+                    <div className="content">
+                        <div className="contentPicture"></div>
+                    </div>
+                </div>
+                )}
             </div>
         </div>
     );

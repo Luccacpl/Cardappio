@@ -1,15 +1,23 @@
 #page-item .accordionSection {
     width: 70vw;
+    height: 100%;
+
+    background-color: white;
+
+    margin-left: 20%;
+}
+
+#page-item .accordionHeader {
+    width: 70vw;
     height: 8vh;
     border: 1px solid black;
 
     background-color: #BD2323;
 
-    margin-left: 20%;
     margin-top: 5%;
 }
 
-#page-item .accordionSection h1 {
+#page-item .accordionHeader h1 {
     float: left;
 
     margin: 20px 40px;
@@ -19,7 +27,7 @@
 
 }
 
-#page-item .accordionSection button {
+#page-item .accordionHeader button {
     border: 0px solid transparent;
     background-color: transparent;
 
@@ -38,10 +46,20 @@
     outline: none;
 }
 
-#page-item .accordionSection .btnAccordion {
+#page-item .accordionHeader .btnAccordion {
     border: 0px solid transparent;
     background-color: transparent;
 
     float: right    ;
+}
+
+#page-item .accordionContent .content{
+    width: 70vw;
+    height: 8vh;
+    border: 1px solid black;
+    border-top: none;
+
+    background-color: #ccc;
+
 }
 
