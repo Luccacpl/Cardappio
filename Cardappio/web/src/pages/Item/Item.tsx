@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { FiCamera } from 'react-icons/fi';
+
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
@@ -30,13 +32,15 @@ function Item() {
                         <p>Editar</p>
                     </button>
                     <button onClick={() => setIsOpen(!isOpen)} className="btnAccordion">
-                        <p>Ampliar</p>
+                        {isOpen ? (<p>Reduzir</p>): (<p>Ampliar</p>)}
                     </button>
                 </div>
                 {isOpen && (
                 <div className="accordionContent">
                     <div className="content">
-                        <div className="contentPicture"></div>
+                        <div className="contentPicture">
+                            <FiCamera className="camera"/>
+                        </div>
                     </div>
                 </div>
                 )}

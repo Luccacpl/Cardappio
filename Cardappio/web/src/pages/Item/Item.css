@@ -55,7 +55,7 @@
 
 #page-item .accordionContent .content{
     width: 70vw;
-    height: 8vh;
+    height: 9vh;
     border: 1px solid black;
     border-top: none;
 
@@ -63,11 +63,21 @@
 }
 
 #page-item .accordionContent .content .contentPicture{
-    width: 10vw;
+    width: 6vw;
     height: 100%;
+
     border: 1px solid black;
     border-top: none;
+    border-bottom: none;
+    border-left: none;
 
     background-color: white;
+}
+
+#page-item .accordionContent .content .contentPicture .camera{
+    width: 35%;
+    height: 35%;
+
+    margin: 25% 32%;
 }
 
