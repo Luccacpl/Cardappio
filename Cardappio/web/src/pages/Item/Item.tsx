@@ -1,66 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { FiCamera } from 'react-icons/fi';
 
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
+import Accordion from '../../components/Accordion/Accordion';
 
 import './Item.css';
 
 function Item() {
-    const [isOpen, setIsOpen] = useState(false);
+    
 
     return(
         <div id="page-item">
             <CustomHeader />
             <CustomAside />
-            <Link to="/">  
-                <ButtonAdd>
-                    <p className="children">Adicionar Categoria</p>
-                </ButtonAdd>
-            </Link>
-
-            <div className="accordionSection">
-                <div className="accordionHeader">
-                    <h1>Porções</h1>
-                    <button className="btnExcluir">
-                        <p>Excluir</p>
-                    </button>
-                    <button className="btnEditar">
-                        <p>Editar</p>
-                    </button>
-                    <button onClick={() => setIsOpen(!isOpen)} className="btnAccordion">
-                        {isOpen ? (<p>Reduzir</p>): (<p>Ampliar</p>)}
-                    </button>
-                </div>
-                {isOpen && (
-                <div className="accordionContent">
-                    <div className="content">
-                        <div className="contentPicture">
-                            <FiCamera className="camera"/>
-                        </div>
-                    </div>
-                </div>
-                )}
+            <div className="btnAdd">  
+                    <ButtonAdd>
+                        <Link to="/">
+                            <p className="children">Adicionar Categoria</p>
+                        </Link>
+                    </ButtonAdd>                
             </div>
+            <Accordion title="Porções" item="Batata Frita">
+                <p>Batata Frita, Bacon e Cheddar.</p>
+            </Accordion>  
+
+            <Accordion title="teste" item="teste">
+                <p>Teste teste</p>
+            </Accordion>     
         </div>
     );
 }
 
 export default Item;
-
-
-/* 
-<div className="Accordion">
-                <div className="divItem_Titulo">
-                    <h1>Porções</h1>
-                </div>
-                <div className="divItem_Direita">
-                    <p>Ampliar</p>
-                    <p>Excluir</p>
-                    <p>Editar</p>
-                </div>
-            </div>
-*/

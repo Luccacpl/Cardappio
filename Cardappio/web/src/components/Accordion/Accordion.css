@@ -1,0 +1,142 @@
+.accordionSection {
+    width: 70vw;
+    height: 100%;
+
+    background-color: white;
+
+    margin-left: 20%;
+}
+
+.accordionHeader {
+    width: 70vw;
+    height: 8vh;
+    border: 1px solid black;
+
+    background-color: #BD2323;
+
+    margin-top: 5%;
+}
+
+.accordionHeader h1 {
+    float: left;
+
+    margin: 20px 40px;
+
+    font-size: 30px;
+    color: white;
+
+}
+
+.accordionHeader button {
+    border: 0px solid transparent;
+    background-color: transparent;
+
+    float: right    ;
+
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
+    font-size: 16px;
+
+    margin-right: 6%;
+    margin-top: 2.3%;
+
+    color: white;
+
+    outline: none;
+}
+
+.accordionHeader .btnAccordion {
+    border: 0px solid transparent;
+    background-color: transparent;
+
+    float: right    ;
+}
+
+.accordionContent .content{
+    width: 70vw;
+    height: 8vh;
+    border: 1px solid black;
+    border-top: none;
+
+    background-color: #ccc;
+}
+
+.accordionContent .content .contentPicture{
+    width: 6vw;
+    height: 100%;
+
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+
+    background-color: white;
+    float: left;
+}
+
+.accordionContent .content .contentPicture .camera{
+    width: 35%;
+    height: 35%;
+
+    margin: 25% 32%;
+}
+
+.accordionContent .content .contentText {
+    width: 50%;
+    height: 100%;
+
+    float: left;
+}
+
+.accordionContent .content .contentText h2{
+    margin-top: 2.5%;
+    margin-left: 7%;
+}
+
+.accordionContent .content .contentText p{
+    margin-left: 3.7%;
+}
+
+.accordionContent .content .contentButtons {
+    width: 41.4%;
+    height: 100%;
+
+    float: left;
+}
+
+.accordionContent .content .contentButtons button{
+    border: 0px solid transparent;
+    background-color: transparent;
+
+    float: right;
+
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 16px;
+
+    margin-right: 6.3%;
+
+    color: #BD2323;
+
+    outline: none;
+}
+
+.accordionContent .content .contentButtons input {
+    width: 20%;
+    height: 40%;
+
+    margin-top: 5%;
+
+    padding-left: 10px;
+
+    outline: none;
+}
+
+.accordionContent .content .contentButtons button {
+    margin-right: 14.5%;
+
+    margin-top: 6%;
+}
+

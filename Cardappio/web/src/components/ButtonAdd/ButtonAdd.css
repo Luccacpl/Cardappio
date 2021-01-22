@@ -2,9 +2,6 @@
     width: 70vw;
     height: 8vh;
     border: 1px solid black;
-
-    margin-left: 20%;
-    margin-top: 5%;
 }
 
 .addCategoria .btnCategoria {
@@ -13,7 +10,6 @@
 
     width: 15vw;
     height: 100%;
-
 }
 
 .addCategoria .divPlus{
