@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 import { FiCamera } from 'react-icons/fi';
 
@@ -63,9 +64,11 @@ function Accordion(props:any) {
                         </div>  
                     </div>
 
-                    <ButtonAdd>
-                        <p className="children"> Adicionar Item </p>
-                    </ButtonAdd>
+                    <Link to="/NewItem">
+                        <ButtonAdd>
+                            <p className="children"> Adicionar Item </p>
+                        </ButtonAdd>
+                    </Link>   
                 </div>
                 )}
             </div>

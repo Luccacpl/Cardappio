@@ -17,7 +17,7 @@ function Item() {
             <CustomAside />
             <div className="btnAdd">  
                     <ButtonAdd>
-                        <Link to="/">
+                        <Link to="/NewCategory">
                             <p className="children">Adicionar Categoria</p>
                         </Link>
                     </ButtonAdd>                

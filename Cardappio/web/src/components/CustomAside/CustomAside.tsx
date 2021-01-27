@@ -1,5 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';
 
 import ButtonMenu from '../ButtonMenu/ButtonMenu';
 
@@ -12,13 +13,17 @@ function CustomAside() {
                 <Grid container spacing={0}>
                     <Grid item xs={12}>
                         <div className="menuDiv">
-                            <ButtonMenu content="Início"/>
+                            <Link to="/inicio">
+                                <ButtonMenu content="Início"/>
+                            </Link>
                         </div>
                     </Grid>
 
                     <Grid item xs={12}>
                         <div className="menuDiv">
-                            <ButtonMenu content="Gerenciar Itens"/>
+                            <Link to="/item">
+                                <ButtonMenu content="Gerenciar Itens"/>
+                            </Link>
                         </div>
                     </Grid>
 
