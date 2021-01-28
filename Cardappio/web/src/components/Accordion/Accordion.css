@@ -82,29 +82,6 @@
     margin: 25% 32%;
 }
 
-.accordionContent .content .contentText {
-    width: 50%;
-    height: 100%;
-
-    float: left;
-}
-
-.accordionContent .content .contentText h2{
-    margin-top: 2.5%;
-    margin-left: 7%;
-}
-
-.accordionContent .content .contentText p{
-    margin-left: 3.7%;
-}
-
-.accordionContent .content .contentButtons {
-    width: 41.4%;
-    height: 100%;
-
-    float: left;
-}
-
 .accordionContent .content .contentButtons button{
     border: 0px solid transparent;
     background-color: transparent;

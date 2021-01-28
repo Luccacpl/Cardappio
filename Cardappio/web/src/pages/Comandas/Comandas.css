@@ -2,3 +2,27 @@
     margin-left: 20%;
     margin-top: 5%;
 }
+
+#page-comandas .content .contentText {
+    width: 50%;
+    height: 100%;
+
+    float: left;
+}
+
+#page-comandas .content .contentText h2{
+    margin-top: 4%;
+    margin-left: 7%;
+}
+
+#page-comandas .content .contentText p{
+    margin-left: 7%;
+}
+
+#page-comandas .content .contentButtons {
+    width: 41.4%;
+    height: 100%;
+
+    float: left;
+}
+
