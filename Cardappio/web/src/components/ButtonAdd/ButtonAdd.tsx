@@ -12,7 +12,7 @@ function ButtonAdd(props:any) {
                     <FiPlus className="plusIcon"/>
                 </div>
                     {props.children} 
-                </div>
+            </div>
         </div>
     );
 }

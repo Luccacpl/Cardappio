@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { FiCamera } from 'react-icons/fi';
-
 import './Comandas.css';
 
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
@@ -26,9 +24,6 @@ function Comandas() {
 
             <Accordion title="Mesa 1">
                 <div className="content">
-                    <div className="contentPicture">
-                        <FiCamera className="camera"/>
-                    </div>
                     <div className="contentText">
                         <h2>Comanda 1</h2>
                     </div>
@@ -47,9 +42,6 @@ function Comandas() {
                 </div>
 
                 <div className="content">
-                    <div className="contentPicture">
-                        <FiCamera className="camera"/>
-                    </div>
                     <div className="contentText">
                         <h2>Comanda 2</h2>
                     </div>
@@ -76,9 +68,6 @@ function Comandas() {
 
             <Accordion title="Mesa 2">
                 <div className="content">
-                    <div className="contentPicture">
-                        <FiCamera className="camera"/>
-                    </div>
                     <div className="contentText">
                         <h2>Comanda 1</h2>
                     </div>
@@ -97,9 +86,6 @@ function Comandas() {
                 </div>
 
                 <div className="content">
-                    <div className="contentPicture">
-                        <FiCamera className="camera"/>
-                    </div>
                     <div className="contentText">
                         <h2>Comanda 2</h2>
                     </div>
@@ -126,9 +112,6 @@ function Comandas() {
 
             <Accordion title="Mesa 3" >
                 <div className="content">
-                    <div className="contentPicture">
-                        <FiCamera className="camera"/>
-                    </div>
                     <div className="contentText">
                         <h2>Comanda 1</h2>
                     </div>
@@ -147,9 +130,6 @@ function Comandas() {
                 </div>
 
                 <div className="content">
-                    <div className="contentPicture">
-                        <FiCamera className="camera"/>
-                    </div>
                     <div className="contentText">
                         <h2>Comanda 2</h2>
                     </div>
