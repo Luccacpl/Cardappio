@@ -1,4 +1,4 @@
-import { table } from "console";
+    
 import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity('users')
