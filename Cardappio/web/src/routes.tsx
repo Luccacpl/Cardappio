@@ -8,6 +8,9 @@ import Item from './pages/Item/Item';
 import AddCategory from './pages/AddCategory/AddCategory';
 import AddItem from './pages/AddItem/AddItem';
 import Comandas from './pages/Comandas/Comandas';
+import Usuarios from './pages/Usuarios/Usuarios';
+import AddCozinha from './pages/AddCozinha/AddCozinha';
+import AddGarcom from './pages/AddGarcom/AddGarcom';
 
 function Routes() {
     return(
@@ -20,6 +23,9 @@ function Routes() {
                 <Route path="/NewCategory" component={AddCategory}/>
                 <Route path="/NewItem" component={AddItem}/>
                 <Route path="/Comandas" component={Comandas}/>
+                <Route path="/Usuarios" component={Usuarios}/>
+                <Route path="/AddCozinha" component={AddCozinha}/>
+                <Route path="/AddGarcom" component={AddGarcom}/>
             </Switch>
         </BrowserRouter>
     );

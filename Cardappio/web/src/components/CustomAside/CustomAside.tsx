@@ -37,7 +37,9 @@ function CustomAside() {
 
                     <Grid item xs={12}>
                         <div className="menuDiv">
-                            <ButtonMenu content="Usuários"/>
+                            <Link to="/Usuarios">
+                                <ButtonMenu content="Usuários"/>
+                            </Link>
                         </div>
                     </Grid>
 
