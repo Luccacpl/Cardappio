@@ -48,6 +48,14 @@ function CustomAside() {
                             <ButtonMenu content="Pedidos"/>
                         </div>
                     </Grid>
+
+                    <Grid item xs={12}>
+                        <div className="menuDiv">
+                            <Link to="/">
+                                <ButtonMenu content="Sair"/>
+                            </Link>
+                        </div>
+                    </Grid>
                 </Grid>
             </aside>
     );

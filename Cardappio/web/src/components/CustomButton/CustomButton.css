@@ -20,7 +20,8 @@
 }
 
 .CustomButton:hover {
-    background: #a31f1f;
-
     transition: 0.3s;
+
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }

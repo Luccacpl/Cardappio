@@ -1,36 +1,23 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 
 import './Login.css';
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-
 function Login() {
     return(
-        <div id="page-login">
-
-           <CustomHeader/>
-
-            <div className="login-box">
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <h1>Login</h1>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <input type="text" name="Username" placeholder="Username"/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <input type="password" name="Password" placeholder="Password"/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <button type="button"> Realizar Login </button>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <a href="/cadastro">Realizar Cadastro </a>
-                    </Grid>
-                </Grid> 
+        <div id="page-Login">
+            <aside className="aside-login">
+                <h1>Cardappio</h1>
+                <h2>Gerencie seu comercio de forma fácil e <br/> rápida!</h2>
+                <label className="lblUser">Username:</label>
+                <input type="text" placeholder="Ex: ADM1" className="txtUsername"></input>
+                <label className="lblSenha">Senha:</label>
+                <input type="password" placeholder="Ex: 123456789" className="txtPassword"></input>
+                <p>Esqueci meu email ou senha.</p>
+                <button>Realizar Login</button>
+                <a href="/cadastro"><p className="cadastro">Realizar Cadastro </p></a>
+            </aside>
+            <div className="Image">
             </div>
-
         </div>
     );
 }
