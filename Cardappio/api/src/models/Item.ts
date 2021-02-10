@@ -1,4 +1,5 @@
-import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
+import {Entity,Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne} from "typeorm";
+import Category from "./Category";
 
 @Entity('items')
 export default class Item {
@@ -20,4 +21,8 @@ export default class Item {
 
     @Column()
     price: number;
+
+    @ManyToOne(()=> Category, category => category.items)
+    @JoinColumn({name: 'category_id'})
+    category: Category;
 }

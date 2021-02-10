@@ -9,7 +9,6 @@ export class createCategory1612485815538 implements MigrationInterface {
                 {
                     name:'id',
                     type:'integer',
-                    unsigned:true,
                     isGenerated:true,
                     isPrimary:true,
                     generationStrategy:"increment"
@@ -24,7 +23,7 @@ export class createCategory1612485815538 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('categories')
+        await queryRunner.dropTable('categories');
     }
 
 }

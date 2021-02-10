@@ -1,4 +1,5 @@
-import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
+import {Entity,Column, PrimaryGeneratedColumn, OneToMany, JoinColumn} from "typeorm";
+import Item from "./Item";
 
 @Entity('categories')
 export default class Category {
@@ -8,4 +9,10 @@ export default class Category {
 
     @Column()
     name: string;
+
+    @OneToMany(()=> Item,item=>item.category,{
+        cascade: ['insert','update','remove']
+    })
+    @JoinColumn({name:'category_id'})
+    items:Item[];
 }
