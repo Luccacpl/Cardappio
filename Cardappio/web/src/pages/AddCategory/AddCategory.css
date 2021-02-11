@@ -60,3 +60,10 @@
 ::-webkit-input-placeholder {
 	color: rgba(0, 0, 0, 1);
 }
+
+@media only screen and (max-width: 1367px) { 
+    #page-AddCategory form {
+        width: 40vw;
+        height: 50vh;
+    }
+}

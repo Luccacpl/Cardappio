@@ -2,7 +2,7 @@
     overflow: hidden;
 }
 
-#page-Login aside{
+#page-Login aside.aside-login{
     float: left;
     clear: right;
 
@@ -12,7 +12,7 @@
     background-color: #fff;
 }
 
-#page-Login aside h1 {
+#page-Login aside.aside-login h1 {
     color: #BD2323;
 
     font-size: 6vh;
@@ -24,7 +24,7 @@
     top: 15%;
 }
 
-#page-Login aside h2 {
+#page-Login aside.aside-login h2 {
     font-size: 3.7vh;
 
     position: relative;
@@ -32,7 +32,7 @@
     left: 12.5%;
 }
 
-#page-Login aside p {
+#page-Login aside.aside-login p {
     font-size: 16px;
 
     color: #BD2323;
@@ -45,25 +45,25 @@
 
 }
 
-#page-Login aside label.lblUser {
+#page-Login aside.aside-login label.lblUser {
     position: relative;
 
     top: 14%;
     left: 12.5%;
 
-    font-size: 24px;
+    font-size: 2.4vh;
 }
 
-#page-Login aside label.lblSenha {
+#page-Login aside.aside-login label.lblSenha {
     position: relative;
 
     top: 8%;
     left: 12.5%;
 
-    font-size: 24px;
+    font-size: 2.4vh;
 }
 
-#page-Login aside input.txtUsername {
+#page-Login aside.aside-login input.txtUsername {
 
     width: 75%;
 	height: 6.3vh;
@@ -85,7 +85,7 @@
     top: 10%;
 }
 
-#page-Login aside input.txtPassword {
+#page-Login aside.aside-login input.txtPassword {
 
     width: 75%;
 	height: 6.3vh;
@@ -107,7 +107,7 @@
     top: 4%;
 }
 
-#page-Login aside button {
+#page-Login aside.aside-login button {
     width: 75%;
 	height: 6.3vh;
     padding: 0 20px;
@@ -131,7 +131,7 @@
     cursor: pointer;
 }
 
-#page-Login aside button:hover {
+#page-Login aside.aside-login button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }
@@ -148,17 +148,37 @@
     background-position: center;
 }
 
-#page-Login .aside-login p.cadastro{
+#page-Login aside.aside-login p.cadastro{
     text-align: center;
     margin-right: 0px;
 
     font-size: 2vh;
 
     position: relative;
-    bottom: 200%;
+    bottom: 15vh;
 }
 
 ::-webkit-input-placeholder {
     color: black;
     opacity: 0.5;
+ }
+
+ @media only screen and (max-width: 1367px) { 
+    #page-Login aside.aside-login h1 {
+        top: 10%;
+    }
+
+    #page-Login aside.aside-login h2 {
+        top: 10%;
+    }
+    
+    #page-Login aside.aside-login p {
+        margin-bottom: 0%;
+    }
+   
+    #page-Login aside.aside-login p.cadastro{
+        font-size: 2.5vh;
+
+    }
+    
  }
