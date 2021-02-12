@@ -1,6 +1,27 @@
+
 #page-item .btnAdd {
     margin-left: 20%;
     margin-top: 5%;
+}
+
+.accordionContent .content .contentPicture{
+    width: 6vw;
+    height: 100%;
+
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+
+    background-color: white;
+    float: left;
+}
+
+#page-item .content .contentPicture .camera{
+    width: 35%;
+    height: 35%;
+
+    margin: 25% 32%;
 }
 
 #page-item .content .contentText {
@@ -13,6 +34,7 @@
 #page-item .content .contentText h2{
     margin-top: 2.5%;
     margin-left: 7%;
+    font-size: 3vh;
 }
 
 #page-item .content .contentText p{
@@ -29,5 +51,42 @@
 @media only screen and (max-width: 1367px) {
     #page-item .btnAdd p.children{
         margin-left: 0%;
+    }
+
+    #page-item .content .contentPicture{
+        margin-left: 0px;
+    }
+
+    #page-item .content .contentPicture .camera{
+        width: 40%;
+        height: 40%;
+    
+        margin: 20% 30%;
+    }
+
+    #page-item .content .contentButtons input {
+        width: 20%;
+        height: 40%;
+    
+        margin-top: 5%;
+    
+        padding-left: 10px;
+    
+        outline: none;
+    }
+
+    #page-item .content .contentText h2{
+        margin-top: 1%;
+        margin-left: 7%;
+        font-size: 3vh;
+    }
+    
+    #page-item .content .contentText p{
+        margin-left: 7%;
+    }
+    
+    #page-item .content .contentButtons {
+        width: 41.4%;
+        height: 100%;
     }
 }

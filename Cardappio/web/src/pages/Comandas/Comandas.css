@@ -28,3 +28,33 @@
     margin-left: 7%;
 }
 
+@media only screen and (max-width: 1367px) { 
+    #page-comandas .content .contentText h2{
+        margin-top: 4%;
+        margin-left: 7%;
+
+        font-size: 3vh;
+    }
+
+    #page-comandas .content .contentButtons {
+        width: 60%;
+        height: 100%;
+    
+        float: left;
+    
+        margin-left: 0;
+    }
+
+    #page-comandas .content .contentButtons button{
+        font-size: 16px;
+    
+        margin-right: 12.5%;
+
+    }
+
+    #page-comandas .content .contentButtons input {
+        margin-top: 3.5%;
+    }
+
+}
+
