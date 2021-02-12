@@ -1,7 +1,7 @@
 import {Request,Response} from 'express';
 import { getRepository } from 'typeorm';
-import User from '../models/User';
 import Category from '../models/Category';
+import categoryView from '../Views/CategoryView'
 
 export default {
 
@@ -36,10 +36,12 @@ export default {
         const {id} = req.params;
         const categoryRepository = getRepository(Category);
         try{
-            const category = await categoryRepository.findOneOrFail(id)
-            return res.status(200).json(category)
+            const category = await categoryRepository.findOneOrFail(id,{relations:['items']})
+            console.log(category);
+            return res.status(200).json(categoryView.render(category));
         }
         catch(e){
+            console.log("erro "+e);
             return res.status(404).json();
         }
     
@@ -48,8 +50,8 @@ export default {
 
     async getAllCategory(req:Request,res:Response){
         const categoryRepository = getRepository(Category);
-        const list = await categoryRepository.find()
-        return res.json(list);
+        const list = await categoryRepository.find({relations: ['items']})
+        return res.json(categoryView.renderMany(list));
     },
 
     async deleteCategory(req:Request,res:Response){
