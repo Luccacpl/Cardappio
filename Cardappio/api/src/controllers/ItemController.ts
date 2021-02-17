@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import Item from '../models/Item';
 import ItemView from '../Views/ItemView';
 import unlinkImage from '../services/unlinkImage';
+import path from 'path'
 
 export default {
 
@@ -72,9 +73,10 @@ export default {
             const tratedurl = ItemView.render(item);
             //excluir imagem
             const imageurl = item.imageurl;
-            
-            unlinkImage.deleteImage(tratedurl.imageurl);
-            //await repoItem.delete(id)
+            const destination = path.join(__dirname,'..','..','public','uploads',item.imageurl)
+            console.log(destination);
+            unlinkImage.deleteImage(destination);
+            await repoItem.delete(id)
             
             return res.status(200).json();
         }
