@@ -4,7 +4,7 @@ import './CustomButton.css';
 
 function CustomButton(props:any) {
     return(
-            <button type="button" className="CustomButton"> {props.content} </button>
+            <button type="submit"  className="CustomButton"> {props.content} </button>
     );
 }
 

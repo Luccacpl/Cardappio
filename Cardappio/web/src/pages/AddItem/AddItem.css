@@ -6,7 +6,6 @@
 
 #page-AddItem form {
     width: 40vw;
-    height: 65vh;
     
     border: 1px solid black;
     border-radius: 40px;
@@ -34,6 +33,32 @@
 	font-size: 16px;
 
 	margin: 10%;
+}
+
+#page-AddItem form div.imgPreview{
+    width: 6vw;
+    height: 70%;
+
+    margin-left: 10%;
+    margin-top: 2%;
+
+    border: 1px solid grey;
+    border-radius: 10px;
+
+    background-color: rgba(196, 196, 196, 0.5);
+}
+
+#page-AddItem form div.imgPreview input[type="file"]{
+    width: 100%;
+    height: 100%;
+
+    margin-left: 0%;
+    margin-top: 0%;
+
+    border: 0px solid grey;
+    border-radius: 10px;
+
+    background-color: transparent;
 }
 
 #page-AddItem form input {

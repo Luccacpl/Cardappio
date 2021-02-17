@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 
 import './Comandas.css';
 
+import api from '../../services/api'
+
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
 import Accordion from '../../components/Accordion/Accordion';
+
 
 function Comandas() {
     return(
