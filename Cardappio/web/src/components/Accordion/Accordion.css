@@ -53,6 +53,8 @@
     float: right    ;
 }
 
+
+
 .accordionContent .content{
     width: 70vw;
     height: 8vh;
@@ -97,6 +99,7 @@
 
     margin-top: 6%;
 }
+
 
 
 @media only screen and (max-width: 1367px) {
