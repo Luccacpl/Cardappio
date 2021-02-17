@@ -69,11 +69,13 @@ export default {
         const repoItem = getRepository(Item);
         try{
             const item = await repoItem.findOneOrFail(id)
+            const tratedurl = ItemView.render(item);
             //excluir imagem
             const imageurl = item.imageurl;
-            unlinkImage.deleteImage(imageurl);
-            await repoItem.delete(id)
-            //excluir imagem
+            
+            unlinkImage.deleteImage(tratedurl.imageurl);
+            //await repoItem.delete(id)
+            
             return res.status(200).json();
         }
         catch(e){
