@@ -1,10 +1,11 @@
-import React, {FormEvent, useState} from 'react';
+import React, {FormEvent, useState, ChangeEvent} from 'react';
 import { useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 
 import './AddItem.css';
 
 import api from '../../services/api';
+import { FiPlus } from "react-icons/fi";
 
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
@@ -17,8 +18,27 @@ function AddItem() {
 
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
-    const [avaible, setAvaible] = useState('1');
+    const [avaible, setAvaible] = useState(false);
     const [price, setPrice] = useState('');
+    const [images, setImages] = useState<File[]>([])
+    const [previewImages, setPreviewImages] = useState<string[]>([])
+
+    function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
+        if(!event.target.files){
+          return;
+        }
+    
+        const selectedImages = Array.from(event.target.files);
+        setImages(selectedImages)
+    
+        const selectedImagesPreview = selectedImages.map(image => {
+          return URL.createObjectURL(image)
+        })
+    
+        setPreviewImages(selectedImagesPreview);
+      }
+
+
 
     async function handleSubmit (event: FormEvent) {
         event.preventDefault();
@@ -27,8 +47,11 @@ function AddItem() {
 
         data.append('name', name);
         data.append('desc', desc);
-        data.append('avaible', avaible);
+        data.append('avaible', String(avaible));
         data.append('price', price);
+        images.forEach(image =>{
+            data.append('images', image)
+          })
 
         await api.post('category', {data});
 
@@ -42,6 +65,7 @@ function AddItem() {
             desc,
             avaible,
             price,
+            images
         })
     }
 
@@ -72,15 +96,42 @@ function AddItem() {
 
                     <Grid item xs={12}>
                         <label htmlFor="Image">Imagem do item:</label>
-                        <div className="imgPreview">
-                            <input type="file"/>
-                        </div>
+                        <div className="images-container">
+                            {
+                                previewImages.map(image=>{
+                                    return (
+                                        <img src={image} alt={image} key={image}/>
+                                    )
+                                })
+                            }
+
+                <label htmlFor="image" className="new-image">
+                  <FiPlus size={24} color="grey" />
+                </label>
+
+                
+              </div>
+              <input multiple onChange={handleSelectedImages} type="file" id="image"/>
                         
                     </Grid> 
                     
                     <Grid item xs={12}>
                         <label htmlFor="Price">Preço:</label>
                         <input  placeholder="Ex: 15,90" value={price} onChange={event => setPrice(event.target.value)}/>
+                    </Grid>
+
+                    <Grid item xs={12}>
+                        <label htmlFor="Avaible">Disponível:</label>
+                        <div className="button-select">
+                            <button type="button"
+                                className={avaible ? 'active' : ''}
+                                onClick={() => setAvaible(true)}
+                            >Sim</button>
+                            <button type="button"
+                                className={!avaible ? 'active' : ''}
+                                onClick={() => setAvaible(false)}
+                            >Não</button>
+                        </div>
                     </Grid>
 
                     <Grid item xs={12}>

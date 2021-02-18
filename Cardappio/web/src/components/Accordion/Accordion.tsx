@@ -1,13 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import './Accordion.css'
 
-
 function Accordion(props:any) {
-    const [isOpen, setIsOpen] = useState(false);
 
     return(
-        <div className="accordionSection">
+        <div></div>
+    );
+}
+
+export default Accordion;
+
+
+/* 
+<div className="accordionSection" >
                 <div className="accordionHeader">
                     <h1>{props.title}</h1>
                     <button className="btnExcluir">
@@ -26,7 +32,5 @@ function Accordion(props:any) {
                 </div>
                 )}
             </div>
-    );
-}
 
-export default Accordion;
+*/
