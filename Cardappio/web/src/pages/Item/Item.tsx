@@ -10,7 +10,6 @@ import CustomAside from '../../components/CustomAside/CustomAside';
 import './Item.css';
 
 import api from '../../services/api';
-import AddCategory from '../AddCategory/AddCategory';
 
 interface ICategory {
     name: string,

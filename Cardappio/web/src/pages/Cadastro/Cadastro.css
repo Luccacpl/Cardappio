@@ -1,80 +1,104 @@
-#page-cadastro {
+#page-Cadastro {
     width: 100vw;
     height: 100vh;
     background-color: #fff;
 }
 
-#page-cadastro form {
-    width: 40vw;
-    height: 130vh;
-    
-    border: 1px solid black;
-    border-radius: 40px;
-
-    position: relative;
-    left: 25%;
-    top: 10%;
+#page-Cadastro aside.aside-cadastro {
     float: left;
+    clear: right;
 
+    width: 50vw;
+    height: 100vh;
+    background-color: #fff;
 }
 
-#page-cadastro form h1 {
-    text-align: center;
-    margin-top: 5%;
-    position: relative;
+#page-Cadastro div.Image {
+    float: right;
+
+    width: 50vw;
+    height: 100vh;
+
+    background-image: url("../../Images/Fundo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
-#page-cadastro form hr {
-    border: 0px solid transparent;
+#page-Cadastro aside.aside-cadastro h1 {
+    font-family: Quicksand;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+
+    margin-left: 64px;
+    margin-top: 104px;
 }
 
-#page-cadastro form label {
-    color: #000;
-	font-style: normal;
-	font-weight: bold;
-	font-size: 16px;
+#page-Cadastro aside.aside-cadastro label {
+    display: block;
+    margin-left: 64px;
+    margin-top: 24px;
 
-	margin: 10%;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
 }
 
-#page-cadastro form input {
-    width: 75%;
-	height: 6.3vh;
-    padding: 0 20px;
-    
-    background-color: rgba(196, 196, 196, 0.5);
-
-	border: 1px solid grey;
-	border-radius: 10px;
-
-	outline: none;
-
-    margin: auto 10%;
-    margin-top: 15px;
-    margin-bottom: 20px;
-
-	font-size: 100%;
-
-	max-height: 50px;
+#page-Cadastro aside.aside-cadastro label.lblEmail {
+    margin-top: 64px;
+    margin-left: 64px;
 }
 
-::-webkit-input-placeholder {
-	color: rgba(0, 0, 0, 1);
+#page-Cadastro aside.aside-cadastro input {
+    background-color: #fff;
+
+    outline: none;
+
+    border: 1.5px solid #BEBEBE;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    width: 73.5%;
+    height: 56px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+
+    color: rgba(0, 0, 0, 0.7);
+
+    padding: 0 24px;
+
+    display: block;
+    margin-left: 64px;
+    margin-top: 12px;
 }
 
-@media only screen and (max-width: 1367px) {
-    #page-cadastro form {
-        width: 40vw;
-        height: 165vh;
-    }
+#page-Cadastro aside.aside-cadastro input:focus {
+    border: 1.5px solid #7D0000;
+    box-shadow: 0px 0px 25px rgba(176, 0, 0, 0.15);
+    transition: 0.2s;
+}
 
-    #page-cadastro form input {
-        margin: auto 10%;
-        margin-top: 15px;
-        margin-bottom: 10px;
-    
-        font-size: 100%;
-    
-        max-height: 50px;
-    }
+#page-Cadastro aside.aside-cadastro button {
+    margin-left: 64px;
+    margin-top: 64px;
+}
+
+#page-Cadastro aside.aside-cadastro p {
+    margin-left: 64px;
+    margin-top: 64px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+#page-Cadastro aside.aside-cadastro p .link {
+    color: #BD2323;
+    font-weight: bold;
 }

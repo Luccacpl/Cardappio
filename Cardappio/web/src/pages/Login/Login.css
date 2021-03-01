@@ -2,138 +2,18 @@
     overflow: hidden;
 }
 
-#page-Login aside.aside-login{
+#page-Login aside.aside-login {
     float: left;
     clear: right;
 
     width: 50vw;
     height: 100vh;
+}
+
+#page-Login aside.aside-login div {
+    height: 100%;
 
     background-color: #fff;
-}
-
-#page-Login aside.aside-login h1 {
-    color: #BD2323;
-
-    font-size: 6vh;
-    font-weight: bold;
-
-    text-align: center;
-
-    position: relative;
-    top: 15%;
-}
-
-#page-Login aside.aside-login h2 {
-    font-size: 3.7vh;
-
-    position: relative;
-    top: 15%;
-    left: 12.5%;
-}
-
-#page-Login aside.aside-login p {
-    font-size: 16px;
-
-    color: #BD2323;
-
-    text-align: right;
-    text-decoration: underline;
-
-    margin-right: 12.5%;
-    margin-bottom: 5%;
-
-}
-
-#page-Login aside.aside-login label.lblUser {
-    position: relative;
-
-    top: 14%;
-    left: 12.5%;
-
-    font-size: 2.4vh;
-}
-
-#page-Login aside.aside-login label.lblSenha {
-    position: relative;
-
-    top: 8%;
-    left: 12.5%;
-
-    font-size: 2.4vh;
-}
-
-#page-Login aside.aside-login input.txtUsername {
-
-    width: 75%;
-	height: 6.3vh;
-    padding: 0 20px;
-    
-    background-color: rgba(196, 196, 196, 0.5);
-
-	border: 1px solid grey;
-	border-radius: 10px;
-
-	outline: none;
-
-	font-size: 100%;
-
-	max-height: 50px;
-
-    position: relative;
-    left: 12.5%;
-    top: 10%;
-}
-
-#page-Login aside.aside-login input.txtPassword {
-
-    width: 75%;
-	height: 6.3vh;
-    padding: 0 20px;
-    
-    background-color: rgba(196, 196, 196, 0.5);
-
-	border: 1px solid grey;
-	border-radius: 10px;
-
-	outline: none;
-
-	font-size: 100%;
-
-	max-height: 50px;
-
-    position: relative;
-    left: 12.5%;
-    top: 4%;
-}
-
-#page-Login aside.aside-login button {
-    width: 75%;
-	height: 6.3vh;
-    padding: 0 20px;
-    
-    background-color: #BD2323;
-
-    color: #fff;
-
-	border: 1px solid grey;
-	border-radius: 10px;
-
-	outline: none;
-
-    font-weight: bold;
-	font-size: 2.7vh;
-
-	max-height: 50px;
-    margin-left: 12.5%;
-    margin-bottom: 15%;
-
-    cursor: pointer;
-}
-
-#page-Login aside.aside-login button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0,0,0,.5);
 }
 
 #page-Login div.Image {
@@ -142,43 +22,160 @@
     width: 50vw;
     height: 100vh;
 
-    background-image: url("../../Images/fundo.jpeg");
+    background-image: url("../../Images/Fundo.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-#page-Login aside.aside-login p.cadastro{
-    text-align: center;
-    margin-right: 0px;
+#page-Login aside.aside-login h1 {
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
 
-    font-size: 2vh;
+    color: #BD2323;
 
-    position: relative;
-    bottom: 15vh;
+    margin-left: 64px;
+    margin-top: 144px;
 }
+
+#page-Login aside.aside-login h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 48px;
+
+    margin-left: 64px;
+    margin-top: 24px;
+
+}
+
+#page-Login aside.aside-login label.lblUsuario {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+
+    display: block;
+
+    margin-left: 64px;
+    margin-top: 64px;
+}
+
+#page-Login aside.aside-login input.inputUsuario {
+    background-color: #fff;
+
+    outline: none;
+
+    border: 1.5px solid #BEBEBE;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    width: 73.5%;
+    height: 56px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+
+    color: rgba(0, 0, 0, 0.7);
+
+    padding: 0 24px;
+
+    display: block;
+    margin-left: 64px;
+    margin-top: 12px;
+}
+
+#page-Login aside.aside-login label.lblSenha {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+
+
+    display: block;
+
+    margin-left: 64px;
+    margin-top: 24px;
+}
+
+#page-Login aside.aside-login input.inputSenha {
+    background-color: #fff;
+
+    outline: none;
+
+    border: 1.5px solid #BEBEBE;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+    width: 73.5%;
+    height: 56px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+
+    color: rgba(0, 0, 0, 0.7);
+
+    padding: 0 24px;
+
+    display: block;
+    margin-left: 64px;
+    margin-top: 12px;
+}
+
+#page-Login aside.aside-login input:focus {
+    border: 1.5px solid #7D0000;
+    box-shadow: 0px 0px 25px rgba(176, 0, 0, 0.15);
+    transition: 0.2s; 
+}
+
+#page-Login aside.aside-login button {
+    margin-left: 64px;
+    margin-top: 64px;
+}
+
+#page-Login aside.aside-login p.p1 {
+    margin-left: 64px;
+    margin-top: 64px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+#page-Login aside.aside-login p.p2 {
+    margin-left: 64px;
+    margin-top: 24px;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+#page-Login aside.aside-login p.p1 .link {
+    color: #BD2323;
+    font-weight: bold;
+}
+
+#page-Login aside.aside-login p.p2 .link {
+    color: #BD2323;
+    font-weight: bold;
+}
+
 
 ::-webkit-input-placeholder {
     color: black;
-    opacity: 0.5;
- }
+    opacity: 0.3;
+}
 
- @media only screen and (max-width: 1367px) { 
-    #page-Login aside.aside-login h1 {
-        top: 10%;
-    }
-
-    #page-Login aside.aside-login h2 {
-        top: 10%;
-    }
+@media screen and (min-width: 1200px) and (max-width: 1367px) {
     
-    #page-Login aside.aside-login p {
-        margin-bottom: 0%;
-    }
-   
-    #page-Login aside.aside-login p.cadastro{
-        font-size: 2.5vh;
-
-    }
-    
- }
+}
