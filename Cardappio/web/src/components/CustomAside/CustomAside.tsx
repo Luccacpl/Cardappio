@@ -6,7 +6,6 @@ import ButtonMenu from '../ButtonMenu/ButtonMenu';
 
 import './CustomAside.css';
 
-
 function CustomAside() {
     return(
         <aside>

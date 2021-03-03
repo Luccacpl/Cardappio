@@ -1,14 +1,11 @@
 import React from 'react';
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
-
+import Aside from '../../components/Aside/Aside';
 
 function Inicio() {
-    return(
+    return (
         <div id="page-inicio">
-            <CustomHeader />
-            <CustomAside />
+            <Aside />
         </div>
     );
 }

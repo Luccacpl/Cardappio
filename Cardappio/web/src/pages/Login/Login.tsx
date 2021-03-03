@@ -17,7 +17,7 @@ function Login() {
                     <input type="text" placeholder="Coloque seu Usuario" className="inputUsuario"></input>
                     <label className="lblSenha">Senha:</label>
                     <input type="text" placeholder="Coloque sua Senha" className="inputSenha"></input>
-                    <CustomButton content="Log In"/>
+                    <Link to="/inicio"><CustomButton content="Log In"/></Link>
                     <p className="p1">Não tem uma conta? <Link to="/cadastro" className="link">Cadastre-se aqui!</Link></p>
                     <p className="p2"><Link to="/" className="link">Esqueceu a senha?</Link></p>
                 </div>

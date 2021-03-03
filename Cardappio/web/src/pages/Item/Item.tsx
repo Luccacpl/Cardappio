@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { FiCamera } from 'react-icons/fi';
 
+import Aside from '../../components/Aside/Aside';
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
@@ -46,8 +47,7 @@ function Item() {
 
     return (
         <div id="page-item">
-            <CustomHeader />
-            <CustomAside />
+            <Aside />
             <div className="btnAdd">
                 <ButtonAdd>
                     <Link to="/NewCategory">
