@@ -5,8 +5,6 @@ import { FiCamera } from 'react-icons/fi';
 
 import Aside from '../../components/Aside/Aside';
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
 
 import './Item.css';
 

@@ -1,30 +1,37 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import './Aside.css';
+import { CustomAside, Wrapper, Title, ButtonWrapper, AsideButton, } from './style'
 
-function Aside(props: any) {
 
-    const [active, setActive] = useState(false);
-    const Active ={
-        textWeight: 'Bold',
-        color:'white'
-      } 
-
-    return (
-        <aside id="componentAside">
-            <div className="wrapper">
-                <h1>Cardappio</h1>
-                <div className="button-wrapper">
-                    <Link to='/inicio'><button type="button">Inicio</button></Link>
-                    <Link to='/Item'><button type="button">Itens</button></Link>
-                    <Link to='/Comandas'><button type="button">Comandas</button></Link>
-                    <Link to='/Usuarios'><button type="button">Usuarios</button></Link>
-                    <Link to='/inicio'><button type="button">Pedidos</button></Link>
-                </div>
-            </div>
-        </aside>
-    );
+interface IAside {
+  display?: string
+  alignItems?: string
+  margin?: string
+  border?: string
+  borderColor?: string
+  clicked?: any
 }
+
+const Aside = (props: IAside) => {
+  return (
+    <CustomAside>
+      <Wrapper {...props}>
+        <Title>Cardappio</Title>
+        <ButtonWrapper>
+          <Link to='/inicio'><AsideButton type="button" onClick={props.clicked}>Inicio</AsideButton></Link>
+          <Link to='/Item'><AsideButton type="button" onClick={props.clicked}>Itens</AsideButton></Link>
+          <Link to='/Comandas'><AsideButton type="button" onClick={props.clicked}>Comandas</AsideButton></Link>
+          <Link to='/Usuarios'><AsideButton type="button" onClick={props.clicked}>Usuarios</AsideButton></Link>
+          <Link to='/inicio'><AsideButton type="button" onClick={props.clicked}>Pedidos</AsideButton></Link>
+        </ButtonWrapper>
+      </Wrapper>
+    </CustomAside>
+  )
+}
+
+
+
+
 
 export default Aside;

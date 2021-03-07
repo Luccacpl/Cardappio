@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import './Cadastro.css';
 
-import CustomButton from '../../components/CustomButton/CustomButton';
+import Button from '../../components/Button/Button';
 
 function Cadastro() {
     return (
@@ -19,7 +19,7 @@ function Cadastro() {
                     <input placeholder="ADM1" />
                     <label htmlFor="RestaurantName">Nome do restaurante</label>
                     <input placeholder="Embarcação " />
-                    <CustomButton content="Cadastrar"/>
+                    <Button margin="4rem" content="Cadastrar" />
                     <p>Ja possui uma conta? <Link to="/" className="link">Log In</Link></p>
                 </form>
             </aside>

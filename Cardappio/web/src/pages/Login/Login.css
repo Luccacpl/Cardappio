@@ -135,10 +135,6 @@
     transition: 0.2s; 
 }
 
-#page-Login aside.aside-login button {
-    margin-left: 64px;
-    margin-top: 64px;
-}
 
 #page-Login aside.aside-login p.p1 {
     margin-left: 64px;

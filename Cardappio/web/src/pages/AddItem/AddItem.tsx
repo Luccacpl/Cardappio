@@ -9,7 +9,7 @@ import { FiPlus } from "react-icons/fi";
 
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import Button from '../../components/Button/Button';
 
 
 function AddItem() {
@@ -135,7 +135,7 @@ function AddItem() {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <CustomButton content="Cadastrar Item"/>
+                        <Button ></Button>
                     </Grid>
 
                 </Grid>

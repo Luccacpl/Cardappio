@@ -6,7 +6,7 @@ import './AddCozinha.css';
 
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import Button from '../../components/Button/Button';
 
 function AddCozinha() {
     return(
@@ -35,7 +35,7 @@ function AddCozinha() {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <CustomButton content="Adicionar Cozinheiro"/>
+                        <Button />
                     </Grid>
 
                 </Grid>

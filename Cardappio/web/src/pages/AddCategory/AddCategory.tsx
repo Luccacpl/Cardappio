@@ -6,7 +6,7 @@ import './AddCategory.css';
 
 import CustomHeader from '../../components/CustomHeader/CustomHeader';
 import CustomAside from '../../components/CustomAside/CustomAside';
-import CustomButton from '../../components/CustomButton/CustomButton';
+import Button from '../../components/Button/Button';
 
 import api from '../../services/api';
 
@@ -55,7 +55,7 @@ function AddCategory() {
                     </Grid>
 
                     <Grid item xs={12}>
-                        <CustomButton onClick={handleSubmit} content="Cadastrar Categoria"/>
+                        <Button margin="7.5rem" content="Cadastrar Categoria" clicked={handleSubmit} />
                     </Grid>
 
                 </Grid>
