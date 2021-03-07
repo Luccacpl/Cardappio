@@ -47,11 +47,9 @@ function Item() {
         <div id="page-item">
             <Aside />
             <div className="btnAdd">
-                <ButtonAdd>
-                    <Link to="/NewCategory">
-                        <p className="children">Adicionar Categoria</p>
-                    </Link>
-                </ButtonAdd>
+                <Link to="/NewCategory">
+                    <ButtonAdd content="Adicionar Categoria" />
+                </Link>
             </div>
 
             {categories.map(category =>
@@ -108,9 +106,7 @@ function Item() {
                                 </div>
                             </div>
                             <Link to="/NewItem">
-                                <ButtonAdd>
-                                    <p className="children"> Adicionar Item </p>
-                                </ButtonAdd>
+                                <ButtonAdd content="Adicionar Item" />
                             </Link>
                         </div>
                     )}

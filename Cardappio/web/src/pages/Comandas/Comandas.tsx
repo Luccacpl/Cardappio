@@ -18,11 +18,9 @@ function Comandas() {
             <CustomAside />
 
             <div className="btnAdd">  
-                    <ButtonAdd>
-                        <Link to="/NewCategory">
-                            <p className="children">Adicionar Mesa</p>
-                        </Link>
-                    </ButtonAdd>                
+                <Link to="/NewCategory">
+                    <ButtonAdd content="Adicionar Mesa" />
+                </Link>                
             </div>
 
             <Accordion title="Mesa 1">
@@ -63,9 +61,7 @@ function Comandas() {
                 </div>
 
                 <Link to="/NewItem">
-                    <ButtonAdd>
-                        <p className="children"> Adicionar Comanda </p>
-                    </ButtonAdd>
+                    <ButtonAdd content="Adicionar Comanda" />
                 </Link>
             </Accordion>
 
@@ -107,9 +103,7 @@ function Comandas() {
                 </div>
 
                 <Link to="/NewItem">
-                    <ButtonAdd>
-                        <p className="children"> Adicionar Comanda </p>
-                    </ButtonAdd>
+                    <ButtonAdd content="Adicionar Comanda" />
                 </Link>
             </Accordion>
 
@@ -151,9 +145,7 @@ function Comandas() {
                 </div>
 
                 <Link to="/NewItem">
-                    <ButtonAdd>
-                        <p className="children"> Adicionar Comanda </p>
-                    </ButtonAdd>
+                    <ButtonAdd content="Adicionar Comanda" />
                 </Link>
             </Accordion>
         </div>

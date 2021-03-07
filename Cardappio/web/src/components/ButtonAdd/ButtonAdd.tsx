@@ -2,18 +2,31 @@ import React from 'react';
 
 import { FiPlus } from 'react-icons/fi';
 
-import './ButtonAdd.css';
+import { DivAddCategory, DivBtnCategory, DivPlus, Text} from './style'
 
-function ButtonAdd(props:any) {
+interface IButtonAdd {
+    content?: string
+    style?: Object
+    margin?: string
+}
+
+const ButtonAdd = (props: IButtonAdd) => {
     return(
-        <div className="addCategoria">
-            <div className="btnCategoria">
-                <div className="divPlus"> 
-                    <FiPlus className="plusIcon"/>
-                </div>
-                    {props.children} 
-            </div>
-        </div>
+        <DivAddCategory>
+            <DivBtnCategory>
+                <DivPlus> 
+                    <FiPlus style={{
+                        color: '#BD2323',
+                        fontSize: '24px',
+                        fontWeight: 'bold',
+                        textDecoration: 'underline',
+                        marginLeft: '33%',
+                        marginTop: '37%'
+                    }}/>
+                </DivPlus>
+                <Text>{props.content}</Text>
+            </DivBtnCategory>
+        </DivAddCategory>
     );
 }
 

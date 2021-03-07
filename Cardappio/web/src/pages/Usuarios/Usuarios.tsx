@@ -52,9 +52,7 @@ function Usuarios() {
                 </div>
 
                 <Link to="/AddCozinha">
-                    <ButtonAdd>
-                        <p className="children"> Adicionar Cozinha </p>
-                    </ButtonAdd>
+                    <ButtonAdd content="Adicionar Cozinha" />
                 </Link>
             </Accordion>
 
@@ -96,9 +94,7 @@ function Usuarios() {
                 </div>
 
                 <Link to="/AddGarcom">
-                    <ButtonAdd>
-                        <p className="children"> Adicionar Garçom </p>
-                    </ButtonAdd>
+                    <ButtonAdd content="Adicionar Garçom" />
                 </Link>
             </Accordion>
 

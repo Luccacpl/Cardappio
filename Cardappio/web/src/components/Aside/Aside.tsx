@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { CustomAside, Wrapper, Title, ButtonWrapper, AsideButton, } from './style'
-
 
 interface IAside {
   display?: string
@@ -13,7 +12,9 @@ interface IAside {
   clicked?: any
 }
 
+
 const Aside = (props: IAside) => {
+
   return (
     <CustomAside>
       <Wrapper {...props}>
