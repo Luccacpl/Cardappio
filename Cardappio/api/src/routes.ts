@@ -9,7 +9,7 @@ const routes = Router();
 
 routes.get('/item',ItemController.getAllItem);
 routes.get('/item/:id',ItemController.getItem);
-routes.post('/item',upload.single('image'),ItemController.postItem);
+routes.post('/item',upload.single('imageurl'),ItemController.postItem);
 routes.put('/item/:id',ItemController.updateItem);
 routes.delete('/item/:id',ItemController.deleteItem);
 
