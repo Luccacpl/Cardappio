@@ -28,15 +28,15 @@ interface IAlertCircle {
 }
 
 const DivAlert = styled.div<IDivAlert>`
-    display: inline-block;
     width: 458px;
     height: 3.75rem;
     border-radius: 0px 0px 5px 5px;
     background-color: ${props => props.backgroundColor || colors.greenAlert};
-    margin-left: 50%;
-    margin-left: 50%;
-    transform: translate(-458px);
+    margin-left: 800px;
+    margin-left: 27.5%;
+    margin-left: 44.1%;
     filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.4));
+
 `
 
 const AlertText = styled.p<IAlertText>`

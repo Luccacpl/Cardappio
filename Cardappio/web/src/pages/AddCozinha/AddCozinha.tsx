@@ -4,15 +4,13 @@ import Grid from '@material-ui/core/Grid';
 
 import './AddCozinha.css';
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
 import Button from '../../components/Button/Button';
+import Aside from '../../components/Aside/Aside';
 
 function AddCozinha() {
     return(
         <div id="page-AddCozinha">
-            <CustomHeader/>
-            <CustomAside/>
+            <Aside />
 
             <form>
                 <Grid container spacing={3}>

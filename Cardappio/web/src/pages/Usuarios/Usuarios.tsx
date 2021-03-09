@@ -3,16 +3,14 @@ import { Link } from 'react-router-dom';
 
 import './Usuarios.css';
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
 import Accordion from '../../components/Accordion/Accordion';
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
+import Aside from '../../components/Aside/Aside';
 
 function Usuarios() {
     return(
         <div id="page-usuarios">
-            <CustomHeader/>
-            <CustomAside />
+            <Aside />
 
             <Accordion title="Cozinha">
                 <div className="content">

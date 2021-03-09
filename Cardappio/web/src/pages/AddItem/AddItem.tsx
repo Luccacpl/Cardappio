@@ -7,9 +7,8 @@ import './AddItem.css';
 import api from '../../services/api';
 import { FiPlus } from "react-icons/fi";
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
 import Button from '../../components/Button/Button';
+import Aside from '../../components/Aside/Aside';
 
 
 function AddItem() {
@@ -71,8 +70,7 @@ function AddItem() {
 
     return(
         <div id="page-AddItem">
-            <CustomHeader />
-            <CustomAside />
+            <Aside />
 
             <form onSubmit={handleSubmit}>
                 <Grid container spacing={3}>
