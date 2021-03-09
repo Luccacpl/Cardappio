@@ -6,6 +6,8 @@ const colors = {
     lighterRed: "#BD2323",
     white: "#ffffff",
     greenSuccess: "#00601B",
+    greenAlert: "#0E6300",
+    orangeAlert: "#C55E00"
 }
 
 export {colors};
