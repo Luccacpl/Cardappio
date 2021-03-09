@@ -35,11 +35,13 @@ const DivAddCategory = styled.div<IDivAddCategory>`
     width: 70vw;
     height: ${props => props.height || dimensions.spacing70};
     border: 1px solid black;
+    border-radius: 5px;
 `
 
 const DivBtnCategory = styled.div<IDivBtnCategory>`
     background-color: ${props => props.backgroundColor || colors.white};
     border: 1px solid transparent;
+    border-radius: 5px;
 
     width: 15vw;
     height: ${props => props.height || dimensions.heightFull};

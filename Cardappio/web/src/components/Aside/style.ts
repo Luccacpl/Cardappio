@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { fontsSizes } from '../../utils'
-import {colors} from '../../utils/colors'
-import {dimensions} from '../../utils/dimensions'
+import { colors } from '../../utils/colors'
+import { dimensions } from '../../utils/dimensions'
 
 
 interface CustomAsideProps {
@@ -98,17 +98,17 @@ const ButtonWrapper = styled.div<ButtonWrapperProps>`
 const AsideButton = styled.button<AsideButtonProps>`
     width: 85%;
     height: ${props => props.height || dimensions.spacing70};
-    background-color: ${({ $selected }) => 
+    background-color: ${({ $selected }) =>
         $selected ? colors.white : colors.lightRed};
     margin-left: 15%;
 
     font-family: Roboto;
     font-style: normal;
-    font-weight: ${({ $selected }) => 
-    $selected ? 'bold' : '500'};
+    font-weight: ${({ $selected }) =>
+        $selected ? 'bold' : '500'};
     font-size: ${props => props.fontSize || fontsSizes.large30};
-    color: ${({ $selected }) => 
-    $selected ? colors.lightRed : colors.white};
+    color: ${({ $selected }) =>
+        $selected ? colors.lightRed : colors.white};
     text-align: left;
     padding-left: 24px;
 
@@ -120,5 +120,6 @@ const AsideButton = styled.button<AsideButtonProps>`
 
     border-radius: 20px 0px 0px 20px;
 `
-
+//background-color: ${({ $selected }) => 
+//        $selected ? colors.white : colors.lightRed};
 export { CustomAside, Wrapper, Title, ButtonWrapper, AsideButton }
