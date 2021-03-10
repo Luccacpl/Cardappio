@@ -56,7 +56,8 @@ interface AsideButtonProps {
 }
 
 const CustomAside = styled.aside<CustomAsideProps>`
-    width: 300px;
+    width: 18%;
+    min-width: 225px;
     height: ${props => props.height || dimensions.heightFullWindow};
 
     position: relative;
@@ -78,11 +79,11 @@ const Title = styled.h1<TitleProps>`
     font-family: Quicksand;
     font-style: normal;
     font-weight: ${props => props.fontWeight || 'bold'};
-    font-size: ${props => props.fontSize || fontsSizes.large40};
+    font-size: 2.5rem;
 
     color: ${props => props.color || colors.white};
 
-    margin-top: ${props => props.marginTop || dimensions.spacing56};
+    padding-top: ${props => props.marginTop || dimensions.spacing56};
 `
 
 const ButtonWrapper = styled.div<ButtonWrapperProps>`

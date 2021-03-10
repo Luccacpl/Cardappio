@@ -4,7 +4,6 @@ import Grid from '@material-ui/core/Grid';
 
 import './AddCategory.css';
 
-import CustomAside from '../../components/CustomAside/CustomAside';
 import Button from '../../components/Button/Button';
 import Alert from '../../components/Alert/Alert';
 import Aside from '../../components/Aside/Aside';

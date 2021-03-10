@@ -10,9 +10,12 @@
 
 html {
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 body {
     color: #000;
     background: #fff;
+    font-size: 100%;
+    box-sizing: border-box;
 }

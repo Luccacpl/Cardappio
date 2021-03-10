@@ -36,7 +36,6 @@ const DivAlert = styled.div<IDivAlert>`
     margin-left: 27.5%;
     margin-left: 44.1%;
     filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.4));
-
 `
 
 const AlertText = styled.p<IAlertText>`
