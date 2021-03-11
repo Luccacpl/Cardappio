@@ -3,15 +3,13 @@ import Grid from '@material-ui/core/Grid';
 
 import './AddGarcom.css';
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
 import Button from '../../components/Button/Button';
+import Aside from '../../components/Aside/Aside';
 
 function AddGarcom() {
     return(
         <div id="page-AddGarcom">
-            <CustomHeader/>
-            <CustomAside/>
+            <Aside />
 
             <form>
                 <Grid container spacing={3}>

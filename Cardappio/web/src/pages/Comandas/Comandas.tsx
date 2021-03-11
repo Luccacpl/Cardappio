@@ -5,17 +5,15 @@ import './Comandas.css';
 
 import api from '../../services/api'
 
-import CustomHeader from '../../components/CustomHeader/CustomHeader';
-import CustomAside from '../../components/CustomAside/CustomAside';
 import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
 import Accordion from '../../components/Accordion/Accordion';
+import Aside from '../../components/Aside/Aside';
 
 
 function Comandas() {
     return(
         <div id="page-comandas">
-            <CustomHeader />
-            <CustomAside />
+            <Aside />
 
             <div className="btnAdd">  
                 <Link to="/NewCategory">
