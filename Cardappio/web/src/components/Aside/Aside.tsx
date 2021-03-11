@@ -24,7 +24,7 @@ const Aside = (props: IAside) => {
           <Link to='/Item'><AsideButton type="button" onClick={props.clicked}>Itens</AsideButton></Link>
           <Link to='/Comandas'><AsideButton type="button" onClick={props.clicked}>Comandas</AsideButton></Link>
           <Link to='/Usuarios'><AsideButton type="button" onClick={props.clicked}>Usuarios</AsideButton></Link>
-          <Link to='/inicio'><AsideButton type="button" onClick={props.clicked}>Pedidos</AsideButton></Link>
+          <Link to='/pedidos'><AsideButton type="button" onClick={props.clicked}>Pedidos</AsideButton></Link>
         </ButtonWrapper>
       </Wrapper>
     </CustomAside>
