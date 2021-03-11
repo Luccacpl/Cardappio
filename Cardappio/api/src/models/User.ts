@@ -8,6 +8,15 @@ export default class User {
     id: number;
 
     @Column()
+    email: string;
+    
+    @Column()
+    password: string;
+
+    @Column()
+    secondPassword: string;
+
+    @Column()
     firstName: string;
 
     @Column()
