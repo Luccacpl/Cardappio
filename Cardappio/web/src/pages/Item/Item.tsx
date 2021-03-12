@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-import { FiCamera } from 'react-icons/fi';
+import NewAside from '../../components/NewAside/NewAside'
+import SubAside from '../../components/SubAside/SubAside'
+import Cards from '../../components/Cards/Cards'
+import Container from '../../components/Container/Container'
+import { Grid } from '../../components/Grid/style'
+import Modal from '../../components/Modal/Modal'
 
-import Aside from '../../components/Aside/Aside';
-import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
-
-import './Item.css';
-
-import api from '../../services/api';
+import api from '../../services/api'
+import { ChangeEventHandler } from 'react';
 
 interface ICategory {
     name: string,
@@ -16,21 +17,36 @@ interface ICategory {
 }
 
 function Item() {
+    const history = useHistory();
 
-
-
+    const [name, setName] = useState('');
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const [isOpen, setIsOpen] = useState(false);
     const [refresh, setRefresh] = useState(0);
+    const [showModal, setShowModal] = useState(false);
 
-    async function handleDelete(id: number) {
+    async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
+        if (name === '') {
+            return alert('Insira um nome no campo');
+        }
+        else {
+            alert('Item cadastrado com sucesso')
 
-        await api.delete('/category/' + id)
-        setRefresh(chave => chave + 1)
-        console.log(id);
+            const data = new FormData();
 
-        alert('Categoria deletada com sucesso!');
+            data.append('name', name);
 
+            await api.post('category', { name });
+
+            history.push('/item');
+
+            console.log(data);
+
+            console.log({
+                name,
+            })
+
+            return setShowModal(false);
+        }
     }
 
     useEffect(() => {
@@ -44,76 +60,33 @@ function Item() {
     }, [refresh])
 
     return (
-        <div id="page-item">
-            <Aside />
-            <div className="btnAdd">
-                <Link to="/NewCategory">
-                    <ButtonAdd content="Adicionar Categoria" />
-                </Link>
-            </div>
+        <Grid>
+            <NewAside></NewAside>
+            <SubAside title="Categorias" clicked={() => setShowModal(true)}></SubAside>
 
-            {categories.map(category =>
-                <div className="accordionSection" >
-                    <div className="accordionHeader">
-                        <h1>{category.name}</h1>
-                        <button className="btnExcluir" onClick={() => handleDelete(category.id)}>
-                            <p>Excluir</p>
-                        </button>
-                        <button className="btnEditar">
-                            <p>Editar</p>
-                        </button>
-                        <button onClick={() => setIsOpen(!isOpen)} className="btnAccordion">
-                            {isOpen ? (<p>Reduzir</p>) : (<p>Ampliar</p>)}
-                        </button>
-                    </div>
-                    {isOpen && (
-                        <div className="accordionContent">
-                            <div className="content">
-                                <div className="contentPicture">
-                                    <FiCamera className="camera" />
-                                </div>
-                                <div className="contentText">
-                                    <h2>Batata Frita</h2>
-                                    <p>Batata Frita, Cheddar e Bacon</p>
-                                </div>
-                                <div className="contentButtons">
-                                    <input type="text"></input>
-                                    <button>
-                                        <p>Excluir</p>
-                                    </button>
-                                    <button>
-                                        <p>Editar</p>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="content">
-                                <div className="contentPicture">
-                                    <FiCamera className="camera" />
-                                </div>
-                                <div className="contentText">
-                                    <h2>Calabresa</h2>
-                                    <p>Calabresa e Cebola</p>
-                                </div>
-                                <div className="contentButtons">
-                                    <input type="text"></input>
-                                    <button>
-                                        <p>Excluir</p>
-                                    </button>
-                                    <button>
-                                        <p>Editar</p>
-                                    </button>
-                                </div>
-                            </div>
-                            <Link to="/NewItem">
-                                <ButtonAdd content="Adicionar Item" />
-                            </Link>
-                        </div>
-                    )}
-                </div>
-
-            )}
-        </div>
+            <Container>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginBottom="2%" marginTop="15%">
+                    <Cards gridStart="2"></Cards>
+                    <Cards gridStart="3"></Cards>
+                    <Cards gridStart="4"></Cards>
+                </Grid>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5%" rowGap="10px">
+                    <Cards gridStart="2"></Cards>
+                    <Cards gridStart="3"></Cards>
+                    <Cards gridStart="4"></Cards>
+                </Grid>
+            </Container>
+            {showModal === true && 
+           <Modal 
+            title="Adicionar Categoria" 
+            ButtonTitle="Adicionar" 
+            text="Digite o nome da categoria que deseja adicionar no campo abaixo." 
+            clicked={handleSubmit} 
+            value={name} 
+            change={event => setName(event.target.value)}
+            Backclicked={() => setShowModal(false)}
+            />}
+        </Grid>
     );
 }
 

@@ -6,13 +6,17 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    overflow: hidden;
 }
 
 html {
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 body {
     color: #000;
     background: #fff;
+    box-sizing: border-box;
+    font-size: 62.5%;
 }

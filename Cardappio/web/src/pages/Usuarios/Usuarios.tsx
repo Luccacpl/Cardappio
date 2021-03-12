@@ -1,103 +1,29 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import './Usuarios.css';
+import NewAside from '../../components/NewAside/NewAside'
+import SubAside from '../../components/SubAside/SubAside'
+import Container from '../../components/Container/Container'
+import { Grid } from '../../components/Grid/style'
 
-import Accordion from '../../components/Accordion/Accordion';
-import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
-import Aside from '../../components/Aside/Aside';
 
 function Usuarios() {
-    return(
-        <div id="page-usuarios">
-            <Aside />
+    return (
+        <Grid>
+            <NewAside></NewAside>
+            <SubAside title="Usuarios"></SubAside>
+            <Container>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginTop="2%">
 
-            <Accordion title="Cozinha">
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Cozinha 1</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
+                </Grid>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5%" rowGap="10px">
 
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Cozinha 2</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <Link to="/AddCozinha">
-                    <ButtonAdd content="Adicionar Cozinha" />
-                </Link>
-            </Accordion>
-
-            <Accordion title="Garçom">
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Garçom 1</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Garçom 2</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <Link to="/AddGarcom">
-                    <ButtonAdd content="Adicionar Garçom" />
-                </Link>
-            </Accordion>
-
-        </div>
+                </Grid>
+            </Container>
+        </Grid>
     );
 }
 
 export default Usuarios;
+
+

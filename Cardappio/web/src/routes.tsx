@@ -11,6 +11,7 @@ import Comandas from './pages/Comandas/Comandas';
 import Usuarios from './pages/Usuarios/Usuarios';
 import AddCozinha from './pages/AddCozinha/AddCozinha';
 import AddGarcom from './pages/AddGarcom/AddGarcom';
+import Pedidos from './pages/Pedidos/Pedidos';
 
 function Routes() {
     return(
@@ -19,13 +20,14 @@ function Routes() {
                 <Route path="/"  exact component={Login}/>
                 <Route path="/cadastro" component={Cadastro}/>
                 <Route path="/inicio" component={Inicio}/>
-                <Route path="/Item" component={Item}/>
+                <Route path="/item" component={Item}/>
                 <Route path="/NewCategory" component={AddCategory}/>
                 <Route path="/NewItem" component={AddItem}/>
-                <Route path="/Comandas" component={Comandas}/>
-                <Route path="/Usuarios" component={Usuarios}/>
+                <Route path="/comandas" component={Comandas}/>
+                <Route path="/usuarios" component={Usuarios}/>
                 <Route path="/AddCozinha" component={AddCozinha}/>
                 <Route path="/AddGarcom" component={AddGarcom}/>
+                <Route path="/pedidos" component={Pedidos}/>
             </Switch>
         </BrowserRouter>
     );

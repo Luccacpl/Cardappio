@@ -4,36 +4,37 @@ import Grid from '@material-ui/core/Grid';
 
 import './AddCategory.css';
 
-import CustomAside from '../../components/CustomAside/CustomAside';
 import Button from '../../components/Button/Button';
-import Alert from '../../components/Alert/Alert';
 import Aside from '../../components/Aside/Aside';
 
 import api from '../../services/api';
 
-function AddCategory() {
+interface ICategory {
+    name: string
+    id: string
+}
+
+function AddCategory(props: ICategory) {
     const history = useHistory();
 
+    const [categories, setCategories] = useState<ICategory[]>([]);
     const [name, setName] = useState('');
     const [showAlert, setShowAlert] = useState(false);
-    const [showAlertError, setShowAlertError] = useState(false)
+    
 
 
     function handleValidation(event: FormEvent) {
         if(name === '') {
             event.preventDefault()
-            setShowAlertError(true)
         }
         else{
             event.preventDefault()
-            setShowAlert(true)
         }
     }
    
     async function handleSubmit(event: FormEvent) {
         if (name === '') {
             event.preventDefault();
-            return setShowAlertError(true)
         }
         else {
             event.preventDefault();
@@ -55,23 +56,10 @@ function AddCategory() {
         }
     }
 
-    function closeError() {
-        setShowAlertError(false);
-    }
-
-    
-
+ 
     return (
         <div id="page-AddCategory">
             <Aside />
-
-            {showAlert && (
-                <Alert with="success" text="Sucesso - Categoria cadastrada com sucesso!" clicked={handleSubmit}/>
-            )}
-            {showAlertError && (
-                <Alert with="failure" text="Erro - Complete o campo corretamente!" clicked={closeError}/>
-            )}
-
             <form onSubmit={handleValidation}>
                 <Grid container spacing={3}>
                     <Grid item xs={12}>
