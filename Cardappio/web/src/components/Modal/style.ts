@@ -39,6 +39,7 @@ const OverlayModal = styled.div`
 
 const MiddleContainer = styled.div`
   width: 446px;
+  width: 600px;
   height: 75%;
   background-color: ${colors.white};
   padding: ${dimensions.spacing40};

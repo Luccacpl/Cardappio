@@ -12,6 +12,7 @@ interface IInput {
     fontSize?: string
     marginLeft?: string
     marginTop?: string
+    margin?: string
 }
 
 const Input = styled.input<IInput>`
@@ -27,9 +28,10 @@ const Input = styled.input<IInput>`
     font-size: ${props => props.fontSize || fontsSizes.large24};
     color: rgba(0, 0, 0, 0.7);
     padding: 0 24px;
-    display: block;
+    display: flex;
     margin-left: ${props => props.marginLeft};
     margin-top: ${props => props.marginTop};
+    margin: ${props => props.margin};
     &:focus {
         border: 1.5px solid ${colors.darkRed};
         box-shadow: 0px 0px 25px rgba(176, 0, 0, 0.15);

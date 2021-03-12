@@ -2,6 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { colors } from '../../utils';
 
+import ArrowBack from '../../public/icons/arrow-back-outline.svg';
+
+import Svg from '../Svg/Svg';
+
 import {
     Aside,
     AsideTitle,
@@ -36,7 +40,9 @@ const NewAside = (props: InewAside) => {
                    <Link to="/Pedidos" style={{ color: 'inherit', textDecoration: 'inherit'}}></Link><AsideLiText>Pedidos</AsideLiText>
                 </AsideLi>
             </AsideUl>
-            <AsideBackButton></AsideBackButton>
+            <AsideBackButton>
+                <Svg src={ArrowBack} width="1.5rem" height="1.5rem" margin="auto"/>
+            </AsideBackButton>
         </Aside>
     );
 } 

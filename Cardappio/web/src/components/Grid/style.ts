@@ -5,6 +5,7 @@ interface GridProps {
     gridGap?: string
     rowGap?: string
     marginTop?: string
+    backgroundColor?: string
 }
 
 const Grid = styled.div<GridProps>`
@@ -12,6 +13,7 @@ const Grid = styled.div<GridProps>`
     grid: ${props => props.grid || 'auto/ 0.5fr 1.5fr 4fr'};
     grid-gap: ${props => props.gridGap};
     margin-bottom: ${props => props.marginTop};
+    background-color: ${props => props.backgroundColor};
 `
 
 export { Grid }

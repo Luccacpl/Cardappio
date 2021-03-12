@@ -101,6 +101,7 @@ const AsideBackButton = styled.button<AsideBackButtonProps>`
     border: 0px;
     outline: none;
     margin-top: ${props => props.marginTop || '20rem'};
+    color: white;
         @media(min-width: 1280px) {
             margin-top: ${props => props.marginTop || '25rem'};
     }

@@ -15,7 +15,7 @@ function Cards(props: ICards) {
             <DivDetail>
                 <TitleCard>Batata Frita</TitleCard>
                 <DescriptionCard>Batata frita, cheddar e Bacon.</DescriptionCard>
-                <PriceCard>R$ 20,00</PriceCard>
+                <PriceCard>R$ 10,00</PriceCard>
             </DivDetail>
         </DivCard>
     );

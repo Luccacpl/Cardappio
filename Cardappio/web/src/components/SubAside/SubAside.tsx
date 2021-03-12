@@ -7,6 +7,7 @@ import { DivContainer, DivTitle, Title, SubTitle, SubMenu, TitleSubMenu, UlMenu,
 import api from '../../services/api';
 import { Link } from 'react-router-dom';
 import Svg from '../Svg/Svg'
+import { createUnparsedSourceFile } from 'typescript';
 
 interface ISubAside {
     clicked?: any
@@ -21,6 +22,10 @@ function SubAside(props: ISubAside) {
 
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [refresh, setRefresh] = useState(0);
+    
+    const tamanho = categories.length;
+    
+
 
     async function handleDelete(id: number) {
         await api.delete('/category/' + id)
@@ -33,23 +38,25 @@ function SubAside(props: ISubAside) {
     useEffect(() => {
         function GetApi() {
             api.get<ICategory[]>('/category').then(response => {
-                setCategories(response.data)
+                setCategories(response.data);
                 console.log(response.data);
+                console.log(categories);
             })
         }
         GetApi();
     }, [refresh])
 
+
     return (
         <DivContainer>
             <DivTitle>
                 <Title>Categorias</Title>
-                <SubTitle>16 Categorias achadas</SubTitle>
+                <SubTitle>{tamanho} Categorias achadas</SubTitle>
             </DivTitle>
             <SubMenu>
                 <TitleSubMenu>Categorias</TitleSubMenu>
                 <UlMenu>
-                    {categories.map(category =>
+                    {categories.map(category => 
                         <> <LiMenu>
                                 <Svg src={TrashSVG} width="3rem" height="1.5rem" onClick={() => handleDelete(category.id)} />
                             <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
@@ -59,10 +66,13 @@ function SubAside(props: ISubAside) {
                         </LiMenu></>
                     )}
                 </UlMenu>
-                <Link to="/NewCategory"><AddButton onClick={props.clicked}>+ Adicionar nova categoria</AddButton></Link>
+                <AddButton onClick={props.clicked}>+ Adicionar nova categoria</AddButton>
             </SubMenu>
         </DivContainer>
     );
 }
 
 export default SubAside;
+
+
+//<Link to="/NewCategory"> </Link>
