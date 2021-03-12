@@ -10,22 +10,29 @@ import Aside from '../../components/Aside/Aside';
 
 import api from '../../services/api';
 
-function AddCategory() {
+interface ICategory {
+    name: string
+    id: string
+}
+
+function AddCategory(props: ICategory) {
     const history = useHistory();
 
+    const [categories, setCategories] = useState<ICategory[]>([]);
     const [name, setName] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [showAlertError, setShowAlertError] = useState(false)
+    
 
 
     function handleValidation(event: FormEvent) {
         if(name === '') {
             event.preventDefault()
-            setShowAlertError(true)
+           return setShowAlertError(true)
         }
         else{
             event.preventDefault()
-            setShowAlert(true)
+          return setShowAlert(true)
         }
     }
    

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { colors } from '../../utils';
 
 import {
@@ -20,19 +21,19 @@ const NewAside = (props: InewAside) => {
             <AsideTitle>Cardappio</AsideTitle>
             <AsideUl>
                 <AsideLi>
-                    <AsideLiText>Inicio</AsideLiText>
+                 <Link to="/inicio" style={{ color: 'inherit', textDecoration: 'inherit'}} ><AsideLiText>Inicio</AsideLiText></Link>   
                 </AsideLi>
                 <AsideLi>
-                    <AsideLiText>Cardapio</AsideLiText>
+                   <Link to="/item" style={{ color: 'inherit', textDecoration: 'inherit'}}><AsideLiText>Cardapio</AsideLiText></Link>
                 </AsideLi>
                 <AsideLi>
-                    <AsideLiText>Mesas</AsideLiText>
+                   <Link to="/Comandas" style={{ color: 'inherit', textDecoration: 'inherit'}}></Link> <AsideLiText>Mesas</AsideLiText>
                 </AsideLi>
                 <AsideLi>
-                    <AsideLiText>Usuarios</AsideLiText>
+                   <Link to="/Usuarios" style={{ color: 'inherit', textDecoration: 'inherit'}}></Link> <AsideLiText>Usuarios</AsideLiText>
                 </AsideLi>
                 <AsideLi>
-                    <AsideLiText>Pedidos</AsideLiText>
+                   <Link to="/Pedidos" style={{ color: 'inherit', textDecoration: 'inherit'}}></Link><AsideLiText>Pedidos</AsideLiText>
                 </AsideLi>
             </AsideUl>
             <AsideBackButton></AsideBackButton>

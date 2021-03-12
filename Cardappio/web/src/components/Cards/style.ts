@@ -5,7 +5,7 @@ import { dimensions } from '../../utils/dimensions'
 import { fontsSizes } from '../../utils/fontSizes'
 
 interface DivCardProps {
-
+    gridStart?: string
 }
 
 interface DivPictureProps {
@@ -33,12 +33,12 @@ interface PriceCardProps {
 }
 
 const DivCard = styled.div<DivCardProps>`
-    width: 220px;
+    width: 100%;
     height: 280px;
     background-color: white;
     border-radius: 5px;
-    margin-left: 12px;
-    margin-top: 142px;
+    box-shadow: 0px 10px 20px rgba(191, 191, 191, 0.2);
+    grid-column-start: ${props => props.gridStart}
     `
 
 const DivPicture = styled.div<DivPictureProps>`
@@ -55,6 +55,7 @@ const DivMenu = styled.div<DivMenuProps>`
     border-radius: 0px 5px 0px 10px;
     float: right;
     top: 0;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
 `
 
 const DivDetail = styled.div<DivDetailProps>`

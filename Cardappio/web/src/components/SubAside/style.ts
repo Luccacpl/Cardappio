@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 import { colors } from '../../utils/colors'
@@ -43,13 +44,15 @@ interface AddButtonProps{
 
 }
 
+interface LinkProps{
+    
+}
+
 const DivContainer = styled.div<DivMenuContainerProps>`
     height: ${props => props.height || dimensions.heightFullWindow};
     background-color: ${colors.white};
-    width: 24%;
+    width: 100%;
     min-width: 300px;
-    float: left;
-    clear: right;
 `
 
 const DivTitle = styled.div<DivTitleProps>`
@@ -134,7 +137,9 @@ const LiMenu = styled.li<LiMenuProps>`
     font-size: ${fontsSizes.small14};
     color: #FF3838;
     padding-left: ${dimensions.spacing40};
-    margin-bottom: ${dimensions.spacing24}; 
+    margin-bottom: ${dimensions.spacing24};
+    cursor: pointer;
+    display: flex;
     @media(min-width: 1280px) {
         font-size: ${fontsSizes.large18};
     }
@@ -158,6 +163,7 @@ const AddButton = styled.button<AddButtonProps>`
         font-size: ${fontsSizes.large22};
     }
 `
+
 
 
 

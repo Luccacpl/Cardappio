@@ -32,14 +32,12 @@ interface AsideBackButtonProps {
 }
 
 const Aside = styled.aside<AsideProps>`
-    width: 11%;
+    width: 100%;
     height: ${props => props.height || dimensions.heightFullWindow};
     background-color: #FFFAFA;
-    max-width: 200px;
     min-width: 125px;
     text-align: center;
-    float: left;
-    clear: right;
+    grid-column-start: 1;
 `
 
 const AsideTitle = styled.h1<AsideTitleProps>`
@@ -113,7 +111,6 @@ const AsideBackButton = styled.button<AsideBackButtonProps>`
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
     }
-
 `
 
 export { Aside, AsideTitle, AsideUl, AsideLi, AsideBackButton, AsideLiText }
