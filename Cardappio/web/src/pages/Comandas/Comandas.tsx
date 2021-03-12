@@ -1,153 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import './Comandas.css';
-
-import api from '../../services/api'
-
-import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
-import Accordion from '../../components/Accordion/Accordion';
-import Aside from '../../components/Aside/Aside';
+import NewAside from '../../components/NewAside/NewAside'
+import SubAside from '../../components/SubAside/SubAside'
+import Container from '../../components/Container/Container'
+import { Grid } from '../../components/Grid/style'
 
 
 function Comandas() {
-    return(
-        <div id="page-comandas">
-            <Aside />
+    return (
+        <Grid>
+            <NewAside></NewAside>
+            <SubAside title="Comandas"></SubAside>
+            <Container>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginTop="2%">
 
-            <div className="btnAdd">  
-                <Link to="/NewCategory">
-                    <ButtonAdd content="Adicionar Mesa" />
-                </Link>                
-            </div>
+                </Grid>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5%" rowGap="10px">
 
-            <Accordion title="Mesa 1">
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Comanda 1</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Comanda 2</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <Link to="/NewItem">
-                    <ButtonAdd content="Adicionar Comanda" />
-                </Link>
-            </Accordion>
-
-            <Accordion title="Mesa 2">
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Comanda 1</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Comanda 2</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <Link to="/NewItem">
-                    <ButtonAdd content="Adicionar Comanda" />
-                </Link>
-            </Accordion>
-
-            <Accordion title="Mesa 3" >
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Comanda 1</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <div className="content">
-                    <div className="contentText">
-                        <h2>Comanda 2</h2>
-                    </div>
-                    <div className="contentButtons">
-                        <input type="text"></input>
-                        <button>
-                            <p>Ver</p>
-                        </button>
-                        <button>
-                            <p>Excluir</p>
-                        </button>
-                        <button>
-                            <p>Editar</p>
-                        </button>
-                    </div>  
-                </div>
-
-                <Link to="/NewItem">
-                    <ButtonAdd content="Adicionar Comanda" />
-                </Link>
-            </Accordion>
-        </div>
+                </Grid>
+            </Container>
+        </Grid>
     );
 }
 
 export default Comandas;
+
+
+
+

@@ -7,11 +7,11 @@ import Container from '../../components/Container/Container'
 import { Grid } from '../../components/Grid/style'
 
 
-function Inicio() {
+function Pedidos() {
     return (
         <Grid>
             <NewAside></NewAside>
-            <SubAside title="Inicio"></SubAside>
+            <SubAside title="Pedidos"></SubAside>
             <Container>
                 <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginTop="2%">
 
@@ -24,4 +24,5 @@ function Inicio() {
     );
 }
 
-export default Inicio;
+export default Pedidos;
+

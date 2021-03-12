@@ -32,6 +32,7 @@ const dimensions = {
     spacing60: "3.75rem",
     spacing64: "4rem",
     spacing70: "4.375rem",
+    spacing72: "4.5rem",
     spacing80: "5rem",
 }
 
