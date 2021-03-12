@@ -56,6 +56,7 @@ const DivMenu = styled.div<DivMenuProps>`
     float: right;
     top: 0;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
 `
 
 const DivDetail = styled.div<DivDetailProps>`

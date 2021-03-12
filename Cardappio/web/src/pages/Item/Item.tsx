@@ -45,7 +45,7 @@ function Item() {
                 name,
             })
 
-            return  setShowModal(false);
+            return setShowModal(false);
         }
     }
 
@@ -62,10 +62,10 @@ function Item() {
     return (
         <Grid>
             <NewAside></NewAside>
-            <SubAside clicked={() => setShowModal(true)}></SubAside>
+            <SubAside title="Categorias" clicked={() => setShowModal(true)}></SubAside>
 
             <Container>
-                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginTop="2%">
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginBottom="2%" marginTop="15%">
                     <Cards gridStart="2"></Cards>
                     <Cards gridStart="3"></Cards>
                     <Cards gridStart="4"></Cards>
@@ -78,12 +78,13 @@ function Item() {
             </Container>
             {showModal === true && 
            <Modal 
-            title="Teste" 
+            title="Adicionar Categoria" 
             ButtonTitle="Adicionar" 
-            text="teste teste teste" 
+            text="Digite o nome da categoria que deseja adicionar no campo abaixo." 
             clicked={handleSubmit} 
             value={name} 
             change={event => setName(event.target.value)}
+            Backclicked={() => setShowModal(false)}
             />}
         </Grid>
     );

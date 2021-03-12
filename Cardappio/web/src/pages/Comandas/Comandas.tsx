@@ -1,21 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import './Comandas.css';
-
-import api from '../../services/api'
-
-import ButtonAdd from '../../components/ButtonAdd/ButtonAdd';
-import Accordion from '../../components/Accordion/Accordion';
-import Aside from '../../components/Aside/Aside';
+import NewAside from '../../components/NewAside/NewAside'
+import SubAside from '../../components/SubAside/SubAside'
+import Container from '../../components/Container/Container'
+import { Grid } from '../../components/Grid/style'
 
 
 function Comandas() {
-    return(
-       <div>
-           <Aside />
-           <Accordion title="teste"></Accordion>
-       </div> 
+    return (
+        <Grid>
+            <NewAside></NewAside>
+            <SubAside title="Comandas"></SubAside>
+            <Container>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginTop="2%">
+
+                </Grid>
+                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5%" rowGap="10px">
+
+                </Grid>
+            </Container>
+        </Grid>
     );
 }
 

@@ -63,7 +63,7 @@ const DivTitle = styled.div<DivTitleProps>`
         height: 19.3%
     }
     @media(min-width: 1440px) {
-        height: 19.3%
+        height: 19.9%
     }
 `
 
@@ -99,6 +99,10 @@ const SubTitle = styled.p<SubTitleProps>`
 const SubMenu = styled.div<SubMenuProps>`
     width: ${dimensions.widthFull};
     height: 76%;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        width: 0px;
+    }
     @media(min-width: 1280px) {
         height: 80.7%
     }

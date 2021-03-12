@@ -9,7 +9,8 @@ const colors = {
     greenAlert: "#0E6300",
     orangeAlert: "#C55E00",
     lightGrey: '#FFFAFA',
-    pink: "#FE5B5B"
+    pink: "#FE5B5B",
+    darkPink: "#FF3838"
 
 }
 

@@ -2,6 +2,8 @@ import React from 'react';
 
 import {Link} from 'react-router-dom';
 
+import Fundo from '../../Images/Fundo.png';
+
 import Button from '../../components/Button/Button';
 
 import './Login.css';
@@ -23,6 +25,7 @@ function Login() {
                 </div>
             </aside>
             <div className="Image">
+                <img src={Fundo} alt="Imagem"></img>
             </div>
         </div>
     );

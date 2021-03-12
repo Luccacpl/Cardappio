@@ -1,28 +1,32 @@
 import styled from 'styled-components'
 
-import { colors, dimensions } from '../../utils'
+import { colors, dimensions, fontsSizes } from '../../utils'
 
 interface TitleComponentProps {
-    fontSize?: string;
-    color?: string;
-    fontWeight?: string;
-    textAlign?: string;
-    lineHeight?: string;
+  fontSize?: string;
+  color?: string;
+  fontWeight?: string;
+  textAlign?: string;
+  lineHeight?: string;
 }
 
 
 interface PProps {
-    float?: string
-    lineHeight?: string
-    fontSize?: string
-    color?: string
-    fontWeight?: string
-    textTransform?: string
-    backgroundColor?: string
-    textAlign?: string
-    padding?: string
-    strongColor?: string
-  }
+  float?: string
+  lineHeight?: string
+  fontSize?: string
+  color?: string
+  fontWeight?: string
+  textTransform?: string
+  backgroundColor?: string
+  textAlign?: string
+  padding?: string
+  strongColor?: string
+}
+
+interface AsideBackButtonProps {
+  marginTop?: string
+}
 
 const OverlayModal = styled.div`
   height: 100vh;
@@ -38,28 +42,34 @@ const OverlayModal = styled.div`
 `
 
 const MiddleContainer = styled.div`
-  width: 446px;
   width: 600px;
+  width: 446px;
   height: 75%;
   background-color: ${colors.white};
   padding: ${dimensions.spacing40};
   box-sizing: border-box;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
 `
 
 const Title = styled.h2<TitleComponentProps>`
-    font-size: ${(props) => props.fontSize || "2.8em"};
+    font-size: ${(props) => props.fontSize || fontsSizes.large20};
     color: ${(props) => props.color || colors.textBlack};
     font-weight: ${(props) => props.fontWeight || "normal"};
     text-align: ${(props) => props.textAlign || "left"};
     line-height: ${(props) => props.lineHeight};
+    @media(min-width: 1280px) and (max-width: 1440px) {
+      font-size: ${props => props.fontSize || fontsSizes.large26};
+    }
+    @media(min-width: 1441px) {
+      font-size: ${props => props.fontSize || fontsSizes.large26};
+    }
 `
 
 const P = styled.p<PProps>`
   display: block;
   float: ${props => props.float};
   line-height: ${props => props.lineHeight || '25px'};
-  font-size: ${props => props.fontSize};
+  font-size: ${props => props.fontSize || fontsSizes.small14};
   color: ${props => props.color || '#2b2b2b'};
   font-weight: ${props => props.fontWeight};
   text-transform: ${props => props.textTransform};
@@ -70,9 +80,35 @@ const P = styled.p<PProps>`
     font-weight: bold;
     color: ${props => props.strongColor};
   }
+  @media(min-width: 1280px) and (max-width: 1440px) {
+    font-size: ${props => props.fontSize || fontsSizes.medium16};
+  }
+  @media(min-width: 1441px) {
+    font-size: ${props => props.fontSize || fontsSizes.medium16};
+  }
+  `
+
+  const AsideBackButton = styled.button<AsideBackButtonProps>`
+  width: 35px;
+  height: 35px;
+  background-color: #FF3838;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 0px;
+  outline: none;
+  margin-top: ${props => props.marginTop || '20rem'};
+  color: white;
+      @media(min-width: 1280px) {
+          margin-top: ${props => props.marginTop || '25rem'};
+  }
+  @media(min-width: 1440px) {
+      margin-top: ${props => props.marginTop || '35rem'};
+  }
+  &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  }
 `
 
-export default P
 
-
-export { OverlayModal, MiddleContainer, Title, P }
+export { OverlayModal, MiddleContainer, Title, P, AsideBackButton }

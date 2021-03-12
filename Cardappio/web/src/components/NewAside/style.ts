@@ -20,6 +20,7 @@ interface AsideUlProps {
 
 interface AsideLiProps {
     backgroundColor?: string
+    $selected?: boolean;
 }
 
 interface AsideLiTextProps {
@@ -81,7 +82,7 @@ const AsideLi = styled.li<AsideLiProps>`
 
 const AsideLiText = styled.p<AsideLiTextProps>`
     font-size: ${props => props.fontSize || fontsSizes.small14};
-    color: #FF3838;
+    color: ${props => props.color || colors.darkPink};
     font-weight: ${props => props.fontWeight || '400'};
     margin-left: ${dimensions.spacing28};
     @media(min-width: 1280px) {
