@@ -11,10 +11,7 @@ export default class User {
     email: string;
     
     @Column()
-    password: string;
-
-    @Column()
-    secondPassword: string;
+    pass: string;
 
     @Column()
     firstName: string;
@@ -23,6 +20,6 @@ export default class User {
     lastName: string;
 
     @Column()
-    age: number;
+    dt_nasc: Date;
 
 }
