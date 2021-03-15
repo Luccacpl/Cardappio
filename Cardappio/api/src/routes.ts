@@ -4,6 +4,7 @@ import CategoryControler from './controllers/CategoryController';
 import AuthControler from './controllers/AuthController';
 import multer from 'multer'
 import uploadConfig from './config/upload';
+import RegisterController from './controllers/RegisterController'
 const upload = multer(uploadConfig)
 
 const routes = Router();
@@ -23,6 +24,8 @@ routes.get('/category/:id',CategoryControler.getCategory);
 routes.post('/category',CategoryControler.postCategory);
 routes.put('/category/:id',CategoryControler.updateCategory);
 routes.delete('/category/:id',CategoryControler.deleteCategory);
+
+routes.post('/register',RegisterController.Register);
 
 export default routes;
 
