@@ -1,14 +1,15 @@
 import React, {FormEvent, useState, ChangeEvent} from 'react';
 import { useHistory } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
 
 import './AddItem.css';
 
 import api from '../../services/api';
 import { FiPlus } from "react-icons/fi";
 
+import NewAside from '../../components/NewAside/NewAside';
+import SubAside from '../../components/SubAside/SubAside';
 import Button from '../../components/Button/Button';
-import Aside from '../../components/Aside/Aside';
+import {Grid} from '../../components/Grid/style';
 
 
 function AddItem() {
@@ -70,78 +71,81 @@ function AddItem() {
 
     return(
         <div id="page-AddItem">
-            <Aside />
-
-            <form onSubmit={handleSubmit}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12}>
-                        <h1> Cadastrar Item </h1>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <hr/>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <label htmlFor="name">Nome do Item:</label>
-                        <input  placeholder="Ex: X-Salada" value={name} onChange={event => setName(event.target.value)} />
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <label htmlFor="description">Descrição do item:</label>
-                        <input  placeholder="Ex: Pão, Hamburguer, alface e maionese" value={desc} onChange={event => setDesc(event.target.value)}/>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <label htmlFor="Image">Imagem do item:</label>
-                        <div className="images-container">
-                            {
-                                previewImages.map(image=>{
-                                    return (
-                                        <img src={image} alt={image} key={image}/>
-                                    )
-                                })
-                            }
-
-                <label htmlFor="image" className="new-image">
-                  <FiPlus size={24} color="grey" />
-                </label>
-
-                
-              </div>
-              <input multiple onChange={handleSelectedImages} type="file" id="image"/>
-                        
-                    </Grid> 
-                    
-                    <Grid item xs={12}>
-                        <label htmlFor="Price">Preço:</label>
-                        <input  placeholder="Ex: 15,90" value={price} onChange={event => setPrice(event.target.value)}/>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <label htmlFor="Avaible">Disponível:</label>
-                        <div className="button-select">
-                            <button type="button"
-                                className={avaible ? 'active' : ''}
-                                onClick={() => setAvaible(true)}
-                            >Sim</button>
-                            <button type="button"
-                                className={!avaible ? 'active' : ''}
-                                onClick={() => setAvaible(false)}
-                            >Não</button>
-                        </div>
-                    </Grid>
-
-                    <Grid item xs={12}>
-                        <Button ></Button>
-                    </Grid>
-
-                </Grid>
-            </form>
-
-
+        <Grid >
+            <NewAside />
+            <SubAside title="Categorias" />
+        </Grid>
         </div>
+        
     );
 }
 
 export default AddItem;
+
+
+/* <form onSubmit={handleSubmit}>
+<Grid container spacing={3}>
+    <Grid item xs={12}>
+        <h1> Cadastrar Item </h1>
+    </Grid>
+
+    <Grid item xs={12}>
+        <hr/>
+    </Grid>
+
+    <Grid item xs={12}>
+        <label htmlFor="name">Nome do Item:</label>
+        <input  placeholder="Ex: X-Salada" value={name} onChange={event => setName(event.target.value)} />
+    </Grid>
+
+    <Grid item xs={12}>
+        <label htmlFor="description">Descrição do item:</label>
+        <input  placeholder="Ex: Pão, Hamburguer, alface e maionese" value={desc} onChange={event => setDesc(event.target.value)}/>
+    </Grid>
+
+    <Grid item xs={12}>
+        <label htmlFor="Image">Imagem do item:</label>
+        <div className="images-container">
+            {
+                previewImages.map(image=>{
+                    return (
+                        <img src={image} alt={image} key={image}/>
+                    )
+                })
+            }
+
+<label htmlFor="image" className="new-image">
+  <FiPlus size={24} color="grey" />
+</label>
+
+
+</div>
+<input multiple onChange={handleSelectedImages} type="file" id="image"/>
+        
+    </Grid> 
+    
+    <Grid item xs={12}>
+        <label htmlFor="Price">Preço:</label>
+        <input  placeholder="Ex: 15,90" value={price} onChange={event => setPrice(event.target.value)}/>
+    </Grid>
+
+    <Grid item xs={12}>
+        <label htmlFor="Avaible">Disponível:</label>
+        <div className="button-select">
+            <button type="button"
+                className={avaible ? 'active' : ''}
+                onClick={() => setAvaible(true)}
+            >Sim</button>
+            <button type="button"
+                className={!avaible ? 'active' : ''}
+                onClick={() => setAvaible(false)}
+            >Não</button>
+        </div>
+    </Grid>
+
+    <Grid item xs={12}>
+        <Button ></Button>
+    </Grid>
+
+</Grid>
+</form> */

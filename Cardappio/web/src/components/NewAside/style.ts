@@ -44,7 +44,7 @@ const Aside = styled.aside<AsideProps>`
 const AsideTitle = styled.h1<AsideTitleProps>`
     font-size: ${props => props.fontSize || fontsSizes.large20};
     font-family: Quicksand;
-    color: #FF4A4A;
+    color: ${colors.orange};
     font-weight: ${props => props.fontWeight || 'Bold'};
     padding-top: 32px;
     @media(min-width: 1280px) {
@@ -82,7 +82,7 @@ const AsideLi = styled.li<AsideLiProps>`
 
 const AsideLiText = styled.p<AsideLiTextProps>`
     font-size: ${props => props.fontSize || fontsSizes.small14};
-    color: ${props => props.color || colors.darkPink};
+    color: ${props => props.color || colors.orange};
     font-weight: ${props => props.fontWeight || '400'};
     margin-left: ${dimensions.spacing28};
     @media(min-width: 1280px) {

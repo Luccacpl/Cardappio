@@ -11,6 +11,9 @@ import { useLocation } from 'react-router-dom'
 
 import Svg from '../Svg/Svg'
 
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+
 interface ISubAside {
     clicked?: any
     title: string
@@ -21,22 +24,36 @@ interface ICategory {
     id: number
 }
 
+function Alert(props: AlertProps) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 function SubAside(props: ISubAside) {
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [refresh, setRefresh] = useState(0);
+    const [open, setOpen] = React.useState(false);
 
     const tamanho = categories.length;
 
     const location = useLocation();
     console.log(location.pathname);
 
+    
     async function handleDelete(id: number) {
         await api.delete('/category/' + id)
         setRefresh(chave => chave + 1)
         console.log(id);
+   
 
-        alert('Categoria deletada com sucesso!');
+        setOpen(true)
     }
+
+    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
 
 
     useEffect(() => {
@@ -73,7 +90,13 @@ function SubAside(props: ISubAside) {
                 </UlMenu>
                 <AddButton onClick={props.clicked}>+ Adicionar nova categoria</AddButton>
             </SubMenu>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success">
+                    Item deletado com sucesso!
+                </Alert>
+            </Snackbar>
         </DivContainer>
+        
     );
 }
 

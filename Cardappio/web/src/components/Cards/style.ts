@@ -6,10 +6,13 @@ import { fontsSizes } from '../../utils/fontSizes'
 
 interface DivCardProps {
     gridStart?: string
+    display?: string
+    width?: string
+    marginLeft?: string
 }
 
 interface DivPictureProps {
-
+    imgUrl?: string
 }
 
 interface DivMenuProps {
@@ -33,12 +36,14 @@ interface PriceCardProps {
 }
 
 const DivCard = styled.div<DivCardProps>`
-    width: 100%;
+    width: 220px;
     height: 280px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 10px 20px rgba(191, 191, 191, 0.2);
-    grid-column-start: ${props => props.gridStart}
+    grid-column-start: ${props => props.gridStart};
+    display: ${props => props.display};
+    margin-left: ${props => props.marginLeft}
     `
 
 const DivPicture = styled.div<DivPictureProps>`
@@ -46,12 +51,15 @@ const DivPicture = styled.div<DivPictureProps>`
     width: 100%;
     background-color: grey;
     border-radius: 5px;
+    background: url(${(props)=>props.imgUrl});
+    background-position: center;
+    background-size: cover;
 `
 
 const DivMenu = styled.div<DivMenuProps>`
     width: 95px;
     height: 40px;
-    background-color: #FE5B5B;
+    background-color: ${colors.orange};
     border-radius: 0px 5px 0px 10px;
     float: right;
     top: 0;

@@ -26,7 +26,7 @@ interface IBottomModal {
 
 const BottomModal = (props: IBottomModal) => {
     return (
-        <OverlayModal>
+        <OverlayModal>            
             <MiddleContainer>
                 <Grid grid="auto/ auto" gridGap="15% 5%" marginBottom="2%" marginTop="5%">
                     <Title

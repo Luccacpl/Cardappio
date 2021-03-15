@@ -8,6 +8,7 @@ interface SvgProps {
   display?: string
   margin?: string
   color?: string
+  cursor?: string
 }
 
 const Svg = styled(ReactSVG)<SvgProps>`
@@ -17,7 +18,8 @@ const Svg = styled(ReactSVG)<SvgProps>`
     max-width: ${props => props.maxWidth};
     display: ${props => props.display};
     margin: ${props => props.margin};
-    color: ${props => props.color}
+    color: ${props => props.color};
+    cursor: ${props => props.cursor};
   }
 `
 

@@ -58,7 +58,7 @@ const DivContainer = styled.div<DivMenuContainerProps>`
 const DivTitle = styled.div<DivTitleProps>`
     height: 24%;
     width: ${dimensions.widthFull};
-    background-color: ${colors.pink};
+    background-color: ${colors.menuBlue};
     @media(min-width: 1280px) {
         height: 19.3%
     }
@@ -139,7 +139,7 @@ const UlMenu = styled.ul<UlMenuProps>`
 
 const LiMenu = styled.li<LiMenuProps>`
     font-size: ${fontsSizes.small14};
-    color: #FF3838;
+    color: ${colors.orange};
     padding-left: ${dimensions.spacing40};
     margin-bottom: ${dimensions.spacing24};
     cursor: pointer;

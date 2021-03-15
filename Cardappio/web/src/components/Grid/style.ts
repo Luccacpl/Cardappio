@@ -8,6 +8,9 @@ interface GridProps {
     marginBottom?: string
     backgroundColor?: string
     justifyContent?: string
+    gridColumns?: string
+    gridRows?: string
+    border?: string
 }
 
 const Grid = styled.div<GridProps>`
@@ -17,7 +20,10 @@ const Grid = styled.div<GridProps>`
     margin-bottom: ${props => props.marginBottom};
     margin-top: ${props => props.marginTop};
     background-color: ${props => props.backgroundColor};
-    justify-content: ${props => props.justifyContent}
+    justify-content: ${props => props.justifyContent};
+    grid-template-columns: ${props => props.gridColumns};
+    grid-template-rows: ${props => props.gridRows};
+    border: ${props => props.border}
     `
 
 export { Grid }

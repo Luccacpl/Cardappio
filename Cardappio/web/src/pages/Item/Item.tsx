@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import NewAside from '../../components/NewAside/NewAside'
@@ -7,8 +7,10 @@ import Cards from '../../components/Cards/Cards'
 import Container from '../../components/Container/Container'
 import { Grid } from '../../components/Grid/style'
 import Modal from '../../components/Modal/Modal'
+
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+
 
 import api from '../../services/api'
 import { ChangeEventHandler } from 'react';
@@ -16,6 +18,15 @@ import { ChangeEventHandler } from 'react';
 interface ICategory {
     name: string,
     id: number
+}
+
+interface IItem {
+    name: string,
+    id: number
+    desc: string
+    imageurl: string
+    avaible: boolean
+    price: number
 }
 
 function Alert(props: AlertProps) {
@@ -27,6 +38,7 @@ function Item() {
 
     const [name, setName] = useState('');
     const [categories, setCategories] = useState<ICategory[]>([]);
+    const [items, setItems] = useState<IItem[]>([]);
     const [refresh, setRefresh] = useState(0);
     const [showModal, setShowModal] = useState(false);
     const [open, setOpen] = React.useState(false);
@@ -36,14 +48,23 @@ function Item() {
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
         setOpenError(false);
     };
 
+    async function handleDelete(id: number) {
+        await api.delete('/item/' + id)
+        setRefresh(chave => chave + 1)
+        console.log(id);
+   
+
+        setOpen(true)
+    }
+
+
     async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
         if (name === '') {
-           return setOpenError(true)
+           return setOpenError(true);
         }
         else {
             setOpen(true);
@@ -58,13 +79,16 @@ function Item() {
 
             console.log(data);
 
+            setRefresh(chave => chave + 1);
+
+            window.location.reload();
+
             console.log({
                 name,
             })
 
-            
-
             return setShowModal(false);
+            
         }
     }
 
@@ -73,6 +97,10 @@ function Item() {
             api.get<ICategory[]>('/category').then(response => {
                 setCategories(response.data)
                 console.log(response.data);
+            })
+            api.get<IItem[]>('/item').then(response => {
+                setItems(response.data)
+                console.log(response.data)
             })
         }
         GetApi();
@@ -83,17 +111,16 @@ function Item() {
             <NewAside></NewAside>
             <SubAside title="Categorias" clicked={() => setShowModal(true)}></SubAside>
 
-            <Container>
-                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5% 2.5%" rowGap="2.5%" marginBottom="2%" marginTop="15%">
-                    <Cards gridStart="2"></Cards>
-                    <Cards gridStart="3"></Cards>
-                    <Cards gridStart="4"></Cards>
-                </Grid>
-                <Grid grid="auto/ 1.5fr 2fr 2fr 2fr 1.5fr" gridGap="2.5%" rowGap="10px">
-                    <Cards gridStart="2"></Cards>
-                    <Cards gridStart="3"></Cards>
-                    <Cards gridStart="4"></Cards>
-                </Grid>
+            <Container height="100%" display="inline-flex">
+                {items.map(item => 
+                    <Cards 
+                        name={item.name} 
+                        desc={item.desc} 
+                        price={item.price}
+                        src={item.imageurl}
+                        TrashClicked={() => handleDelete(item.id)}
+                        ></Cards>
+                    )}
             </Container>
             {showModal === true &&
                 <Modal
@@ -120,3 +147,7 @@ function Item() {
 }
 
 export default Item;
+
+
+
+
