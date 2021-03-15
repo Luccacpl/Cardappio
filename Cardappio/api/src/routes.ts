@@ -16,6 +16,8 @@ routes.post('/item',upload.single('imageurl'),ItemController.postItem);
 routes.put('/item/:id',ItemController.updateItem);
 routes.delete('/item/:id',ItemController.deleteItem);
 
+routes.put('/image/:id',upload.single('imageurl'),ItemController.updateItemImage);
+
 routes.get('/category',CategoryControler.getAllCategory);
 routes.get('/category/:id',CategoryControler.getCategory);
 routes.post('/category',CategoryControler.postCategory);
