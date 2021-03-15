@@ -7,7 +7,10 @@ import categoryView from '../Views/CategoryView'
 
 export default {
 
-    async postCategory(req:Request,res:Response){
+    async postCategory(req:any,res:Response){
+        console.log(req.user);//usuario logado
+
+
         const {name} = req.body;
         const categoryRepository = getRepository(Category);
         const category = new Category();
@@ -23,7 +26,10 @@ export default {
         
     },
 
-    async updateCategory(req:Request,res:Response){
+    async updateCategory(req:any,res:Response){
+        console.log(req.user);//usuario logado
+
+
         const {id} = req.params;
         const {name} = req.body;
         const categoryRepository = getRepository(Category);
@@ -40,7 +46,10 @@ export default {
        
     },
 
-    async getCategory(req:Request,res:Response){
+    async getCategory(req:any,res:Response){
+        console.log(req.user);//usuario logado
+
+
         const {id} = req.params;
         const categoryRepository = getRepository(Category);
         try{
@@ -56,13 +65,19 @@ export default {
         
     },
 
-    async getAllCategory(req:Request,res:Response){
+    async getAllCategory(req:any,res:Response){
+        console.log(req.user);//usuario logado
+
+
         const categoryRepository = getRepository(Category);
         const list = await categoryRepository.find({relations: ['items']})
         return res.json(categoryView.renderMany(list));
     },
 
-    async deleteCategory(req:Request,res:Response){
+    async deleteCategory(req:any,res:Response){
+        console.log(req.user);//usuario logado
+
+
         const {id} = req.params;
         const categoryRepository = getRepository(Category);
         try{

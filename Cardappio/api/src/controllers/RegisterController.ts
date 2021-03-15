@@ -41,7 +41,7 @@ export default {
                         return res.status(201).json(await repo.save(user));
                     }
                     catch (e) {
-                        return res.status(500).json({"ERROR":e.message})
+                        return res.status(500).json({ "ERROR": e.message })
                     }
                 }
 
