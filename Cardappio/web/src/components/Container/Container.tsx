@@ -8,6 +8,11 @@ interface IContainer {
     flexDirection?: string
     height?: string
     margin?: string
+    width?: string
+    backgroundColor?: string
+    padding?: string
+    overflow?: string
+    justifyContent?: string
 }
 
 function Container(props: IContainer) {
@@ -17,6 +22,11 @@ function Container(props: IContainer) {
             flexDirection={props.flexDirection}
             height={props.height}
             margin={props.margin}
+            width={props.width}
+            backgroundColor={props.backgroundColor}
+            padding={props.padding}
+            overflow={props.overflow}
+            justifyContent={props.justifyContent}
         >
             {props.children}
         </Div>

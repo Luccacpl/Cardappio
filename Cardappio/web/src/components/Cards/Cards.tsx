@@ -14,7 +14,7 @@ interface ICards {
     marginLeft?: string
     name: string
     desc: string
-    price: number
+    price: string
     src: string
     EditClicked?: any
     TrashClicked?: any

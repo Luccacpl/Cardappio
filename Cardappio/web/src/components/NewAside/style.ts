@@ -35,7 +35,7 @@ interface AsideBackButtonProps {
 const Aside = styled.aside<AsideProps>`
     width: 100%;
     height: ${props => props.height || dimensions.heightFullWindow};
-    background-color: #FFFAFA;
+    background-color: ${colors.black};
     min-width: 125px;
     text-align: center;
     grid-column-start: 1;
@@ -44,7 +44,7 @@ const Aside = styled.aside<AsideProps>`
 const AsideTitle = styled.h1<AsideTitleProps>`
     font-size: ${props => props.fontSize || fontsSizes.large20};
     font-family: Quicksand;
-    color: ${colors.orange};
+    color: ${colors.menuOrange};
     font-weight: ${props => props.fontWeight || 'Bold'};
     padding-top: 32px;
     @media(min-width: 1280px) {
@@ -82,7 +82,7 @@ const AsideLi = styled.li<AsideLiProps>`
 
 const AsideLiText = styled.p<AsideLiTextProps>`
     font-size: ${props => props.fontSize || fontsSizes.small14};
-    color: ${props => props.color || colors.orange};
+    color: ${props => props.color || colors.menuOrange};
     font-weight: ${props => props.fontWeight || '400'};
     margin-left: ${dimensions.spacing28};
     @media(min-width: 1280px) {
@@ -96,13 +96,13 @@ const AsideLiText = styled.p<AsideLiTextProps>`
 const AsideBackButton = styled.button<AsideBackButtonProps>`
     width: 35px;
     height: 35px;
-    background-color: #FF3838;
+    background-color: ${colors.green};
     border-radius: 5px;
     cursor: pointer;
     border: 0px;
     outline: none;
     margin-top: ${props => props.marginTop || '20rem'};
-    color: white;
+    color: black;
         @media(min-width: 1280px) {
             margin-top: ${props => props.marginTop || '25rem'};
     }

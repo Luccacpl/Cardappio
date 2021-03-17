@@ -28,6 +28,40 @@ const BottomModal = (props: IBottomModal) => {
     return (
         <OverlayModal>            
             <MiddleContainer>
+                    <Title
+                        color={colors.textBlue}
+                        fontWeight="700"
+                    >
+                        {props.title}
+                    </Title>
+                    <P
+                        fontWeight="400"
+                        color={colors.textBlack}
+                    >
+                        {props.text}
+                    </P>
+                    <Input 
+                        placeholder="Insira o nome da categoria" 
+                        value={props.value} 
+                        onChange={props.change}
+                        width="100%"
+                        margin="auto"
+                        />
+                    <Button content={props.ButtonTitle} margin="auto" clicked={props.clicked} />
+                    <AsideBackButton marginTop="0px" onClick={props.Backclicked}>
+                        <Svg src={ArrowBack} width="1.5rem" height="2rem" margin="auto" />
+                    </AsideBackButton>
+                    {props.body}
+            </MiddleContainer>
+        </OverlayModal>
+    )
+}
+
+export default BottomModal
+
+
+/* <OverlayModal>            
+            <MiddleContainer>
                 <Grid grid="auto/ auto" gridGap="15% 5%" marginBottom="2%" marginTop="5%">
                     <Title
                         color={colors.pink}
@@ -63,8 +97,4 @@ const BottomModal = (props: IBottomModal) => {
                 </Grid>
                     {props.body}
             </MiddleContainer>
-        </OverlayModal>
-    )
-}
-
-export default BottomModal
+        </OverlayModal> */

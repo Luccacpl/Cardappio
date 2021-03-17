@@ -10,7 +10,14 @@ const colors = {
     darkPink: "#FF3838",
     menuBlue: "#2B13AF",
     lightBlue: "#EDEAFF",
-    orange: "#DC4B1E"
+    textBlue: "#5442BC",
+    menuOrange: "#FC8533",
+    lightOrange: "#FFEAE3",
+    green: "#B2DA5A",
+    black: "#1C1C1C",
+    lightBlack: "#202020",
+    fundoInput: "#2C2C2C"
+    
 }
 
 export {colors};

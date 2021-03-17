@@ -1,15 +1,16 @@
-import React, {FormEvent, useState, ChangeEvent} from 'react';
+import React, { FormEvent, useState, ChangeEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import './AddItem.css';
-
 import api from '../../services/api';
-import { FiPlus } from "react-icons/fi";
 
 import NewAside from '../../components/NewAside/NewAside';
 import SubAside from '../../components/SubAside/SubAside';
 import Button from '../../components/Button/Button';
-import {Grid} from '../../components/Grid/style';
+import { Grid } from '../../components/Grid/style';
+import { Input } from 'components/Input/Input';
+import Container from 'components/Container/Container';
+import { Form } from 'components/Form/Form';
+import { P, Title} from 'components/Text/text';
 
 
 function AddItem() {
@@ -23,24 +24,24 @@ function AddItem() {
     const [images, setImages] = useState<File[]>([])
     const [previewImages, setPreviewImages] = useState<string[]>([])
 
-    function handleSelectedImages(event: ChangeEvent<HTMLInputElement>){
-        if(!event.target.files){
-          return;
+    function handleSelectedImages(event: ChangeEvent<HTMLInputElement>) {
+        if (!event.target.files) {
+            return;
         }
-    
+
         const selectedImages = Array.from(event.target.files);
         setImages(selectedImages)
-    
+
         const selectedImagesPreview = selectedImages.map(image => {
-          return URL.createObjectURL(image)
+            return URL.createObjectURL(image)
         })
-    
+
         setPreviewImages(selectedImagesPreview);
-      }
+    }
 
 
 
-    async function handleSubmit (event: FormEvent) {
+    async function handleSubmit(event: FormEvent) {
         event.preventDefault();
 
         const data = new FormData();
@@ -49,11 +50,11 @@ function AddItem() {
         data.append('desc', desc);
         data.append('avaible', String(avaible));
         data.append('price', price);
-        images.forEach(image =>{
+        images.forEach(image => {
             data.append('images', image)
-          })
+        })
 
-        await api.post('category', {data});
+        await api.post('category', { data });
 
         alert('Cadastro realizado com sucesso!');
         history.push('/item');
@@ -69,14 +70,29 @@ function AddItem() {
         })
     }
 
-    return(
+    return (
         <div id="page-AddItem">
-        <Grid >
-            <NewAside />
-            <SubAside title="Categorias" />
-        </Grid>
+            <Grid >
+                <NewAside />
+                <SubAside title="Categorias" />
+                <Container display="flex" justifyContent="initial" padding="0px 64px 64px 64px">
+                    <Container
+                        width="100%"
+                        height="200px"
+                        padding="0px"
+                        display="inline-flex"
+                        flexDirection="row"
+                        justifyContent="left"
+                    >
+                        <Title marginTop="64px">Adicionar Item</Title>
+                    </Container>
+                    <Form>
+
+                    </Form>
+                </Container>
+            </Grid>
         </div>
-        
+
     );
 }
 
@@ -121,9 +137,9 @@ export default AddItem;
 
 </div>
 <input multiple onChange={handleSelectedImages} type="file" id="image"/>
-        
-    </Grid> 
-    
+
+    </Grid>
+
     <Grid item xs={12}>
         <label htmlFor="Price">Preço:</label>
         <input  placeholder="Ex: 15,90" value={price} onChange={event => setPrice(event.target.value)}/>

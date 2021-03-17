@@ -34,22 +34,27 @@ const OverlayModal = styled.div`
   top: 0;
   left: 0;
   position: absolute;
-  display: flex;
   z-index: 2;
   justify-content: center;
   align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
 `
 
 const MiddleContainer = styled.div`
-  width: 600px;
-  width: 446px;
+  width: 356px;
+  width: 28.5%;
+  min-width: 300px;
   height: 75%;
   background-color: ${colors.white};
   padding: ${dimensions.spacing40};
   box-sizing: border-box;
   border-radius: 10px 10px 0px 0px;
-`
+  display: flex;
+  flex-direction: column;
+    @media(min-width: 1280px) {
+        width: 446px;
+    }`
 
 const Title = styled.h2<TitleComponentProps>`
     font-size: ${(props) => props.fontSize || fontsSizes.large20};
@@ -75,7 +80,7 @@ const P = styled.p<PProps>`
   text-transform: ${props => props.textTransform};
   background-color: ${props => props.backgroundColor};
   text-align: ${props => props.textAlign};
-  padding: ${props => props.padding};
+  padding: ${props => props.padding || "16px 0px 0px 0px"};
   strong {
     font-weight: bold;
     color: ${props => props.strongColor};

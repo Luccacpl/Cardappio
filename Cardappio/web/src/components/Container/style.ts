@@ -7,19 +7,25 @@ interface DivProps {
     flexDirection?: string
     height?: string
     margin?: string
+    width?: string
+    backgroundColor?: string
+    padding?: string
+    overflow?: string
+    justifyContent?: string
 }
 
 const Div = styled.div<DivProps>`
-    width: 100%;
+    width: ${props => props.width || "100%"};
     height: ${props => props.height};
-    background-color: ${colors.lightBlue};
+    background-color: ${props => props.backgroundColor || colors.black};
     display: ${props => props.display};
     flex-direction: ${props => props.flexDirection};
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: ${props => props.justifyContent || "space-evenly"};
     margin-top: ${props => props.margin};
     gap: 30px;
-    padding: 64px;
+    padding: ${props => props.padding || '64px'};
+    overflow-y: ${props => props.overflow || 'hidden'};
 `
 
 export { Div }

@@ -1,5 +1,5 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import NewAside from '../../components/NewAside/NewAside'
 import SubAside from '../../components/SubAside/SubAside'
@@ -14,6 +14,9 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 import api from '../../services/api'
 import { ChangeEventHandler } from 'react';
+import { Input } from 'components/Input/Input';
+import { AddButton } from 'components/SubAside/style';
+import { colors } from 'utils';
 
 interface ICategory {
     name: string,
@@ -56,7 +59,7 @@ function Item() {
         await api.delete('/item/' + id)
         setRefresh(chave => chave + 1)
         console.log(id);
-   
+
 
         setOpen(true)
     }
@@ -64,7 +67,7 @@ function Item() {
 
     async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
         if (name === '') {
-           return setOpenError(true);
+            return setOpenError(true);
         }
         else {
             setOpen(true);
@@ -88,7 +91,7 @@ function Item() {
             })
 
             return setShowModal(false);
-            
+
         }
     }
 
@@ -111,16 +114,39 @@ function Item() {
             <NewAside></NewAside>
             <SubAside title="Categorias" clicked={() => setShowModal(true)}></SubAside>
 
-            <Container height="100%" display="inline-flex">
-                {items.map(item => 
-                    <Cards 
-                        name={item.name} 
-                        desc={item.desc} 
-                        price={item.price}
+            <Container height="100%" display="inline-flex" padding="0px 0px 0px 0px">
+                <Container
+                    width="100%"
+                    height="224px"
+                    padding="0px"
+                    display="inline-flex"
+                    flexDirection="row"
+                    backgroundColor={colors.green}
+                >
+                    <Input 
+                        height="32px"
+                        fontSize="18px"
+                        placeholder="Pesquise um item"
+                        marginTop="32px"
+                    />
+                    <Link to="/newitem">
+                        <AddButton
+                            height="50%"
+                            marginTop="28px"
+                        >
+                            + Adicionar novo item
+                        </AddButton>
+                    </Link>
+                </Container>
+                {items.map(item =>
+                    <Cards
+                        name={item.name}
+                        desc={item.desc}
+                        price={Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price)}
                         src={item.imageurl}
                         TrashClicked={() => handleDelete(item.id)}
-                        ></Cards>
-                    )}
+                    ></Cards>
+                )}
             </Container>
             {showModal === true &&
                 <Modal

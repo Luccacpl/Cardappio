@@ -36,14 +36,20 @@ interface PriceCardProps {
 }
 
 const DivCard = styled.div<DivCardProps>`
-    width: 220px;
-    height: 280px;
-    background-color: white;
+    width: 30%;
+    min-width: 210px;
+    max-height: 300px;
+    background-color: ${colors.lightBlack};
     border-radius: 5px;
-    box-shadow: 0px 10px 20px rgba(191, 191, 191, 0.2);
     grid-column-start: ${props => props.gridStart};
     display: ${props => props.display};
-    margin-left: ${props => props.marginLeft}
+    margin-left: ${props => props.marginLeft};
+    @media(min-width: 1280px) {
+        width: 220px;
+        width: 22.5%;
+        height: 280px;
+        height: 33%;
+    }
     `
 
 const DivPicture = styled.div<DivPictureProps>`
@@ -59,7 +65,7 @@ const DivPicture = styled.div<DivPictureProps>`
 const DivMenu = styled.div<DivMenuProps>`
     width: 95px;
     height: 40px;
-    background-color: ${colors.orange};
+    background-color: ${colors.menuOrange};
     border-radius: 0px 5px 0px 10px;
     float: right;
     top: 0;
@@ -77,6 +83,7 @@ const TitleCard = styled.h2<TitleCardProps>`
     font-weight: bold;
     margin-left: ${dimensions.spacing18};
     margin-top: ${dimensions.spacing20};
+    color: ${colors.white};
 `
 
 const DescriptionCard = styled.p<DescriptionCardProps>`
@@ -92,7 +99,7 @@ const PriceCard = styled.h1<PriceCardProps>`
     font-weight: bold;
     margin-left: ${dimensions.spacing18};
     margin-top: ${dimensions.spacing12};
-    color: #FE5B5B;
+    color: ${colors.green};
 `
 
 export { DivCard, DivPicture, DivMenu, DivDetail, TitleCard, DescriptionCard, PriceCard }

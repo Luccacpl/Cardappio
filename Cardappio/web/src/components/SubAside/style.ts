@@ -41,7 +41,9 @@ interface LiMenuProps{
 }
 
 interface AddButtonProps{
-
+    height?: string
+    width?: string
+    marginTop?: string
 }
 
 interface LinkProps{
@@ -50,7 +52,7 @@ interface LinkProps{
 
 const DivContainer = styled.div<DivMenuContainerProps>`
     height: ${props => props.height || dimensions.heightFullWindow};
-    background-color: ${colors.white};
+    background-color: ${colors.lightBlack};
     width: 100%;
     min-width: 300px;
 `
@@ -58,7 +60,7 @@ const DivContainer = styled.div<DivMenuContainerProps>`
 const DivTitle = styled.div<DivTitleProps>`
     height: 24%;
     width: ${dimensions.widthFull};
-    background-color: ${colors.menuBlue};
+    background-color: ${colors.menuOrange};
     @media(min-width: 1280px) {
         height: 19.3%
     }
@@ -114,7 +116,7 @@ const SubMenu = styled.div<SubMenuProps>`
 
 const TitleSubMenu = styled.h2<TitleSubMenuProps>`
     font-size: ${fontsSizes.large18};
-    color: #4A4A4A;
+    color: ${colors.white};
     font-weight: 500;
     margin-left: ${props => props.marginLeft || dimensions.spacing40};
     padding-top: ${props => props.paddingTop || dimensions.spacing64};
@@ -139,7 +141,7 @@ const UlMenu = styled.ul<UlMenuProps>`
 
 const LiMenu = styled.li<LiMenuProps>`
     font-size: ${fontsSizes.small14};
-    color: ${colors.orange};
+    color: ${colors.green};
     padding-left: ${dimensions.spacing40};
     margin-bottom: ${dimensions.spacing24};
     cursor: pointer;
@@ -156,10 +158,13 @@ const AddButton = styled.button<AddButtonProps>`
     border: 0px;
     background-color: transparent;
     margin-left: ${dimensions.spacing40};
-    color: #FF3838;
+    margin-top: ${props => props.marginTop};
+    color: ${colors.green};
     font-size: ${fontsSizes.small14};
     cursor: pointer;
     outline: none;
+    height: ${props => props.height};
+    width: ${props => props.width};
     @media(min-width: 1280px) {
         font-size: ${fontsSizes.large18};
     }

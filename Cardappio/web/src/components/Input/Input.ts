@@ -13,29 +13,37 @@ interface IInput {
     marginLeft?: string
     marginTop?: string
     margin?: string
+    display?: string
+    marginTopResponsive?: string
 }
 
 const Input = styled.input<IInput>`
-    background-color: ${props => props.backgroundColor || colors.white};
+    background-color: ${props => props.backgroundColor || colors.fundoInput};
     outline: none;
-    border: 1.5px solid #BEBEBE;
+    border: 0.1px solid transparent;
     border-radius: 5px;
-    width: ${props => props.width || '73.5%'};
-    height: ${props => props.height || '56px'};
+    width: ${props => props.width || '100%'};
+    height: ${props => props.height || '45px'};
     font-family: Roboto;
     font-style: normal;
-    font-weight: ${props => props.fontWeight || '500'};
-    font-size: ${props => props.fontSize || fontsSizes.large24};
-    color: rgba(0, 0, 0, 0.7);
-    padding: 0 24px;
-    display: flex;
+    font-weight: ${props => props.fontWeight || '400'};
+    font-size: ${props => props.fontSize || fontsSizes.small14};
+    color: rgba(255, 255, 255, 0.7);
+    padding: 15px;
+    display: ${props => props.display || "flex"};
     margin-left: ${props => props.marginLeft};
     margin-top: ${props => props.marginTop};
     margin: ${props => props.margin};
+    transition: all 0.3s;
     &:focus {
-        border: 1.5px solid ${colors.darkRed};
-        box-shadow: 0px 0px 25px rgba(176, 0, 0, 0.15);
-        transition: 0.2s;
+        border: 0.1px solid transparent;
+        transition: all 0.3s;
+    }
+    ::placeholder{
+        color: rgba(255, 255, 255, 0.6);
+    }
+    @media screen and (min-width: 1281px){
+        margin-top: ${props => props.marginTopResponsive};
     }
 `
 

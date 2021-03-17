@@ -17,6 +17,9 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 interface ISubAside {
     clicked?: any
     title: string
+    width?: string
+    height?: string
+    marginTop?: string
 }
 
 interface ICategory {
@@ -88,7 +91,14 @@ function SubAside(props: ISubAside) {
                         ) : null
                     }
                 </UlMenu>
-                <AddButton onClick={props.clicked}>+ Adicionar nova categoria</AddButton>
+                <AddButton 
+                    onClick={props.clicked}
+                    width={props.width}
+                    height={props.height}
+                    marginTop={props.marginTop}
+                >
+                    + Adicionar nova categoria
+                </AddButton>
             </SubMenu>
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success">

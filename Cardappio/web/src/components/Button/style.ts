@@ -10,30 +10,33 @@ interface CustomButtonProps {
     fontWeight?: string
     fontSize?: string
     backgroundColor?: string
+    padding?: string
+    marginTop?: string
+    widthResponsive?: string
+    fontSizeResponsive?: string
 }
 
 const CustomButton = styled.button<CustomButtonProps>`
     margin: ${props => props.margin};
-    height: ${(props) => props.height || '3rem'};
-    padding: 0 20px;
-
-    background-color: ${props => props.color || colors.lighterRed};
-
+    margin-top: ${props => props.marginTop};
+    width: ${props => props.width};
+    height: ${(props) => props.height || '1.875rem'};
+    padding: ${props => props.padding || "0 20px"};
+    background-color: ${props => props.color || colors.menuOrange};
     color: ${props => props.color || colors.white};
-
-    border: 1px solid #888888;
-    border-radius: 5px;
-
+    border: 1px solid transparent;
+    border-radius: 30px;
     outline: none;
-
-    font-weight: ${props => props.fontWeight || 'bold'};
-    font-size: ${props => props.fontSize || fontsSizes.large26};
-
+    font-weight: ${props => props.fontWeight || '400'};
+    font-size: ${props => props.fontSize || fontsSizes.small14};
     cursor: pointer;
-
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 5px 5px  rgba(0, 0, 0, .5);
+    }
+    @media screen and (min-width: 1281px) {
+        width: ${props => props.widthResponsive};
+        font-size: ${props => props.fontSizeResponsive || fontsSizes.large18};
     }
 `
 
