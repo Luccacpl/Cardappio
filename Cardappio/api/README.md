@@ -1,14 +1,17 @@
-# Awesome Project Build with TypeORM
 
-Backend Cardappio:
+`registro`
+/register `POST`
 
-ROTAS.
+retorno
+```
+{
+"SUCCESS": "user.email created"
+}
+```
 
-registro
-/register POST 
+`autentificação`
+/login `POST` 
 
-autentificação
-/login POST 
 
-Does *not* work **very** well. Use HTML tags
+
 
