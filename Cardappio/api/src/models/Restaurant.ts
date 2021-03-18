@@ -5,22 +5,22 @@ import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
 export default class User {
 
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    restaurant_id: number;
 
     @Column()
-    name: string;   
+    restaurant_name: string;   
 
-    @Column()
-    mesa: string;
+    // @Column()
+    // restaurant_mesa: string;
 
-    @Column()
-    cozinha: string;
+    // @Column()
+    // restaurant_cozinha: string;
 
-    @Column()
-    garcon: string;
+    // @Column()
+    // restaurant_garcon: string;
 
-    @Column()
-    comandas:string;
+    // @Column()
+    // restaurant_comandas:string;
 
     @Column()
     user_id:number;

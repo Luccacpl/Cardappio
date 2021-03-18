@@ -27,12 +27,12 @@ export default {
                 imageurl = "";
             }
             const item = new Item();
-            item.name = name;
-            item.desc = desc;
-            item.available = available == "true";
-            item.category = category;
-            item.imageurl = imageurl;
-            item.price = price;
+            item.item_name = name;
+            item.item_desc = desc;
+            item.item_available = available == "true";
+            item.category_id = category;
+            item.item_imageurl = imageurl;
+            item.item_price = price;
             await repo.save(item);
             return res.status(201).json(item);
 
@@ -59,11 +59,11 @@ export default {
             } = req.body;
             console.log(available);
             const item = new Item();
-            item.name = name;
-            item.desc = desc;
-            item.available = available == "true";
-            item.category = category;
-            item.price = price;
+            item.item_name = name;
+            item.item_desc = desc;
+            item.item_available = available == "true";
+            item.category_id = category;
+            item.item_price = price;
             await repo.update(id, item);
             return res.status(201).json(item);
 
@@ -84,9 +84,9 @@ export default {
         }
         try {
             const item = await repo.findOneOrFail(id);
-            if (item.imageurl !== "") { await unlinkImage.deleteImage(`${destination}/${item.imageurl}`); }
+            if (item.item_imageurl !== "") { await unlinkImage.deleteImage(`${destination}/${item.item_imageurl}`); }
 
-            item.imageurl = imageurl;
+            item.item_imageurl = imageurl;
 
             await repo.update(id, item);
 
@@ -130,10 +130,10 @@ export default {
         try {
             const item = await repoItem.findOneOrFail(id)
             //excluir imagem
-            console.log(item.imageurl)
+            console.log(item.item_imageurl)
             try {
-                await unlinkImage.deleteImage(`${destination}/${item.imageurl}`);
-            }catch(e){console.log(item.imageurl+" already deleted")}
+                await unlinkImage.deleteImage(`${destination}/${item.item_imageurl}`);
+            }catch(e){console.log(item.item_imageurl+" already deleted")}
             await repoItem.delete(id)
 
             return res.status(200).json({"message":"deleted item with id "+id});

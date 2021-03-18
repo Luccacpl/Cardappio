@@ -10,8 +10,7 @@ export default {
         const {
             email,
             pass,
-            firstname,
-            lastname,
+            name,
             dt_nasc,
         } = req.body;
 
@@ -19,7 +18,7 @@ export default {
         try {
             const user = await repo.findOneOrFail({
                 where: {
-                    email: email.toLowerCase()
+                    user_email: email.toLowerCase()
                 }
             })
             console.log(user);
@@ -29,17 +28,17 @@ export default {
 
             try {
                 const user = new User();
-                user.email = email.toLowerCase();
-                user.pass = encryptedPass;
-                user.firstName = firstname;
-                user.lastName = lastname;
-                user.dt_nasc = dt_nasc;
+                //user.name = 'mano';
+                user.user_email = email.toLowerCase();
+                user.user_pass = encryptedPass;
+                user.user_name = name;
+                user.user_dt_nasc = dt_nasc;
                 console.log(user);
                 await repo.save(user)
-                return res.status(201).json({ SUCCESS: user.email + " created" });
+                return res.status(201).json({ SUCCESS: user.user_email + " created" });
             }
             catch (e) {
-                return res.status(500).json({ "ERROR": e.message })
+                return res.status(500).json({ "ERROR": e })
             }
         }
 

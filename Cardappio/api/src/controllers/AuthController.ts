@@ -21,15 +21,15 @@ export default {
             
             const user = await repository.findOneOrFail({
                 where: {
-                    email: email
+                    user_email: email
                 }
             })
             console.log(user);
-            if (bcrypt.compareSync(pass, user.pass)) {
+            if (bcrypt.compareSync(pass, user.user_pass)) {
                 console.log(user);
                 const sendUser = {
-                    name: user.firstName,
-                    id: user.id
+                    name: user.user_email,
+                    id: user.user_id
                 }
                 const acessToken = jwt.sign(sendUser, process.env.ACCESS_TOKEN_SECRET || "kekw");
 

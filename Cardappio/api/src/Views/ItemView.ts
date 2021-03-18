@@ -4,13 +4,13 @@ export default {
 
     render(item: Item) {
         return {
-            id: item.id,
-            name: item.name,
-            desc: item.desc,
-            imageurl: `http://localhost:3333/public/uploads/${item.imageurl}`,
-            available: item.available,
-            price: item.price,
-            category: item.category
+            id: item.item_id,
+            name: item.item_name,
+            desc: item.item_desc,
+            imageurl: `http://localhost:3333/public/uploads/${item.item_imageurl}`,
+            available: item.item_available,
+            price: item.item_price,
+            category: item.category_id
         };
     },
     renderMany(itens: Item[]) {

@@ -1,9 +1,13 @@
 {
-   "name": "default",
-   "type": "sqlite",
-   "database": "./src/database/database.sqlite",
-   "synchronize": false,
-   "logging": false,
+   "type": "postgres",
+   "host": "ec2-54-162-119-125.compute-1.amazonaws.com",
+   "port": 5432,
+   "username": "rrywssawwxepui",
+   "password": "d39ad5d92b09ea6597cc1efa415ad28e7af13a662ae32fcb7dcddd1204066648",
+   "database": "d55fqcj55rjitf",
+   "ssl": {
+      "rejectUnauthorized": false
+   },
    "entities": [
       "./src/models/*.ts"
    ],

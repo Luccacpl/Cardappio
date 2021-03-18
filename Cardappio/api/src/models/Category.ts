@@ -5,12 +5,12 @@ import Item from "./Item";
 export default class Category {
 
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    category_id: number;
 
     @Column()
-    name: string;
+    category_name: string;
 
-    @OneToMany(()=> Item,item=>item.category,{
+    @OneToMany(()=> Item,item=>item.category_id,{
         cascade: ['insert','update','remove']
     })
     @JoinColumn({name:'category_id'})

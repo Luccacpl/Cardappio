@@ -5,24 +5,24 @@ import Category from "./Category";
 export default class Item {
 
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    item_id: number;
 
     @Column()
-    name: string;
+    item_name: string;
 
     @Column()
-    desc: string;
+    item_desc: string;
 
     @Column()
-    imageurl: string;
+    item_imageurl: string;
 
     @Column()
-    available: boolean;
+    item_available: boolean;
 
     @Column()
-    price: number;
+    item_price: number;
 
     @ManyToOne(()=> Category, category => category.items)
     @JoinColumn({name: 'category_id'})
-    category: Category;
+    category_id: Category;
 }

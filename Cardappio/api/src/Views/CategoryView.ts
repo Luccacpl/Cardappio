@@ -5,8 +5,8 @@ export default {
 
     render(category: Category) {
         return {
-            id: category.id,
-            name: category.name,
+            id: category.category_id,
+            name: category.category_name,
             items: itemView.renderMany(category.items)
         };
     },

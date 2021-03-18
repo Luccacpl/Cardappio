@@ -7,14 +7,14 @@ export class restaurant1615490790531 implements MigrationInterface {
             name: "restaurants",
             columns:[
                 {
-                    name:'id',
+                    name:'restaurant_id',
                     type:'integer',
                     isPrimary:true,
                     isGenerated:true,
                     generationStrategy:'increment'
                 },
                 {
-                    name:'name',
+                    name:'restaurant_name',
                     type:'varchar'
                 },
                 {
@@ -27,7 +27,7 @@ export class restaurant1615490790531 implements MigrationInterface {
                     name: 'user',
                     columnNames: ['user_id'],
                     referencedTableName: 'users',
-                    referencedColumnNames: ['id'],
+                    referencedColumnNames: ['user_id'],
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE'
                 }

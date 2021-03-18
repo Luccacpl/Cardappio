@@ -7,32 +7,29 @@ export class createUser1612289717920 implements MigrationInterface {
             name: "users",
             columns:[
                 {
-                    name:'id',
+                    name:'user_id',
                     type:'integer',
                     isPrimary:true,
                     isGenerated:true,
                     generationStrategy:'increment'
                 },
                 {
-                    name:'email',
-                    type:'varchar'
+                    name:'user_email',
+                    type:'varchar',
+                    length:'40'
                 },
                 {
-                    name:'pass',
-                    type:'varchar'
+                    name:'user_pass',
+                    type:'varchar',
+                    length:'100'
                 },
                 {
-                    name:'firstname',
-                    type:'varchar'
-                }
-                ,
+                    name:'user_name',
+                    type:'varchar',
+                    length:'100'
+                },
                 {
-                    name:'lastname',
-                    type:'varchar'
-                }
-                ,
-                {
-                    name:'dt_nasc',
+                    name:'user_dt_nasc',
                     type:'date'
                 }
             ]

@@ -5,21 +5,18 @@ import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
 export default class User {
 
     @PrimaryGeneratedColumn('increment')
-    id: number;
+    user_id: number;
 
     @Column()
-    email: string;
+    user_email: string;
     
     @Column()
-    pass: string;
+    user_pass: string;
 
     @Column()
-    firstName: string;
+    user_name: string;
 
     @Column()
-    lastName: string;
-
-    @Column()
-    dt_nasc: Date;
+    user_dt_nasc: Date;
 
 }

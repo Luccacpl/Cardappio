@@ -14,7 +14,7 @@ export default {
         const {name} = req.body;
         const categoryRepository = getRepository(Category);
         const category = new Category();
-        category.name = name;
+        category.category_name = name;
         try{
             categoryRepository.save(category);
             return res.status(201).json(category);
@@ -36,7 +36,7 @@ export default {
         try{
             await categoryRepository.findOneOrFail(id)
             const category = new Category();
-            category.name = name;
+            category.category_name = name;
             await categoryRepository.update(id,category);
             return res.status(200).json(category)
         }
@@ -91,7 +91,7 @@ export default {
 
             if(category.items.length>0){
                 category.items.forEach(async item => {
-                    try{ await unlinkImage.deleteImage(`${destination}/${item.imageurl}`); }
+                    try{ await unlinkImage.deleteImage(`${destination}/${item.item_imageurl}`); }
                     catch(e){console.log('image already deleter or changed')}
                 });
             }

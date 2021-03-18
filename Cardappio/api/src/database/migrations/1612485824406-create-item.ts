@@ -7,7 +7,7 @@ export class createItem1612485824406 implements MigrationInterface {
             name:'items',
             columns:[
                 {
-                    name:'id',
+                    name:'item_id',
                     type:'integer',
                     isPrimary:true,
                     isGenerated:true,
@@ -15,27 +15,27 @@ export class createItem1612485824406 implements MigrationInterface {
                     generationStrategy:"increment"
                 },
                 {
-                    name:'name',
+                    name:'item_name',
                     type:'varchar',
                     length:'100',
                 },
                 {
-                    name:'desc',
+                    name:'item_desc',
                     type:'varchar',
                     length:'100',
                 },
                 {
-                    name:'imageurl',
+                    name:'item_imageurl',
                     type:'varchar',
                     length:'300'
                 },
                 {
-                    name:'available',
+                    name:'item_available',
                     type:'boolean',
                     default:true
                 },
                 {
-                    name:'price',
+                    name:'item_price',
                     type:'decimal'
                 },
                 {
@@ -49,7 +49,7 @@ export class createItem1612485824406 implements MigrationInterface {
                     name: 'itemCategory',
                     columnNames: ['category_id'],
                     referencedTableName: 'categories',
-                    referencedColumnNames: ['id'],
+                    referencedColumnNames: ['category_id'],
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE'
                 }

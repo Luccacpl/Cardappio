@@ -7,14 +7,14 @@ export class createCategory1612485815538 implements MigrationInterface {
             name:'categories',
             columns:[
                 {
-                    name:'id',
+                    name:'category_id',
                     type:'integer',
                     isGenerated:true,
                     isPrimary:true,
                     generationStrategy:"increment"
                 },
                 {
-                    name:'name',
+                    name:'category_name',
                     type:'varchar',
                     length:'100'
                 }
