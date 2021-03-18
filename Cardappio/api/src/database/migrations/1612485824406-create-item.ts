@@ -32,7 +32,7 @@ export class createItem1612485824406 implements MigrationInterface {
                 {
                     name:'available',
                     type:'boolean',
-                    default:false
+                    default:true
                 },
                 {
                     name:'price',
