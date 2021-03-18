@@ -10,8 +10,7 @@ send
 {
 	"email":"email@gmail.com",
 	"pass":"123456",
-	"firstname":"Allan",
-	"lastname":"Cruvinel",
+	"name":"Allan",
 	"dt_nasc":"2000-02-17"
 }
 ```
@@ -41,5 +40,23 @@ return
 }
 ```
 
-`autentificação`
+`categorias`
 
+/category
+
+`POST`
+send
+```
+{
+	"email":"allan.cruvinel@gmail.com",
+	"pass":"123456"
+}
+```
+return
+```
+{
+"authorization": "RANDOM CRAZY CODE TOKEN"
+}
+```
+
+`autentificação`
