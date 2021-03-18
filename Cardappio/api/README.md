@@ -1,7 +1,14 @@
 # Awesome Project Build with TypeORM
 
-Steps to run this project:
+Backend Cardappio:
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+ROTAS.
+
+registro
+/register POST 
+
+autentificação
+/login POST 
+
+Does *not* work **very** well. Use HTML tags
+
