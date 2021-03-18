@@ -15,11 +15,6 @@ export default {
             dt_nasc,
         } = req.body;
 
-        emailExistence.check(email, async function (err: any, checked: any) {
-            return res.json({'teste':checked})
-        })
-        return res.json({'teste':'checked'})
-
         const encryptedPass = bcrypt.hashSync(pass, 10);
         try {
             const user = await repo.findOneOrFail({
