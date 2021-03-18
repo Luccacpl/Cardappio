@@ -1,8 +1,21 @@
+Rotas
 
 `registro`
-/register `POST`
 
-retorno
+/register 
+
+`POST`
+send
+```
+{
+	"email":"email@gmail.com",
+	"pass":"123456",
+	"firstname":"Allan",
+	"lastname":"Cruvinel",
+	"dt_nasc":"2000-02-17"
+}
+```
+return
 ```
 {
 "SUCCESS": "user.email created"
@@ -10,8 +23,23 @@ retorno
 ```
 
 `autentificação`
-/login `POST` 
 
+/login
 
+`POST`
+send
+```
+{
+	"email":"allan.cruvinel@gmail.com",
+	"pass":"123456"
+}
+```
+return
+```
+{
+"authorization": "RANDOM CRAZY CODE TOKEN"
+}
+```
 
+`autentificação`
 
