@@ -14,6 +14,7 @@ interface CustomButtonProps {
     marginTop?: string
     widthResponsive?: string
     fontSizeResponsive?: string
+    heightResponsive?: string
 }
 
 const CustomButton = styled.button<CustomButtonProps>`
@@ -37,6 +38,7 @@ const CustomButton = styled.button<CustomButtonProps>`
     @media screen and (min-width: 1281px) {
         width: ${props => props.widthResponsive};
         font-size: ${props => props.fontSizeResponsive || fontsSizes.large18};
+        height: ${(props) => props.heightResponsive || '2.5rem'};
     }
 `
 

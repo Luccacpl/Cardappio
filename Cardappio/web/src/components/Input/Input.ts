@@ -15,12 +15,15 @@ interface IInput {
     margin?: string
     display?: string
     marginTopResponsive?: string
+    heightResponsive?: string
+    fontSizeResponsive?: string
 }
 
 const Input = styled.input<IInput>`
     background-color: ${props => props.backgroundColor || colors.fundoInput};
     outline: none;
     border: 0.1px solid transparent;
+    min-width: 200px;
     border-radius: 5px;
     width: ${props => props.width || '100%'};
     height: ${props => props.height || '45px'};
@@ -44,6 +47,8 @@ const Input = styled.input<IInput>`
     }
     @media screen and (min-width: 1281px){
         margin-top: ${props => props.marginTopResponsive};
+        height: ${props => props.heightResponsive || '60px'};
+        font-size: ${props => props.fontSizeResponsive || fontsSizes.large18};
     }
 `
 

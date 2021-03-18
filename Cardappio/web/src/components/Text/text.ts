@@ -11,6 +11,8 @@ interface IP {
     marginTop?: string
     marginLeft?: string
     textAlign?: string
+    fontSizeResponsive?: string
+    marginLeftResponsive?: string
 }
 
 interface ITitle {
@@ -20,6 +22,8 @@ interface ITitle {
     marginTop?: string
     marginLeft?: string
     fontFamily?: string
+    fontSizeResponsive?: string
+    marginLeftResponsive?: string
 }
 
 const P = styled.p<IP>`
@@ -28,7 +32,11 @@ const P = styled.p<IP>`
     font-weight: ${props => props.fontWeight || '400'};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
-    text-align: ${props => props.textAlign}
+    text-align: ${props => props.textAlign};
+    @media screen and (min-width: 1281px){
+        font-size: ${props => props.fontSizeResponsive || fontsSizes.large18};
+        margin-left: ${props => props.marginLeftResponsive};
+    }
 `
 
 const Title = styled.h1<ITitle>`
@@ -38,6 +46,10 @@ const Title = styled.h1<ITitle>`
     font-weight: ${props => props.fontWeight || '500'};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
+    @media screen and (min-width: 1281px){
+        font-size: ${props => props.fontSizeResponsive || fontsSizes.large40};
+        margin-left: ${props => props.marginLeftResponsive};
+    }
 `
 
 const SubTitle = styled.h1<ITitle>`
@@ -46,6 +58,10 @@ const SubTitle = styled.h1<ITitle>`
     font-weight: ${props => props.fontWeight || '500'};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
+    @media screen and (min-width: 1281px){
+        font-size: ${props => props.fontSizeResponsive || fontsSizes.large24};
+        margin-left: ${props => props.marginLeftResponsive};
+    }
 `
 
 export { P, Title, SubTitle }

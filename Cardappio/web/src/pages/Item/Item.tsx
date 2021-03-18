@@ -123,12 +123,6 @@ function Item() {
                     flexDirection="row"
                     backgroundColor={colors.green}
                 >
-                    <Input 
-                        height="32px"
-                        fontSize="18px"
-                        placeholder="Pesquise um item"
-                        marginTop="32px"
-                    />
                     <Link to="/newitem">
                         <AddButton
                             height="50%"
@@ -148,32 +142,31 @@ function Item() {
                     ></Cards>
                 )}
             </Container>
-            {showModal === true &&
-                <Modal
-                    title="Adicionar Categoria"
-                    ButtonTitle="Adicionar"
-                    text="Digite o nome da categoria que deseja adicionar no campo abaixo."
-                    clicked={handleSubmit}
-                    value={name}
-                    change={event => setName(event.target.value)}
-                    Backclicked={() => setShowModal(false)}
-                />}
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="success">
-                    Cadastro realizado com sucesso!
-                </Alert>
-            </Snackbar>
-            <Snackbar open={openError} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} severity="error">
-                    Ocorreu um erro! Cadastro não realizado
-                </Alert>
-            </Snackbar>
         </Grid>
     );
 }
 
 export default Item;
 
-
+// {showModal === true &&
+//     <Modal
+//         title="Adicionar Categoria"
+//         ButtonTitle="Adicionar"
+//         text="Digite o nome da categoria que deseja adicionar no campo abaixo."
+//         clicked={handleSubmit}
+//         value={name}
+//         change={event => setName(event.target.value)}
+//         Backclicked={() => setShowModal(false)}
+//     />}
+// <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+//     <Alert onClose={handleClose} severity="success">
+//         Cadastro realizado com sucesso!
+//     </Alert>
+// </Snackbar>
+// <Snackbar open={openError} autoHideDuration={6000} onClose={handleClose}>
+//     <Alert onClose={handleClose} severity="error">
+//         Ocorreu um erro! Cadastro não realizado
+//     </Alert>
+// </Snackbar>
 
 

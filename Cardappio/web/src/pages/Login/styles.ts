@@ -17,6 +17,7 @@ const Body = styled.div`
 
 const ContainerLeft = styled.div<IContainrLeft>`
     width: 33%;
+    min-width: 400px;
     height: 100vh;
     background-color: ${colors.black};
     padding: 64px;

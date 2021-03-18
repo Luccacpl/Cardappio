@@ -10,6 +10,8 @@ import Button from 'components/Button/Button';
 import { Link } from 'react-router-dom';
 
 
+
+
 function Login() {
     return (
         <Body>
@@ -50,16 +52,17 @@ function Login() {
                     <Button
                         content="Entrar"
                         width="50%"
-
                         marginTop="1rem"
                     />
                     <Link style={{textDecoration: "none"}} to="/">
                         <P
                             color={colors.menuOrange}
                             fontSize={fontsSizes.small14}
+                            fontSizeResponsive={fontsSizes.large18}
                             fontWeight="500"
                             marginTop="1.425rem"
                             marginLeft="20px"
+                            marginLeftResponsive="60px"
                         >
                             Esqueceu a senha?
                     </P>
