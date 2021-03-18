@@ -1,7 +1,45 @@
-# Awesome Project Build with TypeORM
+Rotas
 
-Steps to run this project:
+`registro`
 
-1. Run `npm i` command
-2. Setup database settings inside `ormconfig.json` file
-3. Run `npm start` command
+/register 
+
+`POST`
+send
+```
+{
+	"email":"email@gmail.com",
+	"pass":"123456",
+	"firstname":"Allan",
+	"lastname":"Cruvinel",
+	"dt_nasc":"2000-02-17"
+}
+```
+return
+```
+{
+"SUCCESS": "user.email created"
+}
+```
+
+`autentificação`
+
+/login
+
+`POST`
+send
+```
+{
+	"email":"allan.cruvinel@gmail.com",
+	"pass":"123456"
+}
+```
+return
+```
+{
+"authorization": "RANDOM CRAZY CODE TOKEN"
+}
+```
+
+`autentificação`
+
