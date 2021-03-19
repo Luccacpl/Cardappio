@@ -19,6 +19,7 @@ const Button = (props: IButton) => {
     <CustomButtom
       {...props}
       onClick={props.clicked}
+      type="submit"
     >
       {props.content}
     </CustomButtom>

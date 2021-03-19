@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory  } from 'react-router-dom'
+import api from '../../services/api';
 
 import { colors } from '../../utils/colors';
 import { fontsSizes } from '../../utils/fontSizes';
@@ -13,6 +15,48 @@ import { Link } from 'react-router-dom';
 
 
 function Login() {
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const history = useHistory()
+
+
+    const pipe = (...fns: Function[]) => (params: unknown) =>
+        fns.reduce((fn, pipeF) => pipeF(fn), params)
+    
+    const validateFields = () => 
+        email !== '' && pass !== ''
+    
+    const showError = () => 
+        alert('complete os campos corretamente')
+
+    const authLoginService = async () => 
+        await api.post('login', { email, pass })
+    
+    const storeUserToken = ({ data }: { data: unknown }) =>
+        localStorage.setItem('TOKEN', JSON.stringify(data))
+    
+    const storeUserInfo = () =>
+        localStorage.setItem('EMAIL', email)
+    
+    const redirectUserToDashboard = () => 
+        history.push('/item')
+    
+    const handlerErrorApi = () => 
+        alert('Houve um erro na API')
+
+    const submitLogin = () =>
+        validateFields() ?
+            authLoginService()
+            .then(
+                pipe(
+                    storeUserToken,
+                    storeUserInfo,
+                    redirectUserToDashboard
+                )
+            )
+            .catch(handlerErrorApi)
+            : showError()
+                          
     return (
         <Body>
             <ContainerLeft>
@@ -42,19 +86,26 @@ function Login() {
                     placeholder="Digite seu email"
                     marginTop="36px"
                     marginTopResponsive="64px"
+                    type="email"
+                    value={email}
+                    onChange={event => setEmail(event.target.value)}
                 />
                 <Input
                     placeholder="Digite a sua senha"
                     marginTop="12px"
                     marginTopResponsive="24px"
+                    type="password"
+                    value={pass}
+                    onChange={event => setPass(event.target.value)}
                 />
                 <BtnDiv>
                     <Button
                         content="Entrar"
                         width="50%"
                         marginTop="1rem"
+                        clicked={submitLogin}
                     />
-                    <Link style={{textDecoration: "none"}} to="/">
+                    <Link style={{ textDecoration: "none" }} to="/">
                         <P
                             color={colors.menuOrange}
                             fontSize={fontsSizes.small14}
@@ -76,17 +127,17 @@ function Login() {
                 >
                     Ainda não tem a sua conta?
                 </P>
-                <Link style={{textDecoration: "none"}} to="/cadastro">
-                        <P
-                            color={colors.menuOrange}
-                            fontSize={fontsSizes.small14}
-                            fontWeight="500"
-                            marginTop="1.425rem"
-                            textAlign="center"
-                        >
-                            Crie agora mesmo!
+                <Link style={{ textDecoration: "none" }} to="/cadastro">
+                    <P
+                        color={colors.menuOrange}
+                        fontSize={fontsSizes.small14}
+                        fontWeight="500"
+                        marginTop="1.425rem"
+                        textAlign="center"
+                    >
+                        Crie agora mesmo!
                     </P>
-                    </Link>
+                </Link>
             </ContainerLeft>
             <ContainerRight></ContainerRight>
         </Body>

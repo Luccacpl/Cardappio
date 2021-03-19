@@ -31,9 +31,11 @@ const CustomButton = styled.button<CustomButtonProps>`
     font-weight: ${props => props.fontWeight || '400'};
     font-size: ${props => props.fontSize || fontsSizes.small14};
     cursor: pointer;
+    transition: all 0.2s;
     &:hover {
         transform: translateY(-2px);
         box-shadow: 0 5px 5px  rgba(0, 0, 0, .5);
+        transition: all 0.2s;
     }
     @media screen and (min-width: 1281px) {
         width: ${props => props.widthResponsive};

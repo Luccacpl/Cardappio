@@ -7,7 +7,6 @@ import { DivContainer, DivTitle, Title, SubTitle, SubMenu, TitleSubMenu, UlMenu,
 import api from '../../services/api';
 
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom'
 
 import Svg from '../Svg/Svg'
 
@@ -15,6 +14,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 interface ISubAside {
+    children?: React.ReactNode
     clicked?: any
     title: string
     width?: string
@@ -37,9 +37,6 @@ function SubAside(props: ISubAside) {
     const [open, setOpen] = React.useState(false);
 
     const tamanho = categories.length;
-
-    const location = useLocation();
-    console.log(location.pathname);
 
     
     async function handleDelete(id: number) {
@@ -79,17 +76,7 @@ function SubAside(props: ISubAside) {
             <SubMenu>
                 <TitleSubMenu>{props.title}</TitleSubMenu>
                 <UlMenu>
-                    {location.pathname === '/item' ?
-                        categories.map(category =>
-                            <> <LiMenu>
-                                <Svg src={TrashSVG} width="3rem" height="1.5rem" onClick={() => handleDelete(category.id)} />
-                                <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                                    <Svg src={EditSVG} width="3rem" height="1.5rem" />
-                                </Link>
-                                {category.name}
-                            </LiMenu></>
-                        ) : null
-                    }
+                    {props.children}
                 </UlMenu>
                 <AddButton 
                     onClick={props.clicked}

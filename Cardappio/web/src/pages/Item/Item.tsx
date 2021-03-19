@@ -1,12 +1,20 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
+import jwt from 'jsonwebtoken'
 import NewAside from '../../components/NewAside/NewAside'
 import SubAside from '../../components/SubAside/SubAside'
 import Cards from '../../components/Cards/Cards'
 import Container from '../../components/Container/Container'
 import { Grid } from '../../components/Grid/style'
 import Modal from '../../components/Modal/Modal'
+
+import EditSVG from '../../public/icons/create-outline.svg'
+import TrashSVG from '../../public/icons/trash-outline.svg'
+import Svg from '../../components/Svg/Svg'
+
+import { LiMenu, AddButton } from '../../components/SubAside/style'
+
+import { useLocation } from 'react-router-dom'
 
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
@@ -15,7 +23,6 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import api from '../../services/api'
 import { ChangeEventHandler } from 'react';
 import { Input } from 'components/Input/Input';
-import { AddButton } from 'components/SubAside/style';
 import { colors } from 'utils';
 
 interface ICategory {
@@ -39,6 +46,8 @@ function Alert(props: AlertProps) {
 function Item() {
     const history = useHistory();
 
+    const location = useLocation();
+
     const [name, setName] = useState('');
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [items, setItems] = useState<IItem[]>([]);
@@ -47,6 +56,12 @@ function Item() {
     const [open, setOpen] = React.useState(false);
     const [openError, setOpenError] = React.useState(false);
 
+
+    const isUserAuthenticated = () =>
+        localStorage.getItem('TOKEN') === null && history.push('/')
+
+    const getTokenFromStorage = (): string =>
+        JSON.parse(localStorage.getItem('TOKEN') as string).authorization
     const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
         if (reason === 'clickaway') {
             return;
@@ -94,10 +109,17 @@ function Item() {
 
         }
     }
+    useEffect(() => {
+        isUserAuthenticated()
+    }, [])
 
     useEffect(() => {
         function GetApi() {
-            api.get<ICategory[]>('/category').then(response => {
+            api.get<ICategory[]>('/category', {
+                headers: {
+                    'authorization': getTokenFromStorage()
+                }
+            }).then(response => {
                 setCategories(response.data)
                 console.log(response.data);
             })
@@ -112,7 +134,19 @@ function Item() {
     return (
         <Grid>
             <NewAside></NewAside>
-            <SubAside title="Categorias" clicked={() => setShowModal(true)}></SubAside>
+            <SubAside title="Categorias" clicked={() => setShowModal(true)}>
+                {location.pathname === '/item' ?
+                    categories.map(category =>
+                        <> <LiMenu>
+                            <Svg src={TrashSVG} width="3rem" height="1.5rem" onClick={() => handleDelete(category.id)} />
+                            <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                                <Svg src={EditSVG} width="3rem" height="1.5rem" />
+                            </Link>
+                            {category.name}
+                        </LiMenu></>
+                    ) : null
+                }
+            </SubAside>
 
             <Container height="100%" display="inline-flex" padding="0px 0px 0px 0px">
                 <Container
