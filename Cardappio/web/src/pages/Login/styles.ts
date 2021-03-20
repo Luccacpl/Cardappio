@@ -40,14 +40,19 @@ const ContainerRight = styled.div`
 
 const BtnDiv = styled.div`
     width: 100%;
-    height: 60px;
+    min-height: 50px;
+    height: 13%;
     display: inline-flex;
+    justify-content: space-between;
+    @media screen and (min-width: 1480px){
+        height: 10%;
+    }
 `
 
 const Linha = styled.hr`
     width: 100%;
     border: 1px solid ${colors.textBlack};
-    margin-top: 46px;
+    margin-top: 5%;
 `
 
 export { Body, ContainerLeft, ContainerRight, BtnDiv, Linha }

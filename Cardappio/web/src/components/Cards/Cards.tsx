@@ -23,7 +23,6 @@ interface ICards {
 function Cards(props: ICards) {
     return (
         <DivCard
-            gridStart={props.gridStart}
             display={props.display}
             width={props.width}
             marginLeft={props.marginLeft}

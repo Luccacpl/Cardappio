@@ -46,7 +46,7 @@ const Title = styled.h1<ITitle>`
     font-weight: ${props => props.fontWeight || '500'};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
-    @media screen and (min-width: 1281px){
+    @media screen and (min-width: 1481px){
         font-size: ${props => props.fontSizeResponsive || fontsSizes.large40};
         margin-left: ${props => props.marginLeftResponsive};
     }
@@ -58,7 +58,7 @@ const SubTitle = styled.h1<ITitle>`
     font-weight: ${props => props.fontWeight || '500'};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
-    @media screen and (min-width: 1281px){
+    @media screen and (min-width: 1481px){
         font-size: ${props => props.fontSizeResponsive || fontsSizes.large24};
         margin-left: ${props => props.marginLeftResponsive};
     }

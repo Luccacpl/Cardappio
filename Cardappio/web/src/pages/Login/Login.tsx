@@ -108,12 +108,10 @@ function Login() {
                     <Link style={{ textDecoration: "none" }} to="/">
                         <P
                             color={colors.menuOrange}
-                            fontSize={fontsSizes.small14}
-                            fontSizeResponsive={fontsSizes.large18}
+                            fontSize={fontsSizes.small12}
+                            fontSizeResponsive={fontsSizes.medium16}
                             fontWeight="500"
                             marginTop="1.425rem"
-                            marginLeft="20px"
-                            marginLeftResponsive="60px"
                         >
                             Esqueceu a senha?
                     </P>

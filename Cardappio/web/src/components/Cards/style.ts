@@ -36,7 +36,7 @@ interface PriceCardProps {
 }
 
 const DivCard = styled.div<DivCardProps>`
-    width: 30%;
+    width: 220px;
     min-width: 210px;
     max-height: 300px;
     background-color: ${colors.lightBlack};
@@ -44,7 +44,7 @@ const DivCard = styled.div<DivCardProps>`
     grid-column-start: ${props => props.gridStart};
     display: ${props => props.display};
     margin-left: ${props => props.marginLeft};
-    @media(min-width: 1280px) {
+    @media(min-width: 1480px) {
         width: 220px;
         width: 22.5%;
         height: 280px;

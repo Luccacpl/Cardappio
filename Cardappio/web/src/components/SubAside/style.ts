@@ -44,6 +44,7 @@ interface AddButtonProps{
     height?: string
     width?: string
     marginTop?: string
+    color?: string
 }
 
 interface LinkProps{
@@ -58,12 +59,9 @@ const DivContainer = styled.div<DivMenuContainerProps>`
 `
 
 const DivTitle = styled.div<DivTitleProps>`
-    height: 24%;
+    height: 26%;
     width: ${dimensions.widthFull};
     background-color: ${colors.menuOrange};
-    @media(min-width: 1280px) {
-        height: 19.3%
-    }
     @media(min-width: 1440px) {
         height: 19.9%
     }
@@ -159,7 +157,7 @@ const AddButton = styled.button<AddButtonProps>`
     background-color: transparent;
     margin-left: ${dimensions.spacing40};
     margin-top: ${props => props.marginTop};
-    color: ${colors.green};
+    color: ${props => props.color ||colors.green};
     font-size: ${fontsSizes.small14};
     cursor: pointer;
     outline: none;

@@ -1,5 +1,5 @@
-import React, { FormEvent, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { FormEvent, useEffect, useState } from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import jwt from 'jsonwebtoken'
 import NewAside from '../../components/NewAside/NewAside'
 import SubAside from '../../components/SubAside/SubAside'
@@ -7,6 +7,7 @@ import Cards from '../../components/Cards/Cards'
 import Container from '../../components/Container/Container'
 import { Grid } from '../../components/Grid/style'
 import Modal from '../../components/Modal/Modal'
+import Header from '../../components/Header/Header'
 
 import EditSVG from '../../public/icons/create-outline.svg'
 import TrashSVG from '../../public/icons/trash-outline.svg'
@@ -148,24 +149,14 @@ function Item() {
                 }
             </SubAside>
 
-            <Container height="100%" display="inline-flex" padding="0px 0px 0px 0px">
-                <Container
-                    width="100%"
-                    height="224px"
-                    padding="0px"
-                    display="inline-flex"
-                    flexDirection="row"
-                    backgroundColor={colors.green}
-                >
-                    <Link to="/newitem">
-                        <AddButton
-                            height="50%"
-                            marginTop="28px"
-                        >
-                            + Adicionar novo item
-                        </AddButton>
-                    </Link>
-                </Container>
+            <Container height="100%" padding="0px 0px 0px 0px" flexDirection="column">
+                <Header 
+                    title="Todos os seus pratos"
+                    subtitle="Categoria:"
+                    placeholder="Digite o nome do item"
+                    addButton="Adicionar novo prato"
+                />
+                <Container display="inline-flex" justifyContent="flex-start">
                 {items.map(item =>
                     <Cards
                         name={item.name}
@@ -175,6 +166,7 @@ function Item() {
                         TrashClicked={() => handleDelete(item.id)}
                     ></Cards>
                 )}
+                </Container>
             </Container>
         </Grid>
     );

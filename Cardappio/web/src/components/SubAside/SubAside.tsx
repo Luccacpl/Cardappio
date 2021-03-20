@@ -20,6 +20,7 @@ interface ISubAside {
     width?: string
     height?: string
     marginTop?: string
+    color?: string
 }
 
 interface ICategory {
@@ -83,6 +84,7 @@ function SubAside(props: ISubAside) {
                     width={props.width}
                     height={props.height}
                     marginTop={props.marginTop}
+                    color={props.color}
                 >
                     + Adicionar nova categoria
                 </AddButton>
