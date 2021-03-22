@@ -5,20 +5,22 @@ import { dimensions } from '../../utils/dimensions'
 import { fontsSizes } from '../../utils/fontSizes'
 import { P, Title, SubTitle } from '../../components/Text/text'
 import SearchInput from '../SearchInput/SearchInput'
-
-import { Circle } from './style';
+import { Circle, DivTitle, LogoDiv } from './style';
 
 import { LiMenu, AddButton } from '../../components/SubAside/style'
 
 import { Link } from 'react-router-dom';
 
 import Container from '../Container/Container';
+import Svg from 'components/Svg/Svg'
 
 interface IHeader {
     title?: string
     subtitle?: string
     placeholder?: string
     addButton?: string
+    src?: string
+    logo?: string
 }
 
 const Header = (props: IHeader) => {
@@ -34,16 +36,24 @@ const Header = (props: IHeader) => {
                 width="100%"
                 height="60%"
                 backgroundColor="transparent"
-                padding="0px"
                 display="flex"
+                justifyContent="flex-start"
+                padding="0px"
             >
-                <Circle />
-                <Title>
-                    {props.title}
-                </Title>
-                <SubTitle>
-                    {props.subtitle}
-                </SubTitle>
+                <Circle>
+                    <Svg src={props.src} height="34px" color={colors.green} textAlign="center" />
+                </Circle>
+                <DivTitle>
+                    <Title>
+                        {props.title}
+                    </Title>
+                    <SubTitle marginTop="6px">
+                        {props.subtitle}
+                    </SubTitle>
+                </DivTitle>
+                <LogoDiv>
+                    <Svg src={props.logo} height="64px" textAlign="center" />
+                </LogoDiv>
             </Container>
 
             <Container
@@ -52,7 +62,7 @@ const Header = (props: IHeader) => {
                 backgroundColor="transparent"
                 padding="0px"
             >
-                <SearchInput placeholder={props.placeholder} addButton={props.addButton}/>
+                <SearchInput placeholder={props.placeholder} addButton={props.addButton} />
             </Container>
         </Container>
     );

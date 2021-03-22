@@ -13,7 +13,7 @@ const DivInput = styled.div`
 `
 
 const CustomInput = styled.input`
-    width: 60%;
+    width: 59%;
     height: 100%;
     border: 0px solid transparent;
     border-radius: 20px;
@@ -43,7 +43,7 @@ const SearchDiv = styled.button`
 const AddButton = styled.button`
     width: 240px;
     height: 34px;
-    margin-left: 14px;
+    margin-left: 1%;
     border-radius: 20px;
     border: 0px solid transparent;
     background-color: ${colors.menuOrange};

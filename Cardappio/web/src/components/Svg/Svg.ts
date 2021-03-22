@@ -10,6 +10,7 @@ interface SvgProps {
   color?: string
   cursor?: string
   textAlign?: string
+  justifyContent?: string
 }
 
 const Svg = styled(ReactSVG)<SvgProps>`
@@ -22,6 +23,7 @@ const Svg = styled(ReactSVG)<SvgProps>`
     color: ${props => props.color};
     cursor: ${props => props.cursor};
     text-align: ${props => props.textAlign};
+    justify-content: ${props => props.justifyContent};
     }
 `
 

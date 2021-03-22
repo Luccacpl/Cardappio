@@ -9,6 +9,8 @@ import { Grid } from '../../components/Grid/style'
 import Modal from '../../components/Modal/Modal'
 import Header from '../../components/Header/Header'
 
+import Logo from '../../public/icons/logo-bk-white.svg'
+import Food from '../../public/icons/fast-food-outline.svg'
 import EditSVG from '../../public/icons/create-outline.svg'
 import TrashSVG from '../../public/icons/trash-outline.svg'
 import Svg from '../../components/Svg/Svg'
@@ -155,7 +157,8 @@ function Item() {
                     subtitle="Categoria:"
                     placeholder="Digite o nome do item"
                     addButton="Adicionar novo prato"
-                />
+                    src={Food}
+                    logo={Logo}                />
                 <Container display="inline-flex" justifyContent="flex-start">
                 {items.map(item =>
                     <Cards
