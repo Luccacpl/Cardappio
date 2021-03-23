@@ -13,6 +13,7 @@ interface IContainer {
     padding?: string
     overflow?: string
     justifyContent?: string
+    gap?: string
 }
 
 function Container(props: IContainer) {
@@ -27,6 +28,7 @@ function Container(props: IContainer) {
             padding={props.padding}
             overflow={props.overflow}
             justifyContent={props.justifyContent}
+            gap={props.gap}
         >
             {props.children}
         </Div>

@@ -12,6 +12,7 @@ interface DivProps {
     padding?: string
     overflow?: string
     justifyContent?: string
+    gap?: string
 }
 
 const Div = styled.div<DivProps>`
@@ -23,7 +24,7 @@ const Div = styled.div<DivProps>`
     flex-wrap: wrap;
     justify-content: ${props => props.justifyContent || "space-evenly"};
     margin-top: ${props => props.margin};
-    gap: 30px;
+    gap: ${props => props.gap || "30px"};
     padding: ${props => props.padding || '64px'};
     overflow-y: ${props => props.overflow || 'hidden'};
 `

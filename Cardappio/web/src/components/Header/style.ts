@@ -20,7 +20,7 @@ const Circle = styled.div`
 `
 
 const DivTitle = styled.div<IDivTitle>`
-    width: ${props => props.width};
+    width: ${props => props.width || "80%"};
     height: ${props => props.height};
     margin: ${props => props.margin || '0px'};
     padding-top: 30px;
@@ -31,10 +31,23 @@ const LogoDiv = styled.div`
     height: 108px;
     border-radius: 0px 0px 10px 10px;
     background-color: ${colors.lightBlack};
-    margin-left: 32.5%;
     display: flex;
     justify-content: center;
     align-items: center;
 `
 
-export { Circle, DivTitle, LogoDiv };
+const DivD = styled.div`
+    width: 30%;
+    margin: 0px;
+    display: flex;
+    justify-content: flex-end;
+`
+
+const DivE = styled.div`
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`
+
+export { Circle, DivTitle, LogoDiv, DivD, DivE };

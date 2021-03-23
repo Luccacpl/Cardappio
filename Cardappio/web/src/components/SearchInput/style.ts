@@ -10,6 +10,8 @@ const DivInput = styled.div`
     border-radius: 20px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.5%;
 `
 
 const CustomInput = styled.input`
@@ -41,7 +43,7 @@ const SearchDiv = styled.button`
 `
 
 const AddButton = styled.button`
-    width: 240px;
+    width: 35%;
     height: 34px;
     margin-left: 1%;
     border-radius: 20px;

@@ -5,7 +5,7 @@ import { dimensions } from '../../utils/dimensions'
 import { fontsSizes } from '../../utils/fontSizes'
 import { P, Title, SubTitle } from '../../components/Text/text'
 import SearchInput from '../SearchInput/SearchInput'
-import { Circle, DivTitle, LogoDiv } from './style';
+import { Circle, DivTitle, LogoDiv, DivE, DivD } from './style';
 
 import { LiMenu, AddButton } from '../../components/SubAside/style'
 
@@ -39,21 +39,26 @@ const Header = (props: IHeader) => {
                 display="flex"
                 justifyContent="flex-start"
                 padding="0px"
+                gap="0px"
             >
-                <Circle>
-                    <Svg src={props.src} height="34px" color={colors.green} textAlign="center" />
-                </Circle>
-                <DivTitle>
-                    <Title>
-                        {props.title}
-                    </Title>
-                    <SubTitle marginTop="6px">
-                        {props.subtitle}
-                    </SubTitle>
-                </DivTitle>
-                <LogoDiv>
-                    <Svg src={props.logo} height="64px" textAlign="center" />
-                </LogoDiv>
+                <DivE>
+                    <Circle>
+                        <Svg src={props.src} height="34px" color={colors.green} textAlign="center" />
+                    </Circle>
+                    <DivTitle>
+                        <Title marginLeft="10px" fontSizeResponsive="22px">
+                            {props.title}
+                        </Title>
+                        <SubTitle marginTop="6px" marginLeft="10px" fontSizeResponsive="18px">
+                            {props.subtitle}
+                        </SubTitle>
+                    </DivTitle>
+                </DivE>
+                <DivD>
+                    <LogoDiv>
+                        <Svg src={props.logo} height="64px" textAlign="center" />
+                    </LogoDiv>
+                </DivD>
             </Container>
 
             <Container
