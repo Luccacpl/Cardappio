@@ -58,10 +58,10 @@ const AsideTitle = styled.h1<AsideTitleProps>`
 const AsideUl = styled.ul<AsideUlProps>`
     margin-top: 32px;
     @media(min-width: 1280px) {
-        margin-top: 40px;
+        margin-top: 130px;
     }
     @media(min-width: 1440px) {
-        margin-top: 40px;
+        margin-top: 130px;
     }
 `
 

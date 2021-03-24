@@ -35,85 +35,43 @@ const OverlayModal = styled.div`
   left: 0;
   position: absolute;
   z-index: 2;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
 `
 
-const MiddleContainer = styled.div`
-  width: 356px;
-  width: 28.5%;
-  min-width: 300px;
-  height: 75%;
-  background-color: ${colors.white};
+const RightContainer = styled.div`
+  width: 70%;
+  height: 100vh;
+  background-color: ${colors.blackModal};
   padding: ${dimensions.spacing40};
+  padding-left: 123px;
   box-sizing: border-box;
-  border-radius: 10px 10px 0px 0px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
-    @media(min-width: 1280px) {
-        width: 446px;
-    }`
-
-const Title = styled.h2<TitleComponentProps>`
-    font-size: ${(props) => props.fontSize || fontsSizes.large20};
-    color: ${(props) => props.color || colors.textBlack};
-    font-weight: ${(props) => props.fontWeight || "normal"};
-    text-align: ${(props) => props.textAlign || "left"};
-    line-height: ${(props) => props.lineHeight};
-    @media(min-width: 1280px) and (max-width: 1440px) {
-      font-size: ${props => props.fontSize || fontsSizes.large26};
-    }
-    @media(min-width: 1441px) {
-      font-size: ${props => props.fontSize || fontsSizes.large26};
-    }
 `
 
-const P = styled.p<PProps>`
-  display: block;
-  float: ${props => props.float};
-  line-height: ${props => props.lineHeight || '25px'};
-  font-size: ${props => props.fontSize || fontsSizes.small14};
-  color: ${props => props.color || '#2b2b2b'};
-  font-weight: ${props => props.fontWeight};
-  text-transform: ${props => props.textTransform};
-  background-color: ${props => props.backgroundColor};
-  text-align: ${props => props.textAlign};
-  padding: ${props => props.padding || "16px 0px 0px 0px"};
-  strong {
-    font-weight: bold;
-    color: ${props => props.strongColor};
-  }
-  @media(min-width: 1280px) and (max-width: 1440px) {
-    font-size: ${props => props.fontSize || fontsSizes.medium16};
-  }
-  @media(min-width: 1441px) {
-    font-size: ${props => props.fontSize || fontsSizes.medium16};
-  }
+const CloseButton = styled.button`
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: ${colors.menuOrange};
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate( -50%, -50%);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s;
+  &:hover {
+        transform: translate(-50%, -60%);
+        box-shadow: 0 5px 5px  rgba(0, 0, 0, .5);
+        transition: all 0.2s;
+    }
   `
 
-  const AsideBackButton = styled.button<AsideBackButtonProps>`
-  width: 35px;
-  height: 35px;
-  background-color: #FF3838;
-  border-radius: 5px;
-  cursor: pointer;
-  border: 0px;
-  outline: none;
-  margin-top: ${props => props.marginTop || '20rem'};
-  color: white;
-      @media(min-width: 1280px) {
-          margin-top: ${props => props.marginTop || '25rem'};
-  }
-  @media(min-width: 1440px) {
-      margin-top: ${props => props.marginTop || '35rem'};
-  }
-  &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-  }
-`
 
-
-export { OverlayModal, MiddleContainer, Title, P, AsideBackButton }
+export { OverlayModal, RightContainer, CloseButton } 

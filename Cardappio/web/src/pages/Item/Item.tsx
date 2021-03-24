@@ -15,6 +15,8 @@ import EditSVG from '../../public/icons/create-outline.svg'
 import TrashSVG from '../../public/icons/trash-outline.svg'
 import Svg from '../../components/Svg/Svg'
 
+import { Title, P } from '../../components/Text/text'
+import Button from '../../components/Button/Button'
 import { LiMenu, AddButton } from '../../components/SubAside/style'
 
 import { useLocation } from 'react-router-dom'
@@ -65,19 +67,18 @@ function Item() {
 
     const getTokenFromStorage = (): string =>
         JSON.parse(localStorage.getItem('TOKEN') as string).authorization
-    const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        setOpen(false);
-        setOpenError(false);
-    };
 
     async function handleDelete(id: number) {
-        await api.delete('/item/' + id)
-        setRefresh(chave => chave + 1)
-        console.log(id);
-
+        try{
+            await api.delete('/item/' + id, {headers: {
+                'authorization': getTokenFromStorage()
+            }})
+            setRefresh(chave => chave + 1)
+            console.log(id);
+        }
+       catch(error){
+           return alert('ocorreu algum erro')
+       }
 
         setOpen(true)
     }
@@ -85,33 +86,34 @@ function Item() {
 
     async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
         if (name === '') {
-            return setOpenError(true);
+            return alert('Complete o campo corretamente!');
         }
         else {
-            setOpen(true);
+            try{
+                const data = new FormData();
 
-            const data = new FormData();
+                data.append('name', name);
+    
+                await api.post('category', { name }, {headers: {
+                    'authorization': getTokenFromStorage()
+                }});
 
-            data.append('name', name);
+                history.push('/item');
 
-            await api.post('category', { name });
+                setRefresh(chave => chave + 1);
 
-            history.push('/item');
+                window.location.reload();
 
-            console.log(data);
-
-            setRefresh(chave => chave + 1);
-
-            window.location.reload();
-
-            console.log({
-                name,
-            })
-
-            return setShowModal(false);
-
+                setShowModal(false);
+    
+            }
+            catch(error){
+              return alert('Erro ao tentar cadastrar Categoria');
+            }
         }
     }
+
+
     useEffect(() => {
         isUserAuthenticated()
     }, [])
@@ -152,25 +154,50 @@ function Item() {
             </SubAside>
 
             <Container height="100%" padding="0px 0px 0px 0px" flexDirection="column">
-                <Header 
+                <Header
                     title="Todos os seus pratos"
                     subtitle="Categoria:"
-                    placeholder="Digite o nome do item"
                     addButton="Adicionar novo prato"
                     src={Food}
-                    logo={Logo}                />
+                    logo={Logo}
+                    placeholder="Digite o nome de um item"
+                    />
                 <Container display="inline-flex" justifyContent="flex-start">
-                {items.map(item =>
-                    <Cards
-                        name={item.name}
-                        desc={item.desc}
-                        price={Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price)}
-                        src={item.imageurl}
-                        TrashClicked={() => handleDelete(item.id)}
-                    ></Cards>
-                )}
+                    {items.map(item =>
+                        <Cards
+                            name={item.name}
+                            desc={item.desc}
+                            price={Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price)}
+                            src={item.imageurl}
+                            TrashClicked={() => handleDelete(item.id)}
+                        ></Cards>
+                    )}
                 </Container>
             </Container>
+            {showModal === true &&
+                <Modal
+                    title="Vamos adicionar uma nova categoria!"
+                    ButtonTitle="Adicionar"
+                    text="Por favor, preencha os campos abaixo, para prosseguirmos no processo de cadastro."
+                    change={event => setName(event.target.value)}
+                    closeClicked={() => setShowModal(false)}
+                >
+                   <Input 
+                    width="55%"
+                    marginTop="20px"
+                    placeholder="Digite o nome da categoria"
+                    value={name}
+                    onChange={event => setName(event.target.value)}
+                   />
+                   <Button 
+                    content="Adicionar Categoria"
+                    width="25%"
+                    height="2.25rem"
+                    marginTop="28px"
+                    clicked={handleSubmit}
+                    />
+                </Modal>
+            }
         </Grid>
     );
 }

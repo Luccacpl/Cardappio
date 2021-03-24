@@ -36,10 +36,10 @@ const NewAside = (props: InewAside) => {
             <AsideUl>
                 <Link to="/inicio" style={{ color: 'inherit', textDecoration: 'inherit' }} >
                     <AsideLi
-                        backgroundColor={mainRoute === '/inicio' ? colors.menuOrange : colors.black}
+                        backgroundColor={mainRoute === '/inicio' ? colors.lightBlack : colors.black}
                     >
                         <AsideLiText
-                            color={mainRoute === '/inicio' ? colors.white : colors.green}
+                            color={mainRoute === '/inicio' ? colors.green : colors.green}
                             fontWeight={mainRoute === '/inicio' ? 'bold' : '400'}
                         >
                             Inicio
@@ -48,10 +48,10 @@ const NewAside = (props: InewAside) => {
                 </Link>
                 <Link to="/item" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     <AsideLi
-                        backgroundColor={mainRoute === '/item' ? colors.menuOrange : colors.black}
+                        backgroundColor={mainRoute === '/item' ? colors.lightBlack : colors.black}
                     >
                         <AsideLiText
-                            color={mainRoute === '/item' ? colors.white : colors.green}
+                            color={mainRoute === '/item' ? colors.green : colors.green}
                             fontWeight={mainRoute === '/item' ? 'bold' : '400'}
                         >
                             Cardapio
@@ -60,10 +60,10 @@ const NewAside = (props: InewAside) => {
                 </Link>
                 <Link to="/comandas" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     <AsideLi
-                        backgroundColor={mainRoute === '/comandas' ? colors.menuOrange : colors.black}
+                        backgroundColor={mainRoute === '/comandas' ? colors.lightBlack : colors.black}
                     >
                         <AsideLiText
-                            color={mainRoute === '/comandas' ? colors.white : colors.green}
+                            color={mainRoute === '/comandas' ? colors.green : colors.green}
                             fontWeight={mainRoute === '/comandas' ? 'bold' : '400'}
                         >
                             Comandas
@@ -72,10 +72,10 @@ const NewAside = (props: InewAside) => {
                 </Link>
                 <Link to="/usuarios" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     <AsideLi
-                        backgroundColor={mainRoute === '/usuarios' ? colors.menuOrange : colors.black}
+                        backgroundColor={mainRoute === '/usuarios' ? colors.lightBlack : colors.black}
                     >
                         <AsideLiText
-                            color={mainRoute === '/usuarios' ? colors.white : colors.green}
+                            color={mainRoute === '/usuarios' ? colors.green : colors.green}
                             fontWeight={mainRoute === '/usuarios' ? 'bold' : '400'}
                         >
                             Usuarios
@@ -84,10 +84,10 @@ const NewAside = (props: InewAside) => {
                 </Link>
                 <Link to="/pedidos" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     <AsideLi
-                        backgroundColor={mainRoute === '/pedidos' ? colors.menuOrange : colors.black}
+                        backgroundColor={mainRoute === '/pedidos' ? colors.lightBlack : colors.black}
                     >
                         <AsideLiText
-                            color={mainRoute === '/pedidos' ? colors.white : colors.green}
+                            color={mainRoute === '/pedidos' ? colors.green : colors.green}
                             fontWeight={mainRoute === '/pedidos' ? 'bold' : '400'}
                         >
                             Pedidos

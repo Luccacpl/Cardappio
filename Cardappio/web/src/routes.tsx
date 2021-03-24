@@ -5,7 +5,6 @@ import Login from './pages/Login/Login';
 import Cadastro from './pages/Cadastro/Cadastro';
 import Inicio from './pages/Inicio/Inicio';
 import Item from './pages/Item/Item';
-import AddCategory from './pages/AddCategory/AddCategory';
 import AddItem from './pages/AddItem/AddItem';
 import Comandas from './pages/Comandas/Comandas';
 import Usuarios from './pages/Usuarios/Usuarios';
@@ -21,7 +20,6 @@ function Routes() {
                 <Route path="/cadastro" component={Cadastro}/>
                 <Route path="/inicio" component={Inicio}/>
                 <Route path="/item" component={Item}/>
-                <Route path="/NewCategory" component={AddCategory}/>
                 <Route path="/NewItem" component={AddItem}/>
                 <Route path="/comandas" component={Comandas}/>
                 <Route path="/usuarios" component={Usuarios}/>
