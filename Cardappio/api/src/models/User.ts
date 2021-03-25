@@ -1,7 +1,7 @@
     
 import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
 
-@Entity('users')
+@Entity('tb_users')
 export default class User {
 
     @PrimaryGeneratedColumn('increment')

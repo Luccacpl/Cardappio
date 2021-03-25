@@ -1,7 +1,8 @@
-import {Entity,Column, PrimaryGeneratedColumn, OneToMany, JoinColumn} from "typeorm";
+import {Entity,Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne} from "typeorm";
 import Item from "./Item";
+import Restaurant from "./Restaurant";
 
-@Entity('categories')
+@Entity('tb_categories')
 export default class Category {
 
     @PrimaryGeneratedColumn('increment')
@@ -9,6 +10,10 @@ export default class Category {
 
     @Column()
     category_name: string;
+
+    @ManyToOne(()=> Restaurant, restaurant => restaurant.restaurant_mesas)
+    @JoinColumn({name: 'restaurant_id'})
+    restaurant_id: Restaurant;
 
     @OneToMany(()=> Item,item=>item.category_id,{
         cascade: ['insert','update','remove']

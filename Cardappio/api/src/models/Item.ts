@@ -1,7 +1,7 @@
 import {Entity,Column, PrimaryGeneratedColumn, OneToMany, JoinColumn, ManyToOne} from "typeorm";
 import Category from "./Category";
 
-@Entity('items')
+@Entity('tb_items')
 export default class Item {
 
     @PrimaryGeneratedColumn('increment')

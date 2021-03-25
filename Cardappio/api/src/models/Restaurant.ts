@@ -1,7 +1,7 @@
     
-import {Entity,Column, PrimaryGeneratedColumn} from "typeorm";
+import {Entity,Column, PrimaryGeneratedColumn, OneToOne, JoinColumn} from "typeorm";
 
-@Entity('restaurants')
+@Entity('tb_restaurants')
 export default class User {
 
     @PrimaryGeneratedColumn('increment')
@@ -10,8 +10,8 @@ export default class User {
     @Column()
     restaurant_name: string;   
 
-    // @Column()
-    // restaurant_mesa: string;
+    @Column()
+    restaurant_mesas: string;
 
     // @Column()
     // restaurant_cozinha: string;
@@ -22,8 +22,10 @@ export default class User {
     // @Column()
     // restaurant_comandas:string;
 
-    @Column()
-    user_id:number;
+
+    @OneToOne(()=> User, user => user.user_id)
+    @JoinColumn({name: 'user_id'})
+    user_id: User;
 
     /*
     @OneToMany(()=> Item,item=>item.category,{
