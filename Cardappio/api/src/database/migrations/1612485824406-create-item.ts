@@ -4,7 +4,7 @@ export class createItem1612485824406 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name:'items',
+            name:'tb_items',
             columns:[
                 {
                     name:'item_id',
@@ -48,7 +48,7 @@ export class createItem1612485824406 implements MigrationInterface {
                 {
                     name: 'itemCategory',
                     columnNames: ['category_id'],
-                    referencedTableName: 'categories',
+                    referencedTableName: 'tb_categories',
                     referencedColumnNames: ['category_id'],
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE'
@@ -58,7 +58,7 @@ export class createItem1612485824406 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('items')
+        await queryRunner.dropTable('tb_items')
     }
 
 }

@@ -1,33 +1,41 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class restaurant1615490790531 implements MigrationInterface {
+export class command1616725126567 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name: "restaurants",
+            name: "tb_commands",
             columns:[
                 {
-                    name:'restaurant_id',
+                    name:'command_id',
                     type:'integer',
                     isPrimary:true,
                     isGenerated:true,
                     generationStrategy:'increment'
                 },
                 {
-                    name:'restaurant_name',
-                    type:'varchar'
+                    name:'command_checkin',
+                    type:'date'
                 },
                 {
-                    name:'user_id',
+                    name:'command_checkout',
+                    type:'date'
+                },
+                {
+                    name:'command_total_price',
+                    type:'decimal'
+                },
+                {
+                    name:'table_id',
                     type:'integer'
                 }
             ],
             foreignKeys:[
                 {
-                    name: 'user',
-                    columnNames: ['user_id'],
-                    referencedTableName: 'users',
-                    referencedColumnNames: ['user_id'],
+                    name: 'commandTable',
+                    columnNames: ['table_id'],
+                    referencedTableName: 'tb_tables',
+                    referencedColumnNames: ['table_id'],
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE'
                 }
@@ -36,7 +44,7 @@ export class restaurant1615490790531 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('restaurants');
+        await queryRunner.dropTable('tb_commands');
     }
 
 }

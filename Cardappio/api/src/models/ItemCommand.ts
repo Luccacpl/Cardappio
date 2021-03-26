@@ -2,8 +2,9 @@
 import {Entity,Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToOne} from "typeorm";
 import Item from "./Item";
 import Table from "./Table";
+import Status from '../Enums/Status'
 
-@Entity('tb_itemcomamnds')
+@Entity('tb_item_commands')
 export default class ItemCommand {
 
     @PrimaryGeneratedColumn()
@@ -13,17 +14,15 @@ export default class ItemCommand {
     item_command_qtd:number;
 
     @OneToOne(()=> Item, item => item.item_id)
-    @JoinColumn({name: 'user_id'})
+    @JoinColumn({name: 'item_id'})
     item_id: Item;
 
     @Column()
-    item_command_total:number
+    item_command_price:number
 
     @Column()
-    item_command_status:string
+    item_command_status:Status;
 
-    @Column()
-    command_checkout:Date;
 
     @ManyToOne(()=> Table, table => table.table_commands)
     @JoinColumn({name: 'table_id'})

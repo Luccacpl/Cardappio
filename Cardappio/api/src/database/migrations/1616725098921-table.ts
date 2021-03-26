@@ -1,31 +1,30 @@
 import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
-export class createCategory1612485815538 implements MigrationInterface {
+export class table1616725098921 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name:'tb_categories',
+            name: "tb_tables",
             columns:[
                 {
-                    name:'category_id',
+                    name:'table_id',
                     type:'integer',
-                    isGenerated:true,
                     isPrimary:true,
-                    generationStrategy:"increment"
+                    isGenerated:true,
+                    generationStrategy:'increment'
                 },
                 {
-                    name:'category_name',
-                    type:'varchar',
-                    length:'100'
+                    name:'table_qrcode',
+                    type:'varchar'
                 },
                 {
                     name:'restaurant_id',
                     type:'integer'
                 }
             ],
-            foreignKeys: [
+            foreignKeys:[
                 {
-                    name: 'categoryRestaurant',
+                    name: 'tableRestaurant',
                     columnNames: ['restaurant_id'],
                     referencedTableName: 'tb_restaurants',
                     referencedColumnNames: ['restaurant_id'],
@@ -37,7 +36,7 @@ export class createCategory1612485815538 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('tb_categories');
+        await queryRunner.dropTable('tb_tables');
     }
 
 }

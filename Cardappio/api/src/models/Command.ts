@@ -14,6 +14,9 @@ export default class Command {
     @Column()
     command_checkout:Date;
 
+    @Column()
+    command_total_price:number;
+
     @ManyToOne(()=> Table, table => table.table_commands)
     @JoinColumn({name: 'table_id'})
     table_id: Table;

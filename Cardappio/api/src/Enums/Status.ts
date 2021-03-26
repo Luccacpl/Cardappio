@@ -3,3 +3,5 @@ enum Status{
     PREPARO = 2,
     FINALIZADO = 3
 }
+
+export default Status;

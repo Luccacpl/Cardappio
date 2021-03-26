@@ -1,5 +1,6 @@
     
-import {Entity,Column, PrimaryGeneratedColumn, OneToOne, JoinColumn} from "typeorm";
+import {Entity,Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany} from "typeorm";
+import Table from "./Table";
 
 @Entity('tb_restaurants')
 export default class User {
@@ -10,8 +11,11 @@ export default class User {
     @Column()
     restaurant_name: string;   
 
-    @Column()
-    restaurant_mesas: string;
+    @OneToMany(()=> Table,table=>table.restaurant_id,{
+        cascade: ['insert','update','remove']
+    })
+    @JoinColumn({name:'restaurant_id'})
+    restaurant_mesas:Table[];
 
     // @Column()
     // restaurant_cozinha: string;
