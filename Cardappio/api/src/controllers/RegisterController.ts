@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt'
 import { getRepository } from 'typeorm';
 import User from '../models/User'
-import emailExistence from 'email-existence';
 
 export default {
     async Register(req: Request, res: Response) {
