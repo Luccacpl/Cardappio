@@ -26,12 +26,13 @@ export default {
         catch (e) {
 
             try {
-                const user = new User();
-                //user.name = 'mano';
-                user.user_email = email.toLowerCase();
-                user.user_pass = encryptedPass;
-                user.user_name = name;
-                user.user_dt_nasc = dt_nasc;
+                const user = {
+                    user_email : email.toLowerCase(),
+                    user_pass : encryptedPass,
+                    user_name : name,
+                    user_dt_nasc : dt_nasc
+                }
+
                 console.log(user);
                 await repo.save(user)
                 return res.status(201).json({ SUCCESS: user.user_email + " created" });
@@ -46,4 +47,6 @@ export default {
 
 
     }
+
+
 }

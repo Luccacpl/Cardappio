@@ -90,7 +90,7 @@ export default {
 
             await repo.update(id, item);
 
-            return await res.json(item)
+            return await res.status(200).json(item)
         }
         catch (e) {
             await unlinkImage.deleteImage(`${destination}/${req.file.filename}`);
