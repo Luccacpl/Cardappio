@@ -14,7 +14,7 @@ export default class Table {
 
     @ManyToOne(()=> Restaurant, restaurant => restaurant.restaurant_mesas)
     @JoinColumn({name: 'restaurant_id'})
-    restaurant_id: Restaurant;
+    restaurant_id: number;
 
     @OneToMany(()=> Command,command=>command.command_id,{
         cascade: ['insert','update','remove']

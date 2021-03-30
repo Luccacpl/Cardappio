@@ -9,7 +9,10 @@ export default class User {
     restaurant_id: number;
 
     @Column()
-    restaurant_name: string;   
+    restaurant_name: string;
+    
+    @Column()
+    restaurant_logo:string;
 
     @OneToMany(()=> Table,table=>table.restaurant_id,{
         cascade: ['insert','update','remove']
@@ -29,7 +32,7 @@ export default class User {
 
     @OneToOne(()=> User, user => user.user_id)
     @JoinColumn({name: 'user_id'})
-    user_id: User;
+    user_id: number;
 
     /*
     @OneToMany(()=> Item,item=>item.category,{

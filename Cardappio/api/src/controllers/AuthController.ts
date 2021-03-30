@@ -2,11 +2,17 @@ import { NextFunction, Request, Response } from 'express'
 import { getConnection, getRepository } from 'typeorm'
 import User from '../models/User'
 import bcrypt from 'bcryptjs'
-import crypto from 'crypto'
+
 //require("dotenv-safe")
 import jwt from 'jsonwebtoken'
 //var nodemailer = require('nodemailer');
 //const transport = require('../../modules/mailer')
+
+interface tokenStruct{
+    name:string,
+    id:number,
+    iat:number
+}
 
 export default {
     async authenticate(req: Request, res: Response) {
@@ -18,7 +24,7 @@ export default {
         const repository = getRepository(User)
         try {
 
-            
+
             const user = await repository.findOneOrFail({
                 where: {
                     user_email: email
@@ -27,11 +33,12 @@ export default {
             console.log(user);
             if (bcrypt.compareSync(pass, user.user_pass)) {
                 console.log(user);
+                
                 const sendUser = {
                     name: user.user_email,
                     id: user.user_id
                 }
-                const acessToken = jwt.sign(sendUser, process.env.ACCESS_TOKEN_SECRET || "kekw");
+                const acessToken = jwt.sign(sendUser, process.env.ACCESS_TOKEN_SECRET,{expiresIn:"10s"});
 
                 res.header({ authorization: acessToken })
                 return res.status(200).json({ authorization: acessToken });
@@ -40,7 +47,7 @@ export default {
                 return res.status(400).json({ "ERROR": "usuario ou senha incorreto" })
             }
 
-        } catch (e) {
+        } catch (e){
             return res.status(400).json({ "ERROR": "usuario ou senha incorreto" })
         }
 
@@ -66,14 +73,15 @@ export default {
 
         try {
             const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-            //console.log(user);
+
+           
             req.user = user;
             next();
         }
         catch (e) {
-            return res.status(402).json({ "deu": e.message })
+            return res.sendStatus(401);
         }
-        
+
     }
 
 }

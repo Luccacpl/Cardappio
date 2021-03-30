@@ -5,6 +5,8 @@ import AuthControler from './controllers/AuthController';
 import multer from 'multer'
 import uploadConfig from './config/upload';
 import RegisterController from './controllers/RegisterController'
+import RestaurantController from './controllers/RestaurantController';
+import TableController from './controllers/TableController';
 
 const upload = multer(uploadConfig)
 
@@ -27,6 +29,16 @@ routes.put('/category/:id',AuthControler.authentificationToken,CategoryControler
 routes.delete('/category/:id',AuthControler.authentificationToken,CategoryControler.deleteCategory);
 
 routes.post('/register',RegisterController.Register);
+
+routes.post('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
+routes.put('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
+routes.get('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
+routes.delete('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
+
+routes.get('/table/:id',TableController.getTable);
+routes.post('/table',AuthControler.authentificationToken,TableController.postTable);
+routes.put('/table/:id',TableController.updateTable);
+routes.delete('/table/:id',AuthControler.authentificationToken,TableController.deleteTable);
 
 export default routes;
 

@@ -2,20 +2,27 @@ import {Request,Response} from 'express';
 import path from 'path';
 import { getRepository } from 'typeorm';
 import Category from '../models/Category';
+import Restaurant from '../models/Restaurant';
+import Table from '../models/Table';
 import unlinkImage from '../services/unlinkImage';
 import categoryView from '../Views/CategoryView'
 
 export default {
 
     async postCategory(req:any,res:Response){
-        console.log(req.user);//usuario logado
+        console.log(req.user);
+        const repo = getRepository(Restaurant);// pega repositorio
+        const {table_id} = req.body;
 
 
         const {name} = req.body;
         const categoryRepository = getRepository(Category);
-        const category = new Category();
-        category.category_name = name;
+       
         try{
+            const { restaurant_id } = await repo.findOne({ user_id: req.user.id })
+            const category = new Category();
+            category.category_name = name;
+            category.restaurant_id = restaurant_id;
             categoryRepository.save(category);
             return res.status(201).json(category);
         }

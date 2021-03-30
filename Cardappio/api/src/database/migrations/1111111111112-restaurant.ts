@@ -18,13 +18,17 @@ export class restaurant1111111111112 implements MigrationInterface {
                     type:'varchar'
                 },
                 {
+                    name:'restaurant_logo',
+                    type:'varchar'
+                },
+                {
                     name:'user_id',
                     type:'integer'
                 }
             ],
             foreignKeys:[
                 {
-                    name: 'user',
+                    name: 'user_id',
                     columnNames: ['user_id'],
                     referencedTableName: 'tb_users',
                     referencedColumnNames: ['user_id'],
