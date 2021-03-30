@@ -235,6 +235,10 @@
             "schema": {
               "type": "object",
               "properties": {
+                "table_id": {
+                  "type": "string",
+                  "example": "any"
+                },
                 "name": {
                   "type": "string",
                   "example": "any"
