@@ -5,20 +5,22 @@ import Table from '../models/Table';
 import QRCode from 'qrcode';
 import Restaurant from '../models/Restaurant';
 import { send } from 'process';
-
+import restaurantService from '../services/RestaurantService';
+//import tableView from '../Views/TableView'
 export default {
 
-    async getTable(req: Request, res: Response) {
-        const { restaurant_id, id } = req.params;
-        const tableRepository = getRepository(Table);
-        try{
-            //const table = await restaurantRepository.findOneOrFail(id,{relations:['tables']})
-            //console.log(table);
-            return res.sendStatus(200);
-            //return res.status(200).json(tableView.render(table));
+    async getAllTable(req: any, res: Response) {
+        const repoMesa = getRepository(Table) // pega repositorio
+        try { //id,{relations:['tables']}
+            const tables = await repoMesa.find({where:{
+                restaurant_id:await restaurantService.getRestaurantIdFromUser(req.user.id)
+            }})
+            console.log(tables);
+            return res.status(201).json(tables);
+            
         }
-        catch(e){
-            console.log("Erro: " +e);
+        catch (e) {
+            console.log("Erro: " + e);
             return res.status(404).json();
         }
     },
@@ -32,23 +34,21 @@ export default {
         try {
             const table = await repoTable.findOneOrFail(id)
             await repoTable.delete(id)
-            return res.status(200).json({"message":"Deleted table of id: " +id});
-        }catch (e){
-            return res.status(404).json({"message":"Fail to delete table of id: " +id});
+            return res.status(200).json({ "message": "Deleted table of id: " + id });
+        } catch (e) {
+            return res.status(404).json({ "message": "Fail to delete table of id: " + id });
         }
-        
+
     },
     async postTable(req: any, res: Response) {
-        const repo = getRepository(Restaurant);
         const repoMesa = getRepository(Table) // pega repositorio
-        const {table_id} = req.body;
+        const { table_number } = req.body;
         console.log(req.user.id)
         try {
-            const { restaurant_id } = await repo.findOne({ user_id: req.user.id })
+            const restaurant_id = await restaurantService.getRestaurantIdFromUser(req.user.id);
             const data = {
-                table_id:table_id,
-                restaurant_id:restaurant_id,
-                table_qrcode:crypto.randomBytes(5).toString('base64')
+                table_number: table_number,
+                restaurant_id: restaurant_id
             }
 
 
@@ -65,8 +65,8 @@ export default {
             */
 
             return res.status(201).json()
-        }catch(e){
-            return res.json({error:e.message});
+        } catch (e) {
+            return res.json({ error: e.message });
         }
         //const {table_id}= req.body;
         const table_qrcode = crypto.randomBytes(5).toString('base64');

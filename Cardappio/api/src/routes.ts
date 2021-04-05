@@ -31,13 +31,13 @@ routes.delete('/category/:id',AuthControler.authentificationToken,CategoryContro
 routes.post('/register',RegisterController.Register);
 
 routes.post('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
-routes.put('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
-routes.get('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
-routes.delete('/restaurant',AuthControler.authentificationToken,RestaurantController.postFunction)
+routes.put('/restaurant',AuthControler.authentificationToken,RestaurantController.updateFunction)
+routes.get('/restaurant',AuthControler.authentificationToken,RestaurantController.getFunction)
+routes.delete('/restaurant/:id',AuthControler.authentificationToken,RestaurantController.deleteFunction)
 
-routes.get('/table/:id',TableController.getTable);
+routes.get('/table',AuthControler.authentificationToken,TableController.getAllTable);
 routes.post('/table',AuthControler.authentificationToken,TableController.postTable);
-routes.put('/table/:id',TableController.updateTable);
+routes.put('/table/:id',AuthControler.authentificationToken,TableController.updateTable);
 routes.delete('/table/:id',AuthControler.authentificationToken,TableController.deleteTable);
 
 export default routes;
