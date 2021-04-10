@@ -16,8 +16,8 @@ export default class Table {
     @Column()
     table_number:number;
 
-    @ManyToOne(() => Restaurant, restaurant => restaurant.restaurant_mesas)
-    @JoinColumn({ name: 'restaurant_id' })
+    
+    @Column({ name: 'restaurant_id' })
     restaurant_id: number;
 
     @OneToMany(() => Command, command => command.command_id, {

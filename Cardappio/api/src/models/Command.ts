@@ -2,7 +2,7 @@
 import {Entity,Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from "typeorm";
 import Table from "./Table";
 
-@Entity('tb_comamnds')
+@Entity('tb_commands')
 export default class Command {
 
     @PrimaryGeneratedColumn()
@@ -11,7 +11,9 @@ export default class Command {
     @Column()
     command_checkin:Date;
 
-    @Column()
+    @Column({
+        nullable:true
+    })
     command_checkout:Date;
 
     @Column()
@@ -19,7 +21,7 @@ export default class Command {
 
     @ManyToOne(()=> Table, table => table.table_commands)
     @JoinColumn({name: 'table_id'})
-    table_id: Table;
+    table_id: number;
 
 
 }

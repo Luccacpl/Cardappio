@@ -516,6 +516,25 @@
           }
         }
       }
+    },
+    "/command/{tableqrcode}": {
+      "post": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "tableqrcode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   },
   "definitions": {}

@@ -7,6 +7,7 @@ import uploadConfig from './config/upload';
 import RegisterController from './controllers/RegisterController'
 import RestaurantController from './controllers/RestaurantController';
 import TableController from './controllers/TableController';
+import CommandController from './controllers/CommandController'
 
 const upload = multer(uploadConfig)
 
@@ -39,6 +40,8 @@ routes.get('/table',AuthControler.authentificationToken,TableController.getAllTa
 routes.post('/table',AuthControler.authentificationToken,TableController.postTable);
 routes.put('/table/:id',AuthControler.authentificationToken,TableController.updateTable);
 routes.delete('/table/:id',AuthControler.authentificationToken,TableController.deleteTable);
+
+routes.post('/customercommand/:tableqrcode',CommandController.createCommand)
 
 export default routes;
 

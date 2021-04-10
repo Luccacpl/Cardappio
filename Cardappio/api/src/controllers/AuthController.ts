@@ -53,6 +53,7 @@ export default {
 
 
     },
+    
 
     async logout(req: Request, res: Response) {
         const repository = getRepository(User)
@@ -73,6 +74,24 @@ export default {
 
         try {
             const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
+
+           
+            req.user = user;
+            next();
+        }
+        catch (e) {
+            return res.sendStatus(401);
+        }
+
+    },
+    async authentificationCustomerToken(req: any, res: Response, next: NextFunction) {
+
+        const authHeader = req.headers['authorization']
+        const token = authHeader
+        if (token == null) return res.sendStatus(401)
+
+        try {
+            const user = jwt.verify(token, process.env.CUSTOMER_TOKEN_SECRET)
 
            
             req.user = user;

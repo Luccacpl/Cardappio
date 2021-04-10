@@ -19,11 +19,13 @@ export class command1616725126567 implements MigrationInterface {
                 },
                 {
                     name:'command_checkout',
-                    type:'date'
+                    type:'date',
+                    isNullable:true
                 },
                 {
                     name:'command_total_price',
-                    type:'decimal'
+                    type:'decimal',
+                    default:0
                 },
                 {
                     name:'table_id',
