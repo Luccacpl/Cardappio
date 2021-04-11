@@ -49,8 +49,9 @@ routes.get('/customercommand',AuthControler.authentificationCustomerToken,Custom
 routes.put('/customercommand/:item_id',AuthControler.authentificationCustomerToken,CustomerCommandController.addItemCommand)
 routes.delete('/customercommand/:item_command_id',AuthControler.authentificationCustomerToken,CustomerCommandController.removeItemCommand)
 
-
+routes.get('/customercardappio',AuthControler.authentificationCustomerToken,CustomerCommandController.getCardappio)
 routes.get('/customercardappio',AuthControler.authentificationCustomerToken,CustomerCommandController.getCardappio)
 routes.put('/customerconfirmcommand',AuthControler.authentificationCustomerToken,CustomerCommandController.confirmAllItems)
+routes.post('/customercheckoutcommand',AuthControler.authentificationCustomerToken,CustomerCommandController.checkoutCommand)
 export default routes;
 

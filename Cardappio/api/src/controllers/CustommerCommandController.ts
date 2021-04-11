@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { getRepository } from 'typeorm';
+import { getRepository, Not } from 'typeorm';
 import Command from '../models/Command';
 import Table from '../models/Table';
 import restaurantService from '../services/RestaurantService'
@@ -44,7 +44,6 @@ export default {
         }
         //const {table_id} = repoMesa.findOneOrFail()
     },
-
     async getCommand(req: any, res: Response) {
         console.log(req.customer)
         console.log(req.customer.restaurant_id);
@@ -97,7 +96,7 @@ export default {
             repo.delete(item_command);
             return res.json({ deleted: item_command })
         } catch (e) {
-            return res.json({ error: e.message })
+            return res.json({ error: 'item nao existe' })
         }
     },
     async getCardappio(req: any, res: Response) {
@@ -109,16 +108,36 @@ export default {
             return res.status(500).json({ error: e.message })
         }
     },
-    async confirmAllItems(req: any, res: Response){ 
+    async confirmAllItems(req: any, res: Response) {
         console.log(req.customer)
         const repo = getRepository(ItemCommand);
-        try{
-            await repo.update({ command_id: req.customer.command_id,item_command_status:0 }, { item_command_status: 1 })
-            return res.status(200).json({deu:'bom'})
+        try {
+            await repo.update({ command_id: req.customer.command_id, item_command_status: 0 }, { item_command_status: 1 })
+            return res.status(200).json({ deu: 'bom' })
+        }
+        catch (e) {
+            return res.status(500).json({ deu: e.message });
+        }
+
+    },
+    async checkoutCommand(req: any, res: Response) {
+        const repo = getRepository(ItemCommand);
+        const repoCommand = getRepository(Command);
+        try {
+            const count = await repo.count({
+                where: {
+                    command_id: req.customer.command_id,
+                    item_command_status: Not(0)
+                }
+            })
+            if(count>0){
+                return res.status(403).json({ erro: 'você ja confirmou o preparo de '+count+' items, checkout direto no caixa' }) 
+            }
+            await repoCommand.update({ command_id: req.customer.command_id }, { command_checkout: new Date })
+            return res.status(200).json({ message: 'checkout SUCCESS' })
         }
         catch(e){
-            return res.status(500).json({deu:e.message});
+            return res.status(500).json({erro:e})
         }
-        
     }
 }
