@@ -1,5 +1,6 @@
     
-import {Entity,Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn} from "typeorm";
+import {Entity,Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany} from "typeorm";
+import ItemCommand from "./ItemCommand";
 import Table from "./Table";
 
 @Entity('tb_commands')
@@ -22,6 +23,14 @@ export default class Command {
     @ManyToOne(()=> Table, table => table.table_commands)
     @JoinColumn({name: 'table_id'})
     table_id: number;
+
+    @OneToMany(()=> ItemCommand,itemCommand=>itemCommand.command_id,{
+        cascade: ['insert','update','remove']
+    })
+    @JoinColumn({name:'command_id'})
+    itemsCommand:ItemCommand[];
+
+
 
 
 }

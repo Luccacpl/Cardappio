@@ -7,13 +7,15 @@ import uploadConfig from './config/upload';
 import RegisterController from './controllers/RegisterController'
 import RestaurantController from './controllers/RestaurantController';
 import TableController from './controllers/TableController';
-import CommandController from './controllers/CommandController'
+import CustomerCommandController from './controllers/CustommerCommandController'
 
 const upload = multer(uploadConfig)
 
 const routes = Router();
 
 routes.post('/login',AuthControler.authenticate);
+
+
 
 routes.get('/item',ItemController.getAllItem);
 routes.get('/item/:id',ItemController.getItem);
@@ -41,7 +43,14 @@ routes.post('/table',AuthControler.authentificationToken,TableController.postTab
 routes.put('/table/:id',AuthControler.authentificationToken,TableController.updateTable);
 routes.delete('/table/:id',AuthControler.authentificationToken,TableController.deleteTable);
 
-routes.post('/customercommand/:tableqrcode',CommandController.createCommand)
+//Customer Routes
+routes.post('/customercommand/:tableqrcode',CustomerCommandController.createCommand)
+routes.get('/customercommand',AuthControler.authentificationCustomerToken,CustomerCommandController.getCommand)
+routes.put('/customercommand/:item_id',AuthControler.authentificationCustomerToken,CustomerCommandController.addItemCommand)
+routes.delete('/customercommand/:item_command_id',AuthControler.authentificationCustomerToken,CustomerCommandController.removeItemCommand)
 
+
+routes.get('/customercardappio',AuthControler.authentificationCustomerToken,CustomerCommandController.getCardappio)
+routes.put('/customerconfirmcommand',AuthControler.authentificationCustomerToken,CustomerCommandController.confirmAllItems)
 export default routes;
 

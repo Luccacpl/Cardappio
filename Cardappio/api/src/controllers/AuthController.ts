@@ -92,9 +92,9 @@ export default {
 
         try {
             const user = jwt.verify(token, process.env.CUSTOMER_TOKEN_SECRET)
-
+            console.log(user);
            
-            req.user = user;
+            req.customer = user;
             next();
         }
         catch (e) {

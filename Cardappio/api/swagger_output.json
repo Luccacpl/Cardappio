@@ -517,7 +517,7 @@
         }
       }
     },
-    "/command/{tableqrcode}": {
+    "/customercommand/{tableqrcode}": {
       "post": {
         "tags": [],
         "description": "",
@@ -532,6 +532,36 @@
         "responses": {
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/customercommand": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/customercommand/{item_id}": {
+      "put": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "item_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
