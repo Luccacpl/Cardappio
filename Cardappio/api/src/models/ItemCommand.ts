@@ -23,7 +23,7 @@ export default class ItemCommand {
     item: Item;
 
     @Column()
-    item_command_price:number
+    item_time_confirmed:number
 
     @Column()
     item_command_status:Status;

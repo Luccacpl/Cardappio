@@ -8,6 +8,7 @@ import RegisterController from './controllers/RegisterController'
 import RestaurantController from './controllers/RestaurantController';
 import TableController from './controllers/TableController';
 import CustomerCommandController from './controllers/CustommerCommandController'
+import KitchenController from './controllers/KitchenController'
 
 const upload = multer(uploadConfig)
 
@@ -53,5 +54,9 @@ routes.get('/customercardappio',AuthControler.authentificationCustomerToken,Cust
 routes.get('/customercardappio',AuthControler.authentificationCustomerToken,CustomerCommandController.getCardappio)
 routes.put('/customerconfirmcommand',AuthControler.authentificationCustomerToken,CustomerCommandController.confirmAllItems)
 routes.post('/customercheckoutcommand',AuthControler.authentificationCustomerToken,CustomerCommandController.checkoutCommand)
+
+//Kitchen Controller
+routes.get('/kitchenorder',AuthControler.authentificationToken,KitchenController.getAllOrders)
+
 export default routes;
 

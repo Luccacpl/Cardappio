@@ -27,8 +27,8 @@ export class item_command1616725135923 implements MigrationInterface {
                     type:'integer'
                 },
                 {
-                    name:'item_command_price',
-                    type:'decimal',
+                    name:'item_time_confirmed',
+                    type:'varchar',
                     isNullable:true
                 },
                 {

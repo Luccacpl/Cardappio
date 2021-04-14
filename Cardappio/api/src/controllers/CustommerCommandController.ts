@@ -112,7 +112,7 @@ export default {
         console.log(req.customer)
         const repo = getRepository(ItemCommand);
         try {
-            await repo.update({ command_id: req.customer.command_id, item_command_status: 0 }, { item_command_status: 1 })
+            await repo.update({ command_id: req.customer.command_id, item_command_status: 0,item_time_confirmed:null }, { item_command_status: 1,item_time_confirmed: Date.now() })
             return res.status(200).json({ deu: 'bom' })
         }
         catch (e) {
