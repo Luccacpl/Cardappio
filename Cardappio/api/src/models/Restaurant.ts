@@ -1,5 +1,6 @@
     
 import {Entity,Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany} from "typeorm";
+import Command from "./Command";
 import Table from "./Table";
 
 @Entity('tb_restaurants')
@@ -19,6 +20,9 @@ export default class User {
     })
     @JoinColumn({name:'restaurant_id'})
     restaurant_mesas:Table[];
+
+    @JoinColumn({name:'restaurant_id'})
+    commands:Command[];
 
     // @Column()
     // restaurant_cozinha: string;

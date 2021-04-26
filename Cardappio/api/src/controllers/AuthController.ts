@@ -38,7 +38,7 @@ export default {
                     name: user.user_email,
                     id: user.user_id
                 }
-                const acessToken = jwt.sign(sendUser, process.env.ACCESS_TOKEN_SECRET,{expiresIn:"1d"});
+                const acessToken = jwt.sign(sendUser, process.env.ACCESS_TOKEN_SECRET,{expiresIn:"10d"});
 
                 res.header({ authorization: acessToken })
                 return res.status(200).json({ authorization: acessToken });

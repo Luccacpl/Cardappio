@@ -24,8 +24,11 @@ export default {
             })
             const command: Command = new Command();
             command.table_id = mesa.table_id;
+            console.log(mesa.restaurant_id);
             command.command_checkin = new Date();
+            command.restaurant_id = mesa.restaurant_id;
             console.log("date is" + new Date())
+            console.log(command);
             const thiscommand = await repoCommand.save(command)
 
 
@@ -34,13 +37,13 @@ export default {
                 command_id: thiscommand.command_id
             }
 
-            const acessToken = jwt.sign(env, process.env.CUSTOMER_TOKEN_SECRET, { expiresIn: "1d" });
+            const acessToken = jwt.sign(env, process.env.CUSTOMER_TOKEN_SECRET, { expiresIn: "10d" });
             return res.json({
                 authorization: acessToken
             })
         }
         catch (e) {
-            return res.status(404).json({ error: e.message })
+            return res.status(404).json({ error: e})
         }
         //const {table_id} = repoMesa.findOneOrFail()
     },

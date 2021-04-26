@@ -9,6 +9,7 @@ import RestaurantController from './controllers/RestaurantController';
 import TableController from './controllers/TableController';
 import CustomerCommandController from './controllers/CustommerCommandController'
 import KitchenController from './controllers/KitchenController'
+import AdmController from './controllers/AdmController'
 
 const upload = multer(uploadConfig)
 
@@ -57,6 +58,17 @@ routes.post('/customercheckoutcommand',AuthControler.authentificationCustomerTok
 
 //Kitchen Controller
 routes.get('/kitchenorder',AuthControler.authentificationToken,KitchenController.getAllOrders)
+routes.put('/kitchenorder/:id',AuthControler.authentificationToken,KitchenController.updateOrders)
+
+//ADM services controller AdmController
+
+routes.get('/admactivecommand',AuthControler.authentificationToken,AdmController.getAllRestaurantActiveCommands)
+routes.get('/adminactivecommand',AuthControler.authentificationToken,AdmController.getAllRestaurantInactiveCommands)
+routes.get('/admactivecommand/:id',AuthControler.authentificationToken,AdmController.getCommand)
+routes.put('/admupdateorder/:id',AuthControler.authentificationToken,KitchenController.updateOrders)
+routes.put('/admclosecommand/:id',AuthControler.authentificationToken,AdmController.closeCommand)
+routes.put('/admreopencommand/:id',AuthControler.authentificationToken,AdmController.reopenCommand)
+
 
 export default routes;
 

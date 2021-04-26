@@ -8,19 +8,32 @@ export default {
         console.log(req.user)
         try {
             const items = await repo.query(
-            'select item_command_id, '+
-            '(select item_name from tb_items where item_id = ic.item_id), '+
-            '(select item_desc from tb_items where item_id = ic.item_id), '+
-            'item_command_status, table_number from tb_item_commands ic, tb_commands c, tb_tables tt, tb_restaurants tr '+
-            'where ic.item_command_status = 1 or ic.item_command_status = 2 and '+
-            'ic.command_id = c.command_id and '+
-            'tt.table_id = c.table_id and '+
-            'tt.restaurant_id = tr.restaurant_id and '+
-            'tr.restaurant_id = '+req.user.id+' order by item_time_confirmed asc '
+                'select ic.item_command_id,'+
+                ' (select item_name from tb_items where item_id = ic.item_id),'+
+                ' (select item_desc from tb_items where item_id = ic.item_id),'+
+                ' ic.item_command_status, tt.table_number'+
+                ' from tb_item_commands ic'+
+                ' join tb_commands c on ic.command_id = c.command_id'+
+                ' join tb_tables tt on c.table_id = tt.table_id'+
+                ' join tb_restaurants tr on tt.restaurant_id = tr.restaurant_id'+
+                ' where tr.restaurant_id = ' + req.user.id +
+                ' and ic.item_command_status = 1 or ic.item_command_status = 2'+
+                ' order by item_time_confirmed asc'
             );
             return res.status(200).json({ content: items });
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }
+    },
+    async updateOrders(req: any, res: Response) {
+        const {id} = req.params
+        const { status } = req.body;
+        const repo = getRepository(ItemCommand);
+        try {
+            return res.status(200).json(repo.update(id, { item_command_status: status }))
+        }catch(e){
+            return res.status(500).json({error:e.message})
+        }
+        
     }
 }
