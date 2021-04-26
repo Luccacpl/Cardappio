@@ -11,11 +11,17 @@ export class table1616725098921 implements MigrationInterface {
                     type:'integer',
                     isPrimary:true,
                     isGenerated:true,
-                    generationStrategy:'increment'
                 },
                 {
                     name:'table_qrcode',
-                    type:'varchar'
+                    type:'varchar',
+                    generationStrategy:'uuid',
+                    default:'uuid_generate_v4()',
+
+                },
+                {
+                    name:'table_number',
+                    type:'integer',
                 },
                 {
                     name:'restaurant_id',

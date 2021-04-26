@@ -19,14 +19,20 @@ export class command1616725126567 implements MigrationInterface {
                 },
                 {
                     name:'command_checkout',
-                    type:'date'
+                    type:'date',
+                    isNullable:true
                 },
                 {
                     name:'command_total_price',
-                    type:'decimal'
+                    type:'decimal',
+                    default:0
                 },
                 {
                     name:'table_id',
+                    type:'integer'
+                },
+                {
+                    name:'restaurant_id',
                     type:'integer'
                 }
             ],
@@ -36,6 +42,14 @@ export class command1616725126567 implements MigrationInterface {
                     columnNames: ['table_id'],
                     referencedTableName: 'tb_tables',
                     referencedColumnNames: ['table_id'],
+                    onUpdate: 'CASCADE',
+                    onDelete: 'CASCADE'
+                },
+                {
+                    name: 'commandRestaurant',
+                    columnNames: ['restaurant_id'],
+                    referencedTableName: 'tb_restaurants',
+                    referencedColumnNames: ['restaurant_id'],
                     onUpdate: 'CASCADE',
                     onDelete: 'CASCADE'
                 }

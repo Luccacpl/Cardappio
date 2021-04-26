@@ -15,7 +15,8 @@ export class item_command1616725135923 implements MigrationInterface {
                 },
                 {
                     name:'item_command_qtd',
-                    type:'integer'
+                    type:'integer',
+                    default:1
                 },
                 {
                     name:'item_id',
@@ -26,12 +27,14 @@ export class item_command1616725135923 implements MigrationInterface {
                     type:'integer'
                 },
                 {
-                    name:'item_command_price',
-                    type:'decimal'
+                    name:'item_time_confirmed',
+                    type:'varchar',
+                    isNullable:true
                 },
                 {
                     name:'item_command_status',
-                    type:'integer'
+                    type:'integer',
+                    default:0
                 }
             ],
             foreignKeys:[

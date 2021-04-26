@@ -1,5 +1,6 @@
     
 import {Entity,Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany} from "typeorm";
+import Command from "./Command";
 import Table from "./Table";
 
 @Entity('tb_restaurants')
@@ -9,13 +10,19 @@ export default class User {
     restaurant_id: number;
 
     @Column()
-    restaurant_name: string;   
+    restaurant_name: string;
+    
+    @Column()
+    restaurant_logo:string;
 
     @OneToMany(()=> Table,table=>table.restaurant_id,{
         cascade: ['insert','update','remove']
     })
     @JoinColumn({name:'restaurant_id'})
     restaurant_mesas:Table[];
+
+    @JoinColumn({name:'restaurant_id'})
+    commands:Command[];
 
     // @Column()
     // restaurant_cozinha: string;
@@ -29,7 +36,7 @@ export default class User {
 
     @OneToOne(()=> User, user => user.user_id)
     @JoinColumn({name: 'user_id'})
-    user_id: User;
+    user_id: number;
 
     /*
     @OneToMany(()=> Item,item=>item.category,{

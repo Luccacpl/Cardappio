@@ -3,6 +3,7 @@ import {Entity,Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToOne} 
 import Item from "./Item";
 import Table from "./Table";
 import Status from '../Enums/Status'
+import Command from "./Command";
 
 @Entity('tb_item_commands')
 export default class ItemCommand {
@@ -13,19 +14,23 @@ export default class ItemCommand {
     @Column()
     item_command_qtd:number;
 
+    
+    @Column({name: 'item_id'})
+    item_id: number;
+
     @OneToOne(()=> Item, item => item.item_id)
     @JoinColumn({name: 'item_id'})
-    item_id: Item;
+    item: Item;
 
     @Column()
-    item_command_price:number
+    item_time_confirmed:number
 
     @Column()
     item_command_status:Status;
 
 
-    @ManyToOne(()=> Table, table => table.table_commands)
-    @JoinColumn({name: 'table_id'})
-    table_id: Table;
+    @ManyToOne(()=> Command, command => command.command_id)
+    @JoinColumn({name: 'command_id'})
+    command_id: number;
 
 }

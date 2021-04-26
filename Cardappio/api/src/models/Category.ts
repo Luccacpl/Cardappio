@@ -13,7 +13,7 @@ export default class Category {
 
     @ManyToOne(()=> Restaurant, restaurant => restaurant.restaurant_mesas)
     @JoinColumn({name: 'restaurant_id'})
-    restaurant_id: Restaurant;
+    restaurant_id: number;
 
     @OneToMany(()=> Item,item=>item.category_id,{
         cascade: ['insert','update','remove']
