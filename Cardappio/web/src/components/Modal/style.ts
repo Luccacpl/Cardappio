@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
 import { colors, dimensions, fontsSizes } from '../../utils'
 
@@ -28,17 +28,31 @@ interface AsideBackButtonProps {
   marginTop?: string
 }
 
+
+const translate = keyframes`
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0%;
+  }
+`;
+
 const OverlayModal = styled.div`
   height: 100vh;
   width: 100%;
   top: 0;
-  left: 0;
+  right: -100%;
   position: absolute;
-  z-index: 2;
+  z-index: 9999;
   justify-content: flex-end;
   align-items: flex-end;
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
+  animation-name: ${translate};
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
 `
 
 const RightContainer = styled.div`
@@ -60,6 +74,9 @@ const CloseButton = styled.button`
   border-radius: 50%;
   background-color: ${colors.menuOrange};
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 50%;
   left: 30%;
   transform: translate( -50%, -50%);

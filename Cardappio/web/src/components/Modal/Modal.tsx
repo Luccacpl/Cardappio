@@ -1,15 +1,9 @@
 
-import { colors, dimensions, fontsSizes } from '../../utils'
+import { colors } from '../../utils'
 import { OverlayModal, RightContainer, CloseButton } from './style'
 import { Title, P } from '../Text/text'
-import { Grid } from '../../components/Grid/style'
-import { Input } from '../../components/Input/Input'
 
-import Button from '../Button/Button'
-
-import CloseSvg from '../../public/icons/close-outline.svg';
-
-import Svg from '../Svg/Svg';
+import { Close } from 'react-ionicons';
 
 import { ChangeEventHandler } from 'react'
 
@@ -42,7 +36,7 @@ const BottomModal = (props: IBottomModal) => {
                 </P>
                 {props.children}
                 <CloseButton onClick={props.closeClicked}>
-                    <Svg  color="white" src={CloseSvg}/>
+                    <Close color="white" width="30px" height="30px" />
                 </CloseButton>
             </RightContainer>
         </OverlayModal>

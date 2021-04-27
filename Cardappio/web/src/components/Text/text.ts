@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 import { colors } from '../../utils/colors'
-import { dimensions } from '../../utils/dimensions'
 import { fontsSizes } from '../../utils/fontSizes'
 
 interface IP {

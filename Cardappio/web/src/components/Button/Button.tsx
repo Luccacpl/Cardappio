@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CustomButtom from './style'
 
 interface IButton {

@@ -32,14 +32,14 @@ function Login() {
     const authLoginService = async () => 
         await api.post('login', { email, pass })
     
-    const storeUserToken = ({ data }: { data: unknown }) =>
-        localStorage.setItem('TOKEN', JSON.stringify(data))
+    const storeUserToken = ({ data }: { data: any}) =>
+        localStorage.setItem('TOKEN', data.authorization)
     
     const storeUserInfo = () =>
         localStorage.setItem('EMAIL', email)
     
     const redirectUserToDashboard = () => 
-        history.push('/item')
+        history.push('/cardapio')
     
     const handlerErrorApi = () => 
         alert('Houve um erro na API')

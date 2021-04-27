@@ -1,38 +1,106 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { colors } from '../../utils';
 
-import { CustomAside, Wrapper, Title, ButtonWrapper, AsideButton, } from './style'
+import { useLocation } from 'react-router-dom'
 
-interface IAside {
-  display?: string
-  alignItems?: string
-  margin?: string
-  border?: string
-  borderColor?: string
-  clicked?: any
+import ArrowBack from '../../public/icons/arrow-back-outline.svg';
+
+import Svg from '../Svg/Svg';
+
+import {
+    Aside,
+    AsideTitle,
+    AsideUl,
+    AsideLi,
+    AsideLiText,
+    AsideBackButton
+} from './style'
+
+
+interface InewAside {
+
 }
 
 
-const Aside = (props: IAside) => {
+const NewAside = (props: InewAside) => {
 
-  return (
-    <CustomAside>
-      <Wrapper {...props}>
-        <Title>Cardappio</Title>
-        <ButtonWrapper>
-          <Link to='/inicio'><AsideButton type="button" onClick={props.clicked}>Inicio</AsideButton></Link>
-          <Link to='/Item'><AsideButton type="button" onClick={props.clicked}>Itens</AsideButton></Link>
-          <Link to='/Comandas'><AsideButton type="button" onClick={props.clicked}>Comandas</AsideButton></Link>
-          <Link to='/Usuarios'><AsideButton type="button" onClick={props.clicked}>Usuarios</AsideButton></Link>
-          <Link to='/pedidos'><AsideButton type="button" onClick={props.clicked}>Pedidos</AsideButton></Link>
-        </ButtonWrapper>
-      </Wrapper>
-    </CustomAside>
-  )
+    const location = useLocation();
+    const actualRoute = location.pathname;
+
+    const mainRoute = `${actualRoute}`;
+
+    return (
+        <Aside>
+            <AsideTitle>Cardappio</AsideTitle>
+            <AsideUl>
+                <Link to="/inicio" style={{ color: 'inherit', textDecoration: 'inherit' }} >
+                    <AsideLi
+                        backgroundColor={mainRoute === '/inicio' ? colors.lightBlack : colors.black}
+                    >
+                        <AsideLiText
+                            color={mainRoute === '/inicio' ? colors.green : colors.green}
+                            fontWeight={mainRoute === '/inicio' ? 'bold' : '400'}
+                        >
+                            Inicio
+                        </AsideLiText>
+                    </AsideLi>
+                </Link>
+                <Link to="/cardapio" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                    <AsideLi
+                        backgroundColor={mainRoute === '/cardapio' ? colors.lightBlack : colors.black}
+                    >
+                        <AsideLiText
+                            color={mainRoute === '/cardapio' ? colors.green : colors.green}
+                            fontWeight={mainRoute === '/cardapio' ? 'bold' : '400'}
+                        >
+                            Cardápio
+                        </AsideLiText>
+                    </AsideLi>
+                </Link>
+                <Link to="/mesas" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                    <AsideLi
+                        backgroundColor={mainRoute === '/mesas' ? colors.lightBlack : colors.black}
+                    >
+                        <AsideLiText
+                            color={mainRoute === '/mesas' ? colors.green : colors.green}
+                            fontWeight={mainRoute === '/mesas' ? 'bold' : '400'}
+                        >
+                            Mesas
+                        </AsideLiText>
+                    </AsideLi>
+                </Link>
+                <Link to="/usuarios" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                    <AsideLi
+                        backgroundColor={mainRoute === '/usuarios' ? colors.lightBlack : colors.black}
+                    >
+                        <AsideLiText
+                            color={mainRoute === '/usuarios' ? colors.green : colors.green}
+                            fontWeight={mainRoute === '/usuarios' ? 'bold' : '400'}
+                        >
+                            Usuarios
+                        </AsideLiText>
+                    </AsideLi>
+                </Link>
+                <Link to="/pedidos" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                    <AsideLi
+                        backgroundColor={mainRoute === '/pedidos' ? colors.lightBlack : colors.black}
+                    >
+                        <AsideLiText
+                            color={mainRoute === '/pedidos' ? colors.green : colors.green}
+                            fontWeight={mainRoute === '/pedidos' ? 'bold' : '400'}
+                        >
+                            Pedidos
+                        </AsideLiText>
+                    </AsideLi>
+                </Link>
+            </AsideUl>
+            <Link to="/">
+                <AsideBackButton>
+                    <Svg src={ArrowBack} width="1.5rem" height="1.5rem" margin="auto" />
+                </AsideBackButton>
+            </ Link>
+        </Aside>
+    );
 }
 
-
-
-
-
-export default Aside;
+export default NewAside;
