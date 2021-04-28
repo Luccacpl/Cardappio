@@ -14,6 +14,12 @@ interface IContainer {
     overflow?: string
     justifyContent?: string
     gap?: string
+    gapMinResponsive?: string
+    gapResponsive?: string
+    gapMoreResponsive?: string
+    alignitems?: string
+    flexWrap?: string
+    marginLeft?: string
 }
 
 function Container(props: IContainer) {
@@ -29,6 +35,12 @@ function Container(props: IContainer) {
             overflow={props.overflow}
             justifyContent={props.justifyContent}
             gap={props.gap}
+            gapResponsive={props.gapResponsive}
+            gapMoreResponsive={props.gapMoreResponsive}
+            gapMinResponsive={props.gapMinResponsive}
+            alignitems={props.alignitems}
+            flexWrap={props.flexWrap}
+            marginLeft={props.marginLeft}
         >
             {props.children}
         </Div>

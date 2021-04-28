@@ -56,13 +56,7 @@ const AsideTitle = styled.h1<AsideTitleProps>`
 `
 
 const AsideUl = styled.ul<AsideUlProps>`
-    margin-top: 32px;
-    @media(min-width: 1280px) {
-        margin-top: 130px;
-    }
-    @media(min-width: 1440px) {
-        margin-top: 130px;
-    }
+    margin-top: 130px;
 `
 
 const AsideLi = styled.li<AsideLiProps>`
@@ -101,14 +95,7 @@ const AsideBackButton = styled.button<AsideBackButtonProps>`
     cursor: pointer;
     border: 0px;
     outline: none;
-    margin-top: ${props => props.marginTop || '20rem'};
     color: black;
-        @media(min-width: 1280px) {
-            margin-top: ${props => props.marginTop || '25rem'};
-    }
-    @media(min-width: 1440px) {
-        margin-top: ${props => props.marginTop || '30rem'};
-    }
     &:hover {
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, .5);

@@ -10,6 +10,7 @@ interface IButton {
   fontWeight?: string
   padding?: string
   marginTop?: string
+  heightResponsive?: string
 }
 
 const Button = (props: IButton) => {

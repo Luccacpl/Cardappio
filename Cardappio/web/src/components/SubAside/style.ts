@@ -21,6 +21,7 @@ interface TitleProps{
 interface SubTitleProps{
     marginLeft?: string
     paddingTop?: string
+    marginBottom?: string
 }
 
 interface SubMenuProps{
@@ -75,11 +76,11 @@ const Title = styled.h1<TitleProps>`
     padding-top: ${props => props.paddingTop || dimensions.spacing72};
     @media(min-width: 1280px) {
         font-size: ${fontsSizes.large28};
-        padding-top: ${props => props.paddingTop || dimensions.spacing80};
+        padding-top: ${props => props.paddingTop || dimensions.spacing60};
     }
     @media(min-width: 1440px) {
         font-size: ${fontsSizes.large30};
-        padding-top: ${props => props.paddingTop || dimensions.spacing80};
+        padding-top: ${props => props.paddingTop || dimensions.spacing60};
     }
 `
 
@@ -88,6 +89,7 @@ const SubTitle = styled.p<SubTitleProps>`
     font-weight: light;
     color: ${colors.white};
     margin-left: ${props => props.marginLeft || dimensions.spacing40};
+    margin-bottom: ${props => props.marginBottom || dimensions.spacing40};
     @media(min-width: 1280px) {
         font-size: ${fontsSizes.large18};
     }

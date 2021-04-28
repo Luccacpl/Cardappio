@@ -11,12 +11,13 @@ import { Input } from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { Link } from 'react-router-dom';
 
-
+import Loader from 'components/Loader'
 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [showLoader, setShowLoader] = useState(false)
     const history = useHistory()
 
 
@@ -51,7 +52,7 @@ function Login() {
                 pipe(
                     storeUserToken,
                     storeUserInfo,
-                    redirectUserToDashboard
+                    redirectUserToDashboard,
                 )
             )
             .catch(handlerErrorApi)

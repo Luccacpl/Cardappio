@@ -13,6 +13,12 @@ interface DivProps {
     overflow?: string
     justifyContent?: string
     gap?: string
+    gapMinResponsive?: string
+    gapResponsive?: string
+    gapMoreResponsive?: string
+    alignitems?: string
+    flexWrap?: string
+    marginLeft?: string
 }
 
 const Div = styled.div<DivProps>`
@@ -27,6 +33,13 @@ const Div = styled.div<DivProps>`
     gap: ${props => props.gap || "30px"};
     padding: ${props => props.padding || '64px'};
     overflow-y: ${props => props.overflow || 'hidden'};
+    align-items: ${props => props.alignitems};
+    flex-wrap: ${props => props.flexWrap};
+    margin-left: ${props => props.marginLeft};
+
+    @media screen and (max-width: 1332px) {
+        gap: ${props => props.gapResponsive || "20px"};
+    }
 `
 
 export { Div }
