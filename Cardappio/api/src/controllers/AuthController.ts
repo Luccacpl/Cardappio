@@ -20,14 +20,13 @@ export default {
             email,
             pass
         } = req.body;
-        console.log(email);
         const repository = getRepository(User)
         try {
 
 
             const user = await repository.findOneOrFail({
                 where: {
-                    user_email: email
+                    user_email: email.toLowerCase()
                 }
             })
             console.log(user);
