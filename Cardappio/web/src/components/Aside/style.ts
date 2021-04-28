@@ -1,126 +1,105 @@
 import styled from 'styled-components'
-import { fontsSizes } from '../../utils'
+
 import { colors } from '../../utils/colors'
 import { dimensions } from '../../utils/dimensions'
+import { fontsSizes } from '../../utils/fontSizes'
 
 
-interface CustomAsideProps {
-    width?: string
+interface AsideProps {
     height?: string
-    position?: string
-    float?: string
-    clear?: string
-    borderRadius?: string
 }
 
-interface WrapperProps {
-    margin?: string
-    height?: string
-    width?: string
-    backgroundColor?: string
-    borderRadius?: string
-}
-
-interface TitleProps {
-    fontFamily?: string
-    fontStyle?: string
-    fontWeight?: string
+interface AsideTitleProps {
     fontSize?: string
-    color?: string;
-    textAlign?: string
+    fontWeight?: string
+}
+
+interface AsideUlProps {
+
+}
+
+interface AsideLiProps {
+    backgroundColor?: string
+    $selected?: boolean;
+}
+
+interface AsideLiTextProps {
+    fontSize?: string
+    fontWeight?: string
+}
+
+interface AsideBackButtonProps {
     marginTop?: string
 }
 
-interface ButtonWrapperProps {
-    width?: string
-    display?: string
-    marginTop?: string
-}
-
-interface AsideButtonProps {
-    $selected?: boolean
-    children?: string
-    width?: string
-    height?: string
-    backgroundColor?: string
-    fontFamily?: string
-    fontStyle?: string
-    fontWeight?: string
-    fontSize?: string
-    color?: string
-    textAlign?: string
-    cursor?: string
-    outline?: string
-    border?: string;
-    borderRadius?: string
-}
-
-const CustomAside = styled.aside<CustomAsideProps>`
-    width: 18%;
-    min-width: 225px;
+const Aside = styled.aside<AsideProps>`
+    width: 100%;
     height: ${props => props.height || dimensions.heightFullWindow};
-
-    position: relative;
-    float: left;
-    clear: right;
-
-    border-radius: 0px 15px 15px 0px;
-`
-
-const Wrapper = styled.div<WrapperProps>`
-    height: ${props => props.height || dimensions.heightFull};
-    background-color: ${props => props.color || colors.lightRed};
-    width: ${props => props.width || dimensions.widthFull};
-    border-radius: 0px 15px 15px 0px;
+    background-color: ${colors.black};
+    min-width: 125px;
     text-align: center;
+    grid-column-start: 1;
 `
 
-const Title = styled.h1<TitleProps>`
+const AsideTitle = styled.h1<AsideTitleProps>`
+    font-size: ${props => props.fontSize || fontsSizes.large20};
     font-family: Quicksand;
-    font-style: normal;
-    font-weight: ${props => props.fontWeight || 'bold'};
-    font-size: 2.5rem;
-
-    color: ${props => props.color || colors.white};
-
-    padding-top: ${props => props.marginTop || dimensions.spacing56};
+    color: ${colors.menuOrange};
+    font-weight: ${props => props.fontWeight || 'Bold'};
+    padding-top: 32px;
+    @media(min-width: 1280px) {
+        font-size: ${props => props.fontSize || fontsSizes.large22}
+    }
+    @media(min-width: 1440px) {
+        font-size: ${props => props.fontSize || fontsSizes.large26}
+    }
 `
 
-const ButtonWrapper = styled.div<ButtonWrapperProps>`
-    width: ${props => props.width || dimensions.widthFull};
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    margin-top: ${props => props.marginTop || '5.625rem'};
+const AsideUl = styled.ul<AsideUlProps>`
+    margin-top: 130px;
 `
 
-const AsideButton = styled.button<AsideButtonProps>`
-    width: 85%;
-    height: ${props => props.height || dimensions.spacing70};
-    background-color: ${({ $selected }) =>
-        $selected ? colors.white : colors.lightRed};
-    margin-left: 15%;
-
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: ${({ $selected }) =>
-        $selected ? 'bold' : '500'};
-    font-size: ${props => props.fontSize || fontsSizes.large30};
-    color: ${({ $selected }) =>
-        $selected ? colors.lightRed : colors.white};
-    text-align: left;
-    padding-left: 24px;
-
+const AsideLi = styled.li<AsideLiProps>`
+    width: 100%;
+    height: 35px;
     cursor: pointer;
+    background-color: ${props => props.backgroundColor || colors.lightGrey};
+    display: flex;
+    align-items: center;
+    @media(min-width: 1280px) and (max-width: 1440px) {
+        height: 40px;
+    }
+    @media(min-width: 1441px) {
+        height: 45px;
+    }
+    `
 
-    outline: none;
-
-    border: 0px solid transparent;
-
-    border-radius: 20px 0px 0px 20px;
+const AsideLiText = styled.p<AsideLiTextProps>`
+    font-size: ${props => props.fontSize || fontsSizes.small14};
+    color: ${props => props.color || colors.menuOrange};
+    font-weight: ${props => props.fontWeight || '400'};
+    margin-left: ${dimensions.spacing28};
+    @media(min-width: 1280px) {
+        font-size: ${props => props.fontSize || fontsSizes.large18};
+    }
+    @media(min-width: 1440px) {
+        font-size: ${props => props.fontSize || fontsSizes.large22};
+    }
 `
-//background-color: ${({ $selected }) => 
-//        $selected ? colors.white : colors.lightRed};
-export { CustomAside, Wrapper, Title, ButtonWrapper, AsideButton }
+
+const AsideBackButton = styled.button<AsideBackButtonProps>`
+    width: 35px;
+    height: 35px;
+    background-color: ${colors.green};
+    border-radius: 5px;
+    cursor: pointer;
+    border: 0px;
+    outline: none;
+    color: black;
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
+`
+
+export { Aside, AsideTitle, AsideUl, AsideLi, AsideBackButton, AsideLiText }

@@ -45,9 +45,7 @@ const DivCard = styled.div<DivCardProps>`
     display: ${props => props.display};
     margin-left: ${props => props.marginLeft};
     @media(min-width: 1480px) {
-        width: 220px;
         width: 22.5%;
-        height: 280px;
         height: 33%;
     }
     `

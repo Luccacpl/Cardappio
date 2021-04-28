@@ -11,12 +11,13 @@ import { Input } from 'components/Input/Input';
 import Button from 'components/Button/Button';
 import { Link } from 'react-router-dom';
 
-
+import Loader from 'components/Loader'
 
 
 function Login() {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [showLoader, setShowLoader] = useState(false)
     const history = useHistory()
 
 
@@ -32,14 +33,14 @@ function Login() {
     const authLoginService = async () => 
         await api.post('login', { email, pass })
     
-    const storeUserToken = ({ data }: { data: unknown }) =>
-        localStorage.setItem('TOKEN', JSON.stringify(data))
+    const storeUserToken = ({ data }: { data: any}) =>
+        localStorage.setItem('TOKEN', data.authorization)
     
     const storeUserInfo = () =>
         localStorage.setItem('EMAIL', email)
     
     const redirectUserToDashboard = () => 
-        history.push('/item')
+        history.push('/cardapio')
     
     const handlerErrorApi = () => 
         alert('Houve um erro na API')
@@ -51,7 +52,7 @@ function Login() {
                 pipe(
                     storeUserToken,
                     storeUserInfo,
-                    redirectUserToDashboard
+                    redirectUserToDashboard,
                 )
             )
             .catch(handlerErrorApi)

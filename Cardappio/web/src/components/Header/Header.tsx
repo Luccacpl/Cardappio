@@ -1,15 +1,7 @@
-import React from 'react'
-
 import { colors } from '../../utils/colors'
-import { dimensions } from '../../utils/dimensions'
-import { fontsSizes } from '../../utils/fontSizes'
-import { P, Title, SubTitle } from '../../components/Text/text'
+import { Title, SubTitle } from '../../components/Text/text'
 import SearchInput from '../SearchInput/SearchInput'
 import { Circle, DivTitle, LogoDiv, DivE, DivD } from './style';
-
-import { LiMenu, AddButton } from '../../components/SubAside/style'
-
-import { Link } from 'react-router-dom';
 
 import Container from '../Container/Container';
 import Svg from 'components/Svg/Svg'
@@ -21,6 +13,9 @@ interface IHeader {
     addButton?: string
     src?: string
     logo?: string
+
+    clickedAdd?: () => any
+    onChange?: (e: any) => any
 }
 
 const Header = (props: IHeader) => {
@@ -43,7 +38,7 @@ const Header = (props: IHeader) => {
             >
                 <DivE>
                     <Circle>
-                        <Svg src={props.src} height="34px" color={colors.green} textAlign="center" />
+                        <Svg src={props.src} height="34px" color={colors.green} textalign="center" />
                     </Circle>
                     <DivTitle>
                         <Title marginLeft="10px" fontSizeResponsive="22px">
@@ -56,7 +51,7 @@ const Header = (props: IHeader) => {
                 </DivE>
                 <DivD>
                     <LogoDiv>
-                        <Svg src={props.logo} height="64px" textAlign="center" />
+                        <Svg src={props.logo} height="64px" textalign="center" />
                     </LogoDiv>
                 </DivD>
             </Container>
@@ -67,7 +62,12 @@ const Header = (props: IHeader) => {
                 backgroundColor="transparent"
                 padding="0px"
             >
-                <SearchInput placeholder={props.placeholder} addButton={props.addButton} />
+                <SearchInput 
+                    placeholder={props.placeholder} 
+                    addButton={props.addButton} 
+                    clickedAdd={props.clickedAdd}
+                    onChange={props.onChange}
+                />
             </Container>
         </Container>
     );

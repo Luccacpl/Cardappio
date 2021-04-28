@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CustomButtom from './style'
 
 interface IButton {
@@ -12,6 +10,7 @@ interface IButton {
   fontWeight?: string
   padding?: string
   marginTop?: string
+  heightResponsive?: string
 }
 
 const Button = (props: IButton) => {

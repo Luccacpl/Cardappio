@@ -7,20 +7,22 @@ interface ICards {
     display?: string
     width?: string
     marginLeft?: string
-    name: string
-    desc: string
-    price: string
-    src: string
+    margin?: string
+    name?: string
+    desc?: string
+    price?: string
+    src?: string
     EditClicked?: any
     TrashClicked?: any
 }
 
-function Cards(props: ICards) {
+function CommandCards(props: ICards) {
     return (
         <DivCard
             display={props.display}
             width={props.width}
             marginLeft={props.marginLeft}
+            margin={props.margin}
         >
             <DivPicture imgUrl={props.src}>
                 <DivMenu>
@@ -41,12 +43,16 @@ function Cards(props: ICards) {
                 </DivMenu>
             </DivPicture>
             <DivDetail>
-                <TitleCard>{props.name}</TitleCard>
-                <DescriptionCard>{props.desc}</DescriptionCard>
-                <PriceCard>{props.price}</PriceCard>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+                    <TitleCard color="white">{props.name}</TitleCard>
+                    <PriceCard>{props.price}</PriceCard>
+                </div>
+                <DescriptionCard>
+                    {props.desc}
+                </DescriptionCard>
             </DivDetail>
         </DivCard>
     );
 }
 
-export default Cards;
+export default CommandCards;

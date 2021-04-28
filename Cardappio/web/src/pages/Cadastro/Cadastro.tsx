@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useHistory } from 'react-router-dom';
@@ -8,7 +8,7 @@ import api from '../../services/api';
 import { Title, SubTitle, P } from 'components/Text/text';
 import { colors } from '../../utils/colors';
 import { fontsSizes } from '../../utils/fontSizes';
-import { Body, ContainerLeft, ContainerRight, BtnDiv, Linha } from '../Login/styles';
+import { Body, ContainerLeft, ContainerRight, Linha } from '../Login/styles';
 import { dimensions } from 'utils';
 import { ChangeEventHandler } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -19,156 +19,192 @@ import { Input } from 'components/Input/Input';
 
 
 function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
 function Cadastro() {
 
-    const history = useHistory();
+  const history = useHistory();
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [dtNasc, setDtNasc] = useState('');
-    const [alert, SetAlert] = useState(false);
-    const [alertError, SetAlertError] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
+  const [dtNasc, setDtNasc] = useState('');
+  const [nameRestaurant, setNameRestaurant] = useState('');
+  const [alert, SetAlert] = useState(false);
+  const [alertError, SetAlertError] = useState(false);
 
+  const isUserAuthenticated = () =>
+    localStorage.getItem('TOKEN') === null && history.push('/')
 
+  async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
 
-    async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
-
-        if (
-            name === '' ||
-            email === '' ||
-            pass === '' ||
-            dtNasc === ''
-        ) {
-            return SetAlertError(true)
-        }
-        else {
-            const data = {
-                "name": name,
-                "email": email,
-                "pass": pass,
-                "dt_nasc": dtNasc,
-            }
-
-            try {
-                await api.post('register', data);
-
-                SetAlert(true);
-
-                setTimeout(() => history.push('/'), 4000);
-            }
-            catch(error){
-                return SetAlertError(true)
-            }            
-        }
+    if (
+      name === '' ||
+      email === '' ||
+      pass === '' ||
+      dtNasc === '' ||
+      nameRestaurant === ''
+    ) {
+      return SetAlertError(true)
     }
+    else {
+      const data = {
+        "name": name,
+        "email": email,
+        "pass": pass,
+        "dt_nasc": dtNasc,
+      }
+
+      const dataRestaurant = {
+        "name": name,
+        "logo": ""
+      }
+
+      try {
+         await api
+          .post('register', data)
+
+        const token = await Promise.resolve(
+          await api
+            .post('login', { email, pass })
+        )
+
+        console.log(token.data.authorization)
+
+        localStorage.setItem('TOKEN', token.data.authorization)
+
+        localStorage.setItem('EMAIL', email)
+
+        isUserAuthenticated()
+
+        await Promise.resolve(
+          api.post('restaurant', dataRestaurant, {
+            headers: {
+              'authorization': token.data.authorization
+            }
+          })
+        )
 
 
-    return (
-        <Body>
-            <ContainerLeft overflow="scroll">
-                <Title
-                    fontFamily="Quicksand"
-                    color={colors.menuOrange}
-                    fontSize={fontsSizes.large30}
-                    marginTop={dimensions.spacing56}
-                >
-                    Cardappio
+        SetAlert(true);
+
+        console.log(dataRestaurant)
+
+        setTimeout(() => history.push('/cardapio'), 4000);
+      }
+      catch (error) {
+        return SetAlertError(true)
+      }
+    }
+  }
+
+
+  return (
+    <Body>
+      <ContainerLeft overflow="scroll">
+        <Title
+          fontFamily="Quicksand"
+          color={colors.menuOrange}
+          fontSize={fontsSizes.large30}
+          marginTop={dimensions.spacing56}
+        >
+          Cardappio
                 </Title>
-                <SubTitle
-                    color={colors.green}
-                    fontSize={fontsSizes.large18}
-                    fontWeight="400"
-                >
-                    Faça seu cadastro
+        <SubTitle
+          color={colors.green}
+          fontSize={fontsSizes.large18}
+          fontWeight="400"
+        >
+          Faça seu cadastro
                 </SubTitle>
-                <P
-                    color={colors.white}
-                    fontSize={fontsSizes.small14}
-                    marginTop={dimensions.spacing16}
-                >
-                    Complete os campos abaixo para realizar o cadastro!
+        <P
+          color={colors.white}
+          fontSize={fontsSizes.small14}
+          marginTop={dimensions.spacing16}
+        >
+          Complete os campos abaixo para realizar o cadastro!
                 </P>
-                <Input
-                    placeholder="Digite seu nome"
-                    marginTop="36px"
-                    value={name}
-                    onChange={event => setName(event.target.value)}
-                />
-                <Input
-                    placeholder="Digite seu email"
-                    marginTop="36px"
-                    type="email"
-                    value={email}
-                    onChange={event => setEmail(event.target.value)}
-                />
-                <Input
-                    placeholder="Digite sua senha"
-                    marginTop="36px"
-                    type="password"
-                    value={pass} onChange={event => setPass(event.target.value)}
-                />
-                <Input
-                    placeholder="Data de nascimento"
-                    marginTop="36px"
-                    type="date"
-                    value={dtNasc}
-                    onChange={event => setDtNasc(event.target.value)}
-                />
-                <Input
-                    placeholder="Nome do restaurante"
-                    marginTop="36px"
-                />
+        <Input
+          placeholder="Digite seu nome"
+          marginTop="36px"
+          value={name}
+          onChange={event => setName(event.target.value)}
+        />
+        <Input
+          placeholder="Digite seu email"
+          marginTop="36px"
+          type="email"
+          value={email}
+          onChange={event => setEmail(event.target.value)}
+        />
+        <Input
+          placeholder="Digite sua senha"
+          marginTop="36px"
+          type="password"
+          value={pass} onChange={event => setPass(event.target.value)}
+        />
+        <Input
+          placeholder="Data de nascimento"
+          marginTop="36px"
+          type="date"
+          value={dtNasc}
+          onChange={event => setDtNasc(event.target.value)}
+        />
+        <Input
+          placeholder="Nome do restaurante"
+          marginTop="36px"
+          type="text"
+          value={nameRestaurant}
+          onChange={event => setNameRestaurant(event.target.value)}
+        />
 
-                <Button
-                    content="Cadastrar"
-                    width="100%"
-                    marginTop="36px"
-                    clicked={handleSubmit}
-                />
+        <Button
+          content="Cadastrar"
+          width="100%"
+          marginTop="36px"
+          clicked={handleSubmit}
+        />
 
-                <Linha></Linha>
+        <Linha></Linha>
 
-                <P
-                    color={colors.white}
-                    marginTop="32px"
-                    textAlign="center"
-                >
-                    Ja possui uma conta?
+        <P
+          color={colors.white}
+          marginTop="32px"
+          textAlign="center"
+        >
+          Ja possui uma conta?
                 </P>
-                <Link style={{ textDecoration: "none" }} to="/">
-                    <P
-                        color={colors.menuOrange}
-                        fontSize={fontsSizes.small14}
-                        fontWeight="500"
-                        marginTop="1.425rem"
-                        textAlign="center"
-                    >
-                        Entre agora mesmo!
+        <Link style={{ textDecoration: "none" }} to="/">
+          <P
+            color={colors.menuOrange}
+            fontSize={fontsSizes.small14}
+            fontWeight="500"
+            marginTop="1.425rem"
+            textAlign="center"
+          >
+            Entre agora mesmo!
                     </P>
-                </Link>
+        </Link>
 
-            </ContainerLeft>
-            <ContainerRight></ContainerRight>
-            {alertError === true &&
-                <Snackbar open={alertError} autoHideDuration={4000} onClose={() => SetAlertError(false)}>
-                    <Alert onClose={() => SetAlertError(false)} severity="error">
-                        Complete os campos corretamente!
+      </ContainerLeft>
+      <ContainerRight></ContainerRight>
+      {alertError === true &&
+        <Snackbar open={alertError} autoHideDuration={4000} onClose={() => SetAlertError(false)}>
+          <Alert onClose={() => SetAlertError(false)} severity="error">
+            Complete os campos corretamente!
                      </Alert>
-                </Snackbar>
-            }
-            {alert === true &&
-                <Snackbar open={alert} autoHideDuration={4000} onClose={() => SetAlert(false)}>
-                    <Alert onClose={() => SetAlert(false)} severity="success">
-                        Cadastro realizado com sucesso!
+        </Snackbar>
+      }
+      {alert === true &&
+        <Snackbar open={alert} autoHideDuration={4000} onClose={() => SetAlert(false)}>
+          <Alert onClose={() => SetAlert(false)} severity="success">
+            Cadastro realizado com sucesso!
                      </Alert>
-                </Snackbar>
-            }
-        </Body>
-    );
+        </Snackbar>
+      }
+    </Body>
+  );
 }
 
 export default Cadastro;

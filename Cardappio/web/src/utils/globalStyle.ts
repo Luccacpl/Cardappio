@@ -31,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
 
     @font-face {
         font-family: "Roboto";
-        src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap';
+        src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
         font-style: medium;
         font-weight: 500;
         font-display: swap;
