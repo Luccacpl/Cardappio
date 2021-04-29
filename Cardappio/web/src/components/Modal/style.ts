@@ -84,9 +84,11 @@ const CloseButton = styled.button`
   outline: none;
   transition: all 0.2s;
   &:hover {
-        transform: translate(-50%, -60%);
+        /* transform: translate(-50%, -60%); */
+        width: 46px;
+        height: 46px;
         box-shadow: 0 5px 5px  rgba(0, 0, 0, .5);
-        transition: all 0.2s;
+        transition: all 0.4s;
     }
   `
 

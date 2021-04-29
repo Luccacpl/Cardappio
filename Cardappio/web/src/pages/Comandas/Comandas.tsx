@@ -131,10 +131,10 @@ function Comandas() {
           </div>
         ))}
       </SubAside>
-      <Container display="flex" justifyContent="flex-end" padding="110px 6px 0px 55px">
+      <Container display="flex" justifyContent="flex-end" padding="110px 6px 0px 55px" height="100vh">
         <Body>
           <TableWithTabs>
-            <div style={{ overflow: "scroll" }}>
+            <div style={{  height: "calc(100% - -47px)" ,overflow: "auto" }}>
               <div style={{
                 display: "flex",
                 flexDirection: "row",

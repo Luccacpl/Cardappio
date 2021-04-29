@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory, useParams,  } from "react-router-dom";
+
+import api from "../../services/api";
+
 import Aside from "../../components/Aside/Aside";
 import SubAside from "../../components/SubAside/SubAside";
 import Cards from "../../components/Cards/Cards";
@@ -11,7 +14,6 @@ import Logo from "../../public/icons/logo-bk-white.svg";
 import Food from "../../public/icons/fast-food-outline.svg";
 import Button from "../../components/Button/Button";
 import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
-import api from "../../services/api";
 import { ChangeEventHandler } from "react";
 import { Input } from "components/Input/Input";
 import { DragFileArea } from "./style";
@@ -40,41 +42,50 @@ interface IItem {
 interface IShowModal {
   isActive: boolean;
   id: number;
+  name: string;
 }
 
-function Alert(props: AlertProps) {
+
+function Item() {
+
+  function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function Item() {
-  const history = useHistory();
+  const history = useHistory()
+  const params = useParams()
 
   const [showLoader, setShowLoader] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showModalCreate, setShowModalCreate] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState<IShowModal>({ id: 0, isActive: false, name: '' });
+
   const [name, setName] = useState("");
   const [nameItem, setNameItem] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [items, setItems] = useState<IItem[]>([]);
+
   const [refresh, setRefresh] = useState(0);
-  const [refreshEdit, setRefreshEdit] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-  const [showModalCreate, setShowModalCreate] = useState(false);
-  const [showModalEdit, setShowModalEdit] = useState<IShowModal>({id:0, isActive:false});
+
   const [open, setOpen] = React.useState(false);
-  const [openError, setOpenError] = React.useState(false);
   const [step, setStep] = useState(0);
+
   const [search, setSearch] = useState("");
   const [filteredItems, setFilteredItems] = useState<IItem[]>([]);
+
+  const [resposta, setResposta] = useState({})
 
   const onSearch = (e: string) => {
     const searchText = e.toLowerCase();
     const newSearch = items.filter(({ name, desc }) =>
-      name?.toLowerCase().includes(searchText)
+      name?.toLowerCase().includes(searchText) ||
+      desc?.toLowerCase().includes(searchText)
     );
     setFilteredItems(newSearch);
     setSearch(e);
-    console.log(filteredItems);
   };
 
   const listItems = search === "" ? items : filteredItems;
@@ -114,7 +125,8 @@ function Item() {
             headers: {
               authorization: getTokenFromStorage(),
             },
-          }
+          },
+
         );
 
         history.push("/cardapio");
@@ -128,36 +140,40 @@ function Item() {
     }
   }
 
-  function closeModal() {
-    setShowModalCreate(false);
-    setStep(0);
-    setDescription("");
-    setNameItem("");
-    setPrice("");
-  }
-
-  useEffect(() => {
-    isUserAuthenticated();
-  }, []);
-
-  function GetApi() {
-    setShowLoader(true);
+  async function goToCategory(category: ICategory) {
     try {
-      api
-        .get<ICategory[]>("/category", {
-          headers: {
-            authorization: getTokenFromStorage(),
-          },
-        })
-        .then((response) => {
-          setShowLoader(false);
-          setCategories(response.data);
-          console.log(response.data);
-        });
+      const response = await api.get(`category/${category.id}`, {
+        headers: {
+          authorization: getTokenFromStorage(),
+        },
+      });     
+      console.log(response.data)
+      localStorage.setItem('CATEGORYID', response.data.id)
     } catch (error) {
       return alert("ocorreu algum erro");
     }
+    history.push('cardapio/' + category.id)
   }
+  
+
+  // async function getCategory(id: number) {
+  //   try {
+  //     api
+  //       .get<ICategory[]>(`/category/${id}`, {
+  //         headers: {
+  //           authorization: getTokenFromStorage(),
+  //         },
+  //       })
+  //       .then((response) => {
+  //         setShowLoader(false);
+  //         setCategories(response.data);
+  //         console.log(response.data);
+  //       });
+  //   } catch (error) {
+  //     return alert("ocorreu algum erro");
+  //   }
+  // }
+  
 
   async function handleDeleteCategory(id: number) {
     try {
@@ -190,16 +206,15 @@ function Item() {
 
     setName(category.name);
 
-    setShowModalEdit({id: category.id, isActive: true});
+    setShowModalEdit({ id: category.id, isActive: true, name: category.name });
   }
 
-
-  async function handleSubmitEdit(category: ICategory, id: number) {
+  async function handleSubmitEdit(category: ICategory, id: number, name: string) {
     if (name === "") {
       return alert("Complete o campo corretamente!");
     } else {
       try {
-        console.log('id: ',id);
+        console.log('id: ', id);
         await api.put(
           "category/" + id,
           { name },
@@ -214,30 +229,72 @@ function Item() {
 
         setRefresh((chave) => chave + 1);
 
-        setShowModalEdit({id: category.id, isActive: false});
+        setShowModalEdit({ id: category.id, isActive: false, name: category.name });
       } catch (error) {
         return alert("Erro ao tentar cadastrar Categoria");
       }
     }
   }
 
+  function newCategoryButton() {
+    setName('');
+    setShowModal(true)
+  }
+
+  function closeModal() {
+    setShowModalCreate(false);
+    setStep(0);
+    setDescription("");
+    setNameItem("");
+    setPrice("");
+  }
+
+  function GetApi() {
+    setShowLoader(true);
+    try {
+      api
+        .get<ICategory[]>("/category", {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then((response) => {
+          setShowLoader(false);
+          setCategories(response.data);
+          console.log(response.data);
+        });
+    } catch (error) {
+      return alert("ocorreu algum erro");
+    }
+  }
+
+  useEffect(() => {
+    isUserAuthenticated();
+  }, []);
+
   useEffect(() => {
     GetApi();
     setName("");
   }, [refresh]);
+
+  useEffect(() => {
+    console.log(params)
+  }, [params])
+
+ 
 
   return (
     <Grid>
       <Aside />
       <SubAside
         title="Categorias"
-        clicked={() => setShowModal(true)}
+        clicked={() => newCategoryButton()}
         addButtonText="+ Adicionar nova categoria"
         items={categories}
       >
         {categories.map(category => (
           <div key={category.id}>
-            <LiMenu>
+            <LiMenu onClick={() => goToCategory(category)}>
               <TrashOutline
                 color="white"
                 width="3rem"
@@ -254,11 +311,11 @@ function Item() {
             </LiMenu>
             {showModalEdit.isActive && (
               <Modal
-                title={`Vamos editar a Categoria ${category.name}`}
+                title={`Vamos editar a Categoria ${showModalEdit.name}`}
                 ButtonTitle="Adicionar"
                 text="Por favor, preencha os campos abaixo, para prosseguirmos no processo de cadastro."
                 change={(event) => setName(event.target.value)}
-                closeClicked={() => setShowModalEdit({id:category.id, isActive:false})}
+                closeClicked={() => setShowModalEdit({ id: category.id, isActive: false, name: category.name })}
               >
                 <Input
                   width="55%"
@@ -272,7 +329,7 @@ function Item() {
                   width="25%"
                   height="2.25rem"
                   marginTop="28px"
-                  clicked={() => handleSubmitEdit(category, showModalEdit.id)}
+                  clicked={() => handleSubmitEdit(category, showModalEdit.id, showModalEdit.name)}
                 />
               </Modal>
             )}
@@ -293,8 +350,9 @@ function Item() {
           }}
         />
         <Container display="inline-flex" justifyContent="flex-start">
-          {listItems.map((item) => (
-            <Cards
+          {categories.map((category) => (
+            category.items.map((item) => (
+              <Cards
               name={item.name}
               desc={item.desc}
               price={Intl.NumberFormat("pt-BR", {
@@ -304,6 +362,7 @@ function Item() {
               src={item.imageurl}
               TrashClicked={() => handleDelete(item.id)}
             />
+            ))
           ))}
         </Container>
       </Container>
@@ -411,24 +470,3 @@ function Item() {
 }
 
 export default Item;
-
-// {showModal === true &&
-//     <Modal
-//         title="Adicionar Categoria"
-//         ButtonTitle="Adicionar"
-//         text="Digite o nome da categoria que deseja adicionar no campo abaixo."
-//         clicked={handleSubmit}
-//         value={name}
-//         change={event => setName(event.target.value)}
-//         Backclicked={() => setShowModal(false)}
-//     />}
-// <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-//     <Alert onClose={handleClose} severity="success">
-//         Cadastro realizado com sucesso!
-//     </Alert>
-// </Snackbar>
-// <Snackbar open={openError} autoHideDuration={6000} onClose={handleClose}>
-//     <Alert onClose={handleClose} severity="error">
-//         Ocorreu um erro! Cadastro não realizado
-//     </Alert>
-// </Snackbar>

@@ -64,6 +64,7 @@ function Cadastro() {
       try {
          await api
           .post('register', data)
+          console.log(data)
 
         const token = await Promise.resolve(
           await api
@@ -85,7 +86,6 @@ function Cadastro() {
             }
           })
         )
-
 
         SetAlert(true);
 

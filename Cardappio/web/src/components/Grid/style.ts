@@ -23,7 +23,9 @@ const Grid = styled.div<GridProps>`
     justify-content: ${props => props.justifyContent};
     grid-template-columns: ${props => props.gridColumns};
     grid-template-rows: ${props => props.gridRows};
-    border: ${props => props.border}
+    border: ${props => props.border};
+    height: 100vh;
+    overflow: hidden;
     `
 
 export { Grid }

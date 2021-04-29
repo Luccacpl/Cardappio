@@ -37,7 +37,6 @@ const LogoDiv = styled.div`
 `
 
 const DivD = styled.div`
-    width: 30%;
     margin: 0px;
     display: flex;
     justify-content: flex-end;

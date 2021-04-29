@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { colors } from '../../utils';
 import { useLocation } from 'react-router-dom'
 import { ArrowBackOutline } from 'react-ionicons'
@@ -21,10 +21,19 @@ interface InewAside {
 
 const NewAside = (props: InewAside) => {
 
+  const history = useHistory()
   const location = useLocation();
   const actualRoute = location.pathname;
 
   const mainRoute = `${actualRoute}`;
+
+  function Logout() {
+    localStorage.removeItem('TOKEN')
+    localStorage.removeItem('EMAIL')
+    localStorage.removeItem('CATEGORYID')
+
+    history.push('/')
+  }
 
   return (
     <Aside>
@@ -109,11 +118,15 @@ const NewAside = (props: InewAside) => {
             </AsideLi>
           </Link>
         </AsideUl>
-        <Link to="/" style={{ padding: "10px" }}>
-          <AsideBackButton>
-            <ArrowBackOutline width="1.5rem" height="1.5rem" style={{ margin: "auto" }}/>
+        <Link to="/" onClick={() => Logout()}>
+          <AsideBackButton >
+            <ArrowBackOutline 
+              width="1.5rem" 
+              height="1.5rem" 
+              style={{ margin: "auto" }}
+            />
           </AsideBackButton>
-        </ Link>
+        </Link>
       </div>
     </Aside>
   );

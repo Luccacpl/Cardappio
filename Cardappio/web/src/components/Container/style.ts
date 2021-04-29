@@ -22,6 +22,7 @@ interface DivProps {
 }
 
 const Div = styled.div<DivProps>`
+    overflow: hidden;
     width: ${props => props.width || "100%"};
     height: ${props => props.height};
     background-color: ${props => props.backgroundColor || colors.black};
@@ -32,7 +33,8 @@ const Div = styled.div<DivProps>`
     margin-top: ${props => props.margin};
     gap: ${props => props.gap || "30px"};
     padding: ${props => props.padding || '64px'};
-    overflow-y: ${props => props.overflow || 'hidden'};
+    overflow: ${props => props.overflow || 'hidden'};
+    
     align-items: ${props => props.alignitems};
     flex-wrap: ${props => props.flexWrap};
     margin-left: ${props => props.marginLeft};

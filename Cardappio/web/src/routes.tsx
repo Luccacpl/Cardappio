@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Login from './pages/Login/Login';
@@ -17,6 +16,7 @@ function Routes() {
                 <Route path="/cadastro" component={Cadastro}/>
                 <Route path="/inicio" component={Inicio}/>
                 <Route path="/cardapio" component={Cardapio}/>
+                <Route path="/cardapio/:id" exact component={Cardapio}/>
                 <Route path="/comandas" component={Comandas}/>
                 <Route path="/usuarios" component={Usuarios}/>
                 <Route path="/pedidos" component={Pedidos}/>
