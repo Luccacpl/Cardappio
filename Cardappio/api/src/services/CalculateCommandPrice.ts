@@ -12,12 +12,26 @@ export default {
         })
         return aux;
     },
-    async totalPriceAdicionado(items: any) {
-        var aux = 0;
-        return 1;
+    async totalPriceAdicionado(command: Command) {
+        console.log('numero de items é ' + command.itemsCommand.length)
+        var aux: number = 0;
+        command.itemsCommand.map(items => {
+            if (items.item_command_status == 0) {
+                var aux2: number = +items.item.item_price
+                aux += aux2
+            }
+        })
+        return aux;
     },
-    async totalPriceAdicionadoAndFinalizado(items: any) {
-        var aux = 0;
-        return 1;
+    async totalPriceAdicionadoAndFinalizado(command: Command) {
+        console.log('numero de items é ' + command.itemsCommand.length)
+        var aux: number = 0;
+        command.itemsCommand.map(items => {
+            if (items.item_command_status == 0 || items.item_command_status == 3 || items.item_command_status == 2 || items.item_command_status == 1) {
+                var aux2: number = +items.item.item_price
+                aux += aux2
+            }
+        })
+        return aux;
     }
 }

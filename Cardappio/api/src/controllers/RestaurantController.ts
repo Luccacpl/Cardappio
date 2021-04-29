@@ -15,7 +15,7 @@ export default {
                     restaurant_id: await RestaurantService.getRestaurantIdFromUser(req.user.id)
                 }
             })
-            return res.json(result)
+            return res.json({content:result})
         }
         catch (e) {
             return res.json({ deuErro: e.message })

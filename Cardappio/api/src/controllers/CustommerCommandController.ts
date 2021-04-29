@@ -8,6 +8,7 @@ import ItemCommand from '../models/ItemCommand';
 import Status from '../Enums/Status'
 import Category from '../models/Category';
 import categoryView from '../Views/CategoryView'
+import CalculateCommandPrice from '../services/CalculateCommandPrice';
 
 
 
@@ -27,6 +28,7 @@ export default {
             console.log(mesa.restaurant_id);
             command.command_checkin = new Date();
             command.restaurant_id = mesa.restaurant_id;
+            command.table_number = (await repoMesa.findOneOrFail(mesa.table_id)).table_number;
             console.log("date is" + new Date())
             console.log(command);
             const thiscommand = await repoCommand.save(command)
@@ -43,7 +45,7 @@ export default {
             })
         }
         catch (e) {
-            return res.status(404).json({ error: e})
+            return res.status(404).json({ error: e })
         }
         //const {table_id} = repoMesa.findOneOrFail()
     },
@@ -51,7 +53,7 @@ export default {
         console.log(req.customer)
         console.log(req.customer.restaurant_id);
         console.log(req.customer.command_id);
-
+        const repoTable = getRepository(Table);
         const repo = getRepository(Command);
         try {
             const customerCommand = await repo.findOneOrFail({
@@ -59,7 +61,17 @@ export default {
                     command_id: req.customer.command_id
                 }
             })
-            return res.json(customerCommand);
+            const totalAdicionado = await Promise.resolve(CalculateCommandPrice.totalPriceAdicionado(customerCommand));
+            const totalFinalizado = await Promise.resolve(CalculateCommandPrice.totalPriceFinalizado(customerCommand));
+            const totalAdicionadoFinalizado = await Promise.resolve(CalculateCommandPrice.totalPriceAdicionadoAndFinalizado(customerCommand));
+            return res.json({
+                content: {
+                    command: customerCommand,
+                    price_adicionados: totalAdicionado,
+                    price_finalizados: totalFinalizado,
+                    price_adicionado_e_finalizados: totalAdicionadoFinalizado
+                }
+            });
         }
         catch (e) {
             return res.json({ erro: e.message })
@@ -105,8 +117,8 @@ export default {
     async getCardappio(req: any, res: Response) {
         const categoryRepository = getRepository(Category);
         try {
-            const list = await categoryRepository.find({ relations: ['items'], where: { restaurant_id: req.customer.restaurant_id } })
-            return res.status(200).json(categoryView.renderMany(list));
+            const list = await categoryRepository.find({ relations: ['items'], where: { restaurant_id: req.customer.restaurant_id} })
+            return res.status(200).json({content:categoryView.renderMany(list)});
         } catch (e) {
             return res.status(500).json({ error: e.message })
         }
@@ -115,7 +127,7 @@ export default {
         console.log(req.customer)
         const repo = getRepository(ItemCommand);
         try {
-            await repo.update({ command_id: req.customer.command_id, item_command_status: 0,item_time_confirmed:null }, { item_command_status: 1,item_time_confirmed: Date.now() })
+            await repo.update({ command_id: req.customer.command_id, item_command_status: 0, item_time_confirmed: null }, { item_command_status: 1, item_time_confirmed: Date.now() })
             return res.status(200).json({ deu: 'bom' })
         }
         catch (e) {
@@ -133,14 +145,14 @@ export default {
                     item_command_status: Not(0)
                 }
             })
-            if(count>0){
-                return res.status(403).json({ erro: 'você ja confirmou o preparo de '+count+' items, checkout direto no caixa' }) 
+            if (count > 0) {
+                return res.status(403).json({ erro: 'você ja confirmou o preparo de ' + count + ' items, checkout direto no caixa' })
             }
             await repoCommand.update({ command_id: req.customer.command_id }, { command_checkout: new Date })
             return res.status(200).json({ message: 'checkout SUCCESS' })
         }
-        catch(e){
-            return res.status(500).json({erro:e})
+        catch (e) {
+            return res.status(500).json({ erro: e })
         }
     }
 }
