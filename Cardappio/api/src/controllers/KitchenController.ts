@@ -21,7 +21,7 @@ export default {
                 ' and ic.item_command_status = 1 or ic.item_command_status = 2'+
                 ' order by item_time_confirmed asc'
             );
-            return res.status(200).json({ content:{orders:items} });
+            return res.status(200).json({content:items});
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }

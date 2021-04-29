@@ -118,7 +118,7 @@ export default {
         const categoryRepository = getRepository(Category);
         try {
             const list = await categoryRepository.find({ relations: ['items'], where: { restaurant_id: req.customer.restaurant_id} })
-            return res.status(200).json({content:{category:categoryView.renderMany(list)}});
+            return res.status(200).json({content:categoryView.renderMany(list)});
         } catch (e) {
             return res.status(500).json({ error: e.message })
         }

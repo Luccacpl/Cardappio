@@ -16,9 +16,7 @@ export default {
                     command_checkout: IsNull()
                 }
             })
-            return res.json({content:{
-                commands:commands
-            }});
+            return res.json({content:commands});
         }
         catch (e) {
             return res.json({ erro: e.message })
@@ -33,9 +31,7 @@ export default {
                     command_checkout: Not(IsNull())
                 }
             })
-            return res.json({content:{
-                commands:commands
-            }});
+            return res.json({content:commands});
         }
         catch (e) {
             return res.json({ erro: e.message })

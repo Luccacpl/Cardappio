@@ -12,14 +12,16 @@ export default {
     async getAllTable(req: any, res: Response) {
         const repoMesa = getRepository(Table) // pega repositorio
         try { //id,{relations:['tables']}
-            const tables = await repoMesa.find({where:{
-                restaurant_id:await restaurantService.getRestaurantIdFromUser(req.user.id)
-            }})
+            const tables = await repoMesa.find({
+                where: {
+                    restaurant_id: await restaurantService.getRestaurantIdFromUser(req.user.id)
+                }
+            })
             console.log(tables);
-            return res.status(201).json({content:{
-                tables:tables
-            }});
-            
+            return res.status(201).json({
+                content: tables
+            });
+
         }
         catch (e) {
             console.log("Erro: " + e);
@@ -28,14 +30,14 @@ export default {
     },
 
     async updateTable(req: Request, res: Response) {
-        const {id} = req.params;
-        const {table_number} = req.body;
+        const { id } = req.params;
+        const { table_number } = req.body;
         const repoTable = getRepository(Table);
-        try{
-            repoTable.update(id,{table_number:table_number})
+        try {
+            repoTable.update(id, { table_number: table_number })
             return res.status(200).json({ Test: 'Test' });
         }
-        catch(e){
+        catch (e) {
             return res.status(400).json({ ERROR: e.message });
         }
     },

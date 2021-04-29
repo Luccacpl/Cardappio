@@ -59,7 +59,7 @@ export default {
         try {
             const category = await categoryRepository.findOneOrFail(id, { relations: ['items'] })
             console.log(category);
-            return res.status(200).json({content:{category:categoryView.render(category)}});
+            return res.status(200).json(categoryView.render(category));
         }
         catch (e) {
             console.log("erro " + e);
@@ -76,7 +76,7 @@ export default {
         try {
             const restaurant_id = await restaurantService.getRestaurantIdFromUser(req.user.id);
             const list = await categoryRepository.find({relations: ['items'],where:{restaurant_id:restaurant_id}})
-            return res.json({content:{categories:categoryView.renderMany(list)}});
+            return res.json(categoryView.renderMany(list));
         } catch (e) {
 
         }
