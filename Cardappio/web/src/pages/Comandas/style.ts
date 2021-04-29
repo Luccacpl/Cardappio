@@ -25,4 +25,13 @@ const TabsContainer = styled.div`
   left: -45px;
 `
 
-export { TableWithTabs, Body, TabsContainer }
+const CardsContainer = styled.div`
+  height: calc(100% - -47px);
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 0px;
+}
+
+`
+
+export { TableWithTabs, Body, TabsContainer, CardsContainer }

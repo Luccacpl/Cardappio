@@ -45,7 +45,7 @@ const NewAside = (props: InewAside) => {
         justifyContent: "space-between",
       }}>
         <AsideUl>
-          <Link to="/inicio" style={{ color: 'inherit', textDecoration: 'inherit' }} >
+          {/* <Link to="/inicio" style={{ color: 'inherit', textDecoration: 'inherit' }} >
             <AsideLi
               backgroundColor={mainRoute === '/inicio' ? colors.lightBlack : colors.black}
             >
@@ -56,7 +56,7 @@ const NewAside = (props: InewAside) => {
                 Inicio
                         </AsideLiText>
             </AsideLi>
-          </Link>
+          </Link> */}
           <Link to="/cardapio" style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <AsideLi
               backgroundColor={mainRoute === '/cardapio' ? colors.lightBlack : colors.black}
@@ -93,7 +93,7 @@ const NewAside = (props: InewAside) => {
                         </AsideLiText>
             </AsideLi>
           </Link>
-          <Link to="/usuarios" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          {/* <Link to="/usuarios" style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <AsideLi
               backgroundColor={mainRoute === '/usuarios' ? colors.lightBlack : colors.black}
             >
@@ -104,7 +104,7 @@ const NewAside = (props: InewAside) => {
                 Usuarios
                         </AsideLiText>
             </AsideLi>
-          </Link>
+          </Link> */}
           <Link to="/pedidos" style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <AsideLi
               backgroundColor={mainRoute === '/pedidos' ? colors.lightBlack : colors.black}

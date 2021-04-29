@@ -18,7 +18,7 @@ function Routes() {
                 <Route path="/cardapio" component={Cardapio}/>
                 <Route path="/cardapio/:id" exact component={Cardapio}/>
                 <Route path="/comandas" component={Comandas}/>
-                <Route path="/usuarios" component={Usuarios}/>
+                {/* <Route path="/usuarios" component={Usuarios}/> */}
                 <Route path="/pedidos" component={Pedidos}/>
             </Switch>
         </BrowserRouter>

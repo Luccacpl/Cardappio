@@ -10,7 +10,7 @@ import CardsCommand from '../../components/CardsCommand/index'
 import Button from '../../components/Button/Button'
 
 
-import { TableWithTabs, Body, TabsContainer } from './style'
+import { TableWithTabs, Body, TabsContainer, CardsContainer } from './style'
 
 import { LiMenu } from '../../components/SubAside/style'
 
@@ -134,7 +134,7 @@ function Comandas() {
       <Container display="flex" justifyContent="flex-end" padding="110px 6px 0px 55px" height="100vh">
         <Body>
           <TableWithTabs>
-            <div style={{  height: "calc(100% - -47px)" ,overflow: "auto" }}>
+            <CardsContainer>
               <div style={{
                 display: "flex",
                 flexDirection: "row",
@@ -199,7 +199,7 @@ function Comandas() {
                   />
                 ))}
               </Container>
-            </div>
+            </CardsContainer>
           </TableWithTabs>
         </Body>
       </Container>

@@ -16,6 +16,7 @@ import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 import Button from '../../components/Button/Button';
 import { Input } from 'components/Input/Input';
+import Loader from "components/Loader";
 
 
 function Alert(props: AlertProps) {
@@ -26,11 +27,14 @@ function Cadastro() {
 
   const history = useHistory();
 
+  const [showLoader, setShowLoader] = useState(false);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [dtNasc, setDtNasc] = useState('');
   const [nameRestaurant, setNameRestaurant] = useState('');
+
   const [alert, SetAlert] = useState(false);
   const [alertError, SetAlertError] = useState(false);
 
@@ -64,7 +68,7 @@ function Cadastro() {
       try {
          await api
           .post('register', data)
-          console.log(data)
+          setShowLoader(true);
 
         const token = await Promise.resolve(
           await api
@@ -91,7 +95,8 @@ function Cadastro() {
 
         console.log(dataRestaurant)
 
-        setTimeout(() => history.push('/cardapio'), 4000);
+        setTimeout(() => history.push('/cardapio'), 1000);
+        setShowLoader(false)
       }
       catch (error) {
         return SetAlertError(true)
@@ -203,6 +208,7 @@ function Cadastro() {
                      </Alert>
         </Snackbar>
       }
+      {showLoader && <Loader />}
     </Body>
   );
 }
