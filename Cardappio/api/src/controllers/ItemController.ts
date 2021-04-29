@@ -104,7 +104,7 @@ export default {
         try {
             const item = await itemRepo.findOneOrFail(id)
             console.log(item);
-            return res.status(200).json(ItemView.render(item));
+            return res.status(200).json({content:{item:ItemView.render(item)}});
         }
         catch (e) {
             console.log("erro " + e);

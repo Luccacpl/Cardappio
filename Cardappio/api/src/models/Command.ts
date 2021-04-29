@@ -24,6 +24,9 @@ export default class Command {
     @ManyToOne(()=> Table, table => table.table_commands)
     @JoinColumn({name: 'table_id'})
     table_id: number;
+    
+    @Column()
+    table_number: number;
 
     @ManyToOne(()=> Restaurant, restaurant => restaurant.commands)
     @JoinColumn({name: 'restaurant_id'})

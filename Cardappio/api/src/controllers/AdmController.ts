@@ -3,6 +3,7 @@ import { getRepository, Not, IsNull } from 'typeorm';
 import Command from '../models/Command';
 import ItemCommand from '../models/ItemCommand';
 import CalculateCommandPrice from '../services/CalculateCommandPrice';
+import RestaurantService from '../services/RestaurantService';
 
 export default {
     async getAllRestaurantActiveCommands(req: any, res: Response) {
@@ -11,11 +12,13 @@ export default {
         try {
             const commands = await repo.find({
                 relations: ['itemsCommand', 'itemsCommand.item'], where: {
-                    restaurant_id: req.user.id,
+                    restaurant_id: await RestaurantService.getRestaurantIdFromUser(req.user.id),
                     command_checkout: IsNull()
                 }
             })
-            return res.json(commands);
+            return res.json({content:{
+                commands:commands
+            }});
         }
         catch (e) {
             return res.json({ erro: e.message })
@@ -26,11 +29,13 @@ export default {
         try {
             const commands = await repo.find({
                 relations: ['itemsCommand', 'itemsCommand.item'], where: {
-                    restaurant_id: req.user.id,
+                    restaurant_id: await RestaurantService.getRestaurantIdFromUser(req.user.id),
                     command_checkout: Not(IsNull())
                 }
             })
-            return res.json(commands);
+            return res.json({content:{
+                commands:commands
+            }});
         }
         catch (e) {
             return res.json({ erro: e.message })
@@ -79,7 +84,7 @@ export default {
             const command = await repoCommand.findOneOrFail(id, {
                 relations: ['itemsCommand', 'itemsCommand.item']
             });
-            console.log(command)
+            
             const valortotal = await Promise.resolve(CalculateCommandPrice.totalPriceFinalizado(command));
             const comandafechada = await repoCommand.update(id, { command_checkout: new Date(), command_total_price: valortotal })
             return res.status(200).json({ commanda: comandafechada, status: 'finalizada' })

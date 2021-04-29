@@ -32,6 +32,11 @@ export class command1616725126567 implements MigrationInterface {
                     type:'integer'
                 },
                 {
+                    name:'table_number',
+                    type:'integer',
+                    isNullable:true
+                },
+                {
                     name:'restaurant_id',
                     type:'integer'
                 }

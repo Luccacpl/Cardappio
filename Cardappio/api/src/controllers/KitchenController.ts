@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm'
 import { Request, Response } from 'express'
 import ItemCommand from '../models/ItemCommand'
+import RestaurantService from '../services/RestaurantService'
 
 export default {
     async getAllOrders(req: any, res: Response) {
@@ -16,11 +17,11 @@ export default {
                 ' join tb_commands c on ic.command_id = c.command_id'+
                 ' join tb_tables tt on c.table_id = tt.table_id'+
                 ' join tb_restaurants tr on tt.restaurant_id = tr.restaurant_id'+
-                ' where tr.restaurant_id = ' + req.user.id +
+                ' where tr.restaurant_id = ' + await RestaurantService.getRestaurantIdFromUser(req.user.id) +
                 ' and ic.item_command_status = 1 or ic.item_command_status = 2'+
                 ' order by item_time_confirmed asc'
             );
-            return res.status(200).json({ content: items });
+            return res.status(200).json({ content:{orders:items} });
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }

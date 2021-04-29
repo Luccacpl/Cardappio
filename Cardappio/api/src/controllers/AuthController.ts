@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs'
 
 //require("dotenv-safe")
 import jwt from 'jsonwebtoken'
+import RestaurantService from '../services/RestaurantService'
 //var nodemailer = require('nodemailer');
 //const transport = require('../../modules/mailer')
 
