@@ -339,32 +339,32 @@ function Cardapio() {
     });
   }
 
-// arrumar edição por conta de ser form
+  // arrumar edição por conta de ser form
 
   async function handleSubmitEditItem(
-    item: IItem, 
-    id: number, 
+    item: IItem,
+    id: number,
     name: string,
     desc: string,
     available: string,
     price: number,
     category: string
-    ){
+  ) {
 
     const body = {
-      name,
-      desc,
+      name: nameItem,
+      desc: description,
       available,
-      price,
-      category
+      price: price,
+      category: '19'
     }
 
-    if( name === '' ||
-        desc === ''   
-    ){
+    if (name === '' ||
+      desc === ''
+    ) {
       return alert('Complete os campos corretamente!')
-    }else{
-      try{
+    } else {
+      try {
         console.log("corpo: ", body)
         console.log("item id: ", id)
         await api.put(
@@ -381,9 +381,9 @@ function Cardapio() {
 
         setRefresh((chave) => chave + 1);
 
-        setShowModalEditItem({ 
-          isActive: false, 
-          name: item.name, 
+        setShowModalEditItem({
+          isActive: false,
+          name: item.name,
           id: item.id,
           desc: item.desc,
           imageurl: item.imageurl,
@@ -391,7 +391,7 @@ function Cardapio() {
           available: item.available,
           price: item.price
         })
-      }catch (error) {
+      } catch (error) {
         return alert('Erro ao tentar editar Item')
       }
     }
@@ -587,9 +587,9 @@ function Cardapio() {
                         : "Adicione uma foto para o item"
                     }
                     change={(event) => setName(event.target.value)}
-                    closeClicked={() => setShowModalEditItem({ 
-                      isActive: false, 
-                      name: item.name, 
+                    closeClicked={() => setShowModalEditItem({
+                      isActive: false,
+                      name: item.name,
                       id: item.id,
                       desc: item.desc,
                       imageurl: item.imageurl,
@@ -598,47 +598,61 @@ function Cardapio() {
                       price: item.price
                     })}
                   >
-                      {step === 0 && (
-                        <>
-                          <Input
-                            width="55%"
-                            marginTop="20px"
-                            placeholder="Digite o nome do item"
-                            value={nameItem}
-                            onChange={(event) => setNameItem(event.target.value)}
-                          />
-                          <Input
-                            width="55%"
-                            marginTop="20px"
-                            placeholder="Digite sobre o item"
-                            value={description}
-                            onChange={(event) => setDescription(event.target.value)}
-                          />
-                          <Input
-                            width="55%"
-                            placeholder="Digite o preço do item"
-                            value={price}
-                            onChange={(event) => setPrice(event.target.value)}
-                            margin="20px 0 20px 0"
-                          />
-                          <Button
-                            content="Avançar"
-                            width="25%"
-                            height="2.25rem"
-                            marginTop="28px"
-                            isNotForm
-                            clicked={() => handleSubmitEditItem(
-                              item, 
-                              showModalEditItem.id, 
-                              showModalEditItem.name,
-                              showModalEditItem.desc,
-                              showModalEditItem.available,
-                              showModalEditItem.price,
-                              showModalEditItem.category
-                              )}
-                          />
-                        </>
-                      )}
+                    {step === 0 && (
+                      <>
+                        <Input
+                          width="55%"
+                          marginTop="20px"
+                          placeholder="Digite o nome do item"
+                          value={nameItem}
+                          onChange={(event) => setNameItem(event.target.value)}
+                        />
+                        <Input
+                          width="55%"
+                          marginTop="20px"
+                          placeholder="Digite sobre o item"
+                          value={description}
+                          onChange={(event) => setDescription(event.target.value)}
+                        />
+                        <Input
+                          width="55%"
+                          placeholder="Digite o preço do item"
+                          value={price}
+                          onChange={(event) => setPrice(event.target.value)}
+                          margin="20px 0 20px 0"
+                        />
+                        <Select
+                          onChange={(option: { label: string; value: number }) =>
+                            setCategoryOptionsId({
+                              label: option.label,
+                              value: option.value,
+                            })
+                          }
+                          value={categoryOptionsId}
+                          placeholder="Selecione uma categoria"
+                          noOptionsMessage={() => 'Nenhuma categoria encontrado'}
+                          options={categoryOptions}
+                          styles={customStyles}
+                          style={{ color: "white", fontSize: "24px" }}
+                        />
+                        <Button
+                          content="Avançar"
+                          width="25%"
+                          height="2.25rem"
+                          marginTop="28px"
+                          isNotForm
+                          clicked={() => handleSubmitEditItem(
+                            item,
+                            showModalEditItem.id,
+                            showModalEditItem.name,
+                            showModalEditItem.desc,
+                            showModalEditItem.available,
+                            showModalEditItem.price,
+                            showModalEditItem.category
+                          )}
+                        />
+                      </>
+                    )}
                   </Modal>
                 )}
 
