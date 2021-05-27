@@ -25,4 +25,9 @@ export default class Item {
     @ManyToOne(()=> Category, category => category.items)
     @JoinColumn({name: 'category_id'})
     category_id: Category;
+
+    @Column({name: 'category_id'})
+    category_real: number
+
+    
 }

@@ -10,7 +10,7 @@ export default {
             imageurl: `http://localhost:3000/public/uploads/${item.item_imageurl}`,
             available: item.item_available,
             price: item.item_price,
-            category: item.category_id
+            category_id: item.category_real
         };
     },
     renderMany(itens: Item[]) {
