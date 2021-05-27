@@ -22,6 +22,7 @@ const CustomButton = styled.button<CustomButtonProps>`
     margin-top: ${props => props.marginTop};
     width: ${props => props.width};
     height: ${(props) => props.height || '1.875rem'};
+    min-height: 2rem;
     padding: ${props => props.padding || "0 20px"};
     background-color: ${props => props.color || colors.menuOrange};
     color: ${props => props.color || colors.white};

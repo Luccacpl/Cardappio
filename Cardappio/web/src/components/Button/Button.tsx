@@ -11,17 +11,27 @@ interface IButton {
   padding?: string
   marginTop?: string
   heightResponsive?: string
+  isNotForm?: boolean
 }
 
 const Button = (props: IButton) => {
   return (
-    <CustomButtom
-      {...props}
-      onClick={props.clicked}
-      type="submit"
-    >
-      {props.content}
-    </CustomButtom>
+    props.isNotForm
+      ?
+      <CustomButtom
+        {...props}
+        onClick={props.clicked}
+      >
+        {props.content}
+      </CustomButtom>
+      :
+      <CustomButtom
+        {...props}
+        onClick={props.clicked}
+        type="submit"
+      >
+        {props.content}
+      </CustomButtom>
   )
 }
 

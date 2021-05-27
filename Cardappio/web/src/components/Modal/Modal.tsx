@@ -3,7 +3,7 @@ import { colors } from '../../utils'
 import { OverlayModal, RightContainer, CloseButton } from './style'
 import { Title, P } from '../Text/text'
 
-import { Close } from 'react-ionicons';
+import { CloseOutline } from 'react-ionicons';
 
 import { ChangeEventHandler } from 'react'
 
@@ -36,7 +36,7 @@ const BottomModal = (props: IBottomModal) => {
         </P>
         {props.children}
         <CloseButton onClick={props.closeClicked}>
-          <Close color="white" width="26px" height="26px"/>
+          <CloseOutline color="white" width="26px" height="26px"/>
         </CloseButton>
       </RightContainer>
     </OverlayModal>
