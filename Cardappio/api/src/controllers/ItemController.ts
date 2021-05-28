@@ -49,7 +49,6 @@ export default {
         try {
             const repo = getRepository(Item);
             const { id } = req.params;
-            await repo.findOneOrFail(id);
             const {
                 name,
                 desc,
@@ -57,14 +56,16 @@ export default {
                 price,
                 category,
             } = req.body;
-            console.log(available);
-            const item = new Item();
-            item.item_name = name;
-            item.item_desc = desc;
-            item.item_available = available == "true";
-            item.category_id = category;
-            item.item_price = price;
-            await repo.update(id, item);
+            const item = await repo.query(`update tb_items set item_name = '${name}',item_desc = '${desc}',item_available = '${available}',item_price = '${price}' where item_id = ${id}`);
+            // console.log(req.body);
+            // console.log(available);
+            // const item = new Item();
+            // item.item_name = name;
+            // item.item_desc = desc;
+            // item.item_available = available == "true";
+            // item.category_id = '20';
+            // item.item_price = price;
+            // await repo.update(id, item);
             return res.status(201).json(item);
 
         } catch (e) {
