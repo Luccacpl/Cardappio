@@ -26,8 +26,5 @@ export default class Item {
     @JoinColumn({name: 'category_id'})
     category_id: Category;
 
-    @Column({name: 'category_id'})
-    category_real: number
-
     
 }
