@@ -68,6 +68,7 @@ export default {
             return res.status(201).json(item);
 
         } catch (e) {
+            console.log(e.message)
             return res.status(500).json({ "ERROR": e.message});
 
         }

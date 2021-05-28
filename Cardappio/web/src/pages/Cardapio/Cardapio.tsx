@@ -24,6 +24,7 @@ import Loader from "components/Loader";
 import { LiMenu } from "../../components/SubAside/style";
 import { TrashOutline, CreateOutline } from "react-ionicons";
 import Select from 'react-select'
+import { optionCSS } from "react-select/src/components/Option";
 
 interface ICategory {
   name: string;
@@ -37,7 +38,7 @@ interface IItem {
   id: number;
   desc: string;
   imageurl: string;
-  category: string;
+  category_id: string;
   available: string;
   price: number;
 }
@@ -108,7 +109,7 @@ function Cardapio() {
     desc: '',
     imageurl: '',
     available: '',
-    category: '',
+    category_id: '',
     price: 0
   });
 
@@ -325,7 +326,7 @@ function Cardapio() {
     setNameItem(item.name)
     setDescription(item.desc)
     setPrice(String(item.price))
-    setCategoryOptionsId(item.category)
+    setCategoryOptionsId(item.category_id)
 
     setShowModalEditItem({
       id: item.id,
@@ -334,7 +335,7 @@ function Cardapio() {
       desc: item.desc,
       imageurl: item.imageurl,
       available: item.available,
-      category: item.category,
+      category_id: item.category_id,
       price: item.price
     });
   }
@@ -351,12 +352,13 @@ function Cardapio() {
     category: string
   ) {
 
+
     const body = {
       name: nameItem,
       desc: description,
       available,
       price: price,
-      category: '19'
+      category: String(item.category_id)
     }
 
     if (name === '' ||
@@ -365,6 +367,8 @@ function Cardapio() {
       return alert('Complete os campos corretamente!')
     } else {
       try {
+        console.log('categoria 1 ', item.category_id)
+        console.log("categoria", category)
         console.log("corpo: ", body)
         console.log("item id: ", id)
         await api.put(
@@ -387,12 +391,12 @@ function Cardapio() {
           id: item.id,
           desc: item.desc,
           imageurl: item.imageurl,
-          category: item.category,
+          category_id: item.category_id,
           available: item.available,
           price: item.price
         })
       } catch (error) {
-        return alert('Erro ao tentar editar Item')
+        return alert('Erro ao tentar editar Item' + error.message)
       }
     }
   }
@@ -593,7 +597,7 @@ function Cardapio() {
                       id: item.id,
                       desc: item.desc,
                       imageurl: item.imageurl,
-                      category: item.category,
+                      category_id: item.category_id,
                       available: item.available,
                       price: item.price
                     })}
@@ -621,20 +625,6 @@ function Cardapio() {
                           onChange={(event) => setPrice(event.target.value)}
                           margin="20px 0 20px 0"
                         />
-                        <Select
-                          onChange={(option: { label: string; value: number }) =>
-                            setCategoryOptionsId({
-                              label: option.label,
-                              value: option.value,
-                            })
-                          }
-                          value={categoryOptionsId}
-                          placeholder="Selecione uma categoria"
-                          noOptionsMessage={() => 'Nenhuma categoria encontrado'}
-                          options={categoryOptions}
-                          styles={customStyles}
-                          style={{ color: "white", fontSize: "24px" }}
-                        />
                         <Button
                           content="Avançar"
                           width="25%"
@@ -648,7 +638,7 @@ function Cardapio() {
                             showModalEditItem.desc,
                             showModalEditItem.available,
                             showModalEditItem.price,
-                            showModalEditItem.category
+                            showModalEditItem.category_id
                           )}
                         />
                       </>
