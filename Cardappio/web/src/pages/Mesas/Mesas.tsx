@@ -5,7 +5,9 @@ import SubAside from '../../components/SubAside/SubAside'
 import Container from '../../components/Container/Container'
 import { Grid } from '../../components/Grid/style'
 import Button from '../../components/Button/Button'
-import {Title} from '../../components/Text/text'
+import { Title } from '../../components/Text/text'
+import Loader from "components/Loader";
+import DeleteModal from '../../components/DeleteModal/index'
 
 import api from "../../services/api";
 
@@ -17,16 +19,20 @@ import QRCode from 'qrcode.react'
 
 import { LiMenu } from '../../components/SubAside/style'
 
-interface IMesas {
-  id: number,
-  name: string,
-}
+
+
 
 interface ITable {
-  id: number,
+  table_id: number,
   table_qrcode: string,
-  name: number,
+  table_number: number,
   restaurant_id: string
+}
+
+interface IDeleteTable {
+  table_number: number,
+  table_id: number,
+  isActive: boolean 
 }
 
 
@@ -34,7 +40,10 @@ const Mesas = () => {
 
   const history = useHistory()
 
-  const [mesas, setMesas] = useState<IMesas[]>([])
+  const [showDeleteModal, setShowDeleteModal] = useState<IDeleteTable>({ table_id: 0, table_number: 0, isActive: false })
+
+  const [mesas, setMesas] = useState<ITable[]>([])
+  const [filteredMesas, setFilteredMesas] = useState<ITable>()
   const [showLoader, setShowLoader] = useState(false)
 
   const isUserAuthenticated = () =>
@@ -43,49 +52,61 @@ const Mesas = () => {
   const getTokenFromStorage = (): string =>
     localStorage.getItem("TOKEN") as string;
 
-    function GetTables() {
-      setShowLoader(true)
-      try {
-        api
-          .get('/table', {
-            headers: {
-              authorization: getTokenFromStorage(),
-            },
-          })
-          .then(response => {
-            setMesas(response.data.content)
-            console.log('mesas: ', mesas)
-            setShowLoader(true)
-          })
-      } catch(error) {
-        console.log("DEU RUIM IRMÃOZINHO")
-      }
+  function GetTables() {
+    setShowLoader(true)
+    try {
+      api
+        .get('/table', {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then(response => {
+          setMesas(response.data.content)
+          setShowLoader(false)
+        })
+    } catch (error) {
+      console.log("DEU RUIM IRMÃOZINHO")
+    }
+  }
+
+  function GoToTable({ table_id }: ITable) {
+    setShowLoader(true)
+    try {
+      api
+        .get(`/table/${table_id}`, {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then(response => {
+          setFilteredMesas(response.data.content)
+          console.log("mesas filtradas: ", filteredMesas)
+          setShowLoader(false)
+        })
+    } catch (error) {
+      console.log("DEU: RUIM")
+    }
+  }
+
+  async function handleDelete(id: number) {
+    try {
+      await api.delete("/table/" + id, {
+        headers: {
+          authorization: getTokenFromStorage(),
+        },
+      });
+      GetTables()
+      console.log(id);
+    } catch (error) {
+      return alert("ocorreu algum erro");
     }
 
-  // function GetTables() {
-  //   setShowLoader(true);
-  //   try {
-  //     api
-  //       .get<ITable[]>("/table", {
-  //         headers: {
-  //           authorization: getTokenFromStorage(),
-  //         },
-  //       })
-  //       .then((response) => {
-  //         const categoryData = response.data.map(({ id, name }) => ({
-  //           label: name,
-  //           value: id,
-  //         }))
-  //         setCategoryOptions(categoryData)
-  //         console.log("opções: ", categoryOptions)
-  //         setShowLoader(false);
-  //         setCategories(response.data);
-  //         console.log(response.data);
-  //       });
-  //   } catch (error) {
-  //     return alert("ocorreu algum erro");
-  //   }
-  // }
+    setShowDeleteModal({ table_id: id, table_number: showDeleteModal.table_number, isActive: false })
+  }
+
+
+
 
   useEffect(() => {
     GetTables()
@@ -98,16 +119,16 @@ const Mesas = () => {
         title="Mesas"
         // clicked={() => newCategoryButton()}
         addButtonText="+ Adicionar nova mesa"
-        items={mesas}
+      // items={mesas}
       >
         {mesas.map(mesa => (
-          <div key={mesa.id}>
-            <LiMenu>
+          <div key={mesa.table_id}>
+            <LiMenu onClick={() => GoToTable(mesa)}>
               <TrashOutline
                 color="white"
                 width="3rem"
                 height="1.5rem"
-              // onClick={() => setShowDeleteModal({ id: category.id, name: category.name, isActive: true })}
+                onClick={() => setShowDeleteModal({ table_id: mesa.table_id, table_number: mesa.table_number, isActive: true })}
               />
               <CreateOutline
                 color="white"
@@ -115,30 +136,43 @@ const Mesas = () => {
                 height="1.5rem"
               // onClick={() => handleEditCategory(category)}
               />
-              {mesa.name}
+              Mesa {mesa.table_number}
             </LiMenu>
 
-            {/* {showDeleteModal.isActive && (
+            {showDeleteModal.isActive && (
               <DeleteModal
-                text={`Deseja excluir a categoria ${showDeleteModal.name}`}
-                clicked={() => handleDeleteCategory(showDeleteModal.id)}
-                closeClicked={() => setShowDeleteModal({ id: category.id, name: category.name, isActive: false })}
+                text={`Deseja excluir a Mesa: ${showDeleteModal.table_number}`}
+                clicked={() => handleDelete(showDeleteModal.table_id)}
+                closeClicked={() => setShowDeleteModal({ table_id: mesa.table_id, table_number: mesa.table_number, isActive: false })}
               />
-            )} */}
+            )}
           </div>
         ))}
       </SubAside>
       <Container display="flex" justifyContent="flex-end" padding="110px 6px 0px 55px" height="100vh">
         <Body>
           <TableWithTabs>
-            <Title color="#B2DA5A" marginBottom="64px">
-              Mesa 1
-            </Title>
-            <QRCode value="bundinha do allan" size={250} renderAs="svg" includeMargin={true} />
-            <Button content="Imprimir" marginTop="48px" width="20%"/>
+            {filteredMesas === undefined
+              ?
+              <Title color="#B2DA5A" marginBottom="64px">
+                Clique na mesa para obter o QR Code!
+              </Title>
+              :
+              (
+                <>
+                  <Title color="#B2DA5A" marginBottom="64px">
+                    Mesa: {filteredMesas.table_number}
+                  </Title>
+                  <QRCode value={filteredMesas.table_qrcode} size={250} renderAs="svg" includeMargin={true} />
+                  <Button content="Imprimir" marginTop="48px" width="20%" />
+                </>
+              )
+            }
+
           </TableWithTabs>
         </Body>
       </Container>
+      {showLoader && <Loader />}
     </Grid>
   )
 }

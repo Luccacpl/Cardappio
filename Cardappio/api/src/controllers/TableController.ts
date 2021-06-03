@@ -15,6 +15,9 @@ export default {
             const tables = await repoMesa.find({
                 where: {
                     restaurant_id: await restaurantService.getRestaurantIdFromUser(req.user.id)
+                },
+                order:{
+                    table_number: 'ASC'
                 }
             })
             console.log(tables);

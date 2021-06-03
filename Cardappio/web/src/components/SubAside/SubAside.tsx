@@ -15,10 +15,10 @@ interface ISubAside {
   color?: string
 
   addButtonText?: string
-
-  items: IItems[]
+  items?:IItems[]
   
 }
+
 
 interface IItems {
   id: number
@@ -34,7 +34,7 @@ function Alert(props: AlertProps) {
 function SubAside(props: ISubAside) {
   const [open, setOpen] = React.useState(false);
 
-  const tamanho = props.items.length;
+  // const tamanho = props.items.length;
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
@@ -48,7 +48,7 @@ function SubAside(props: ISubAside) {
     <DivContainer>
       <DivTitle>
         <Title>{props.title}</Title>
-        <SubTitle>{tamanho} {props.title} achadas</SubTitle>
+        <SubTitle> {props.title} achadas</SubTitle>
       </DivTitle>
       <SubMenu>
         <TitleSubMenu>{props.title}</TitleSubMenu>
