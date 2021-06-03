@@ -12,6 +12,8 @@ interface IButton {
   marginTop?: string
   heightResponsive?: string
   isNotForm?: boolean
+  color?: string
+  BgColor?: string
 }
 
 const Button = (props: IButton) => {

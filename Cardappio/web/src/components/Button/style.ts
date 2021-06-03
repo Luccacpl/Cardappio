@@ -15,6 +15,7 @@ interface CustomButtonProps {
     widthResponsive?: string
     fontSizeResponsive?: string
     heightResponsive?: string
+    BgColor?: string
 }
 
 const CustomButton = styled.button<CustomButtonProps>`
@@ -24,7 +25,7 @@ const CustomButton = styled.button<CustomButtonProps>`
     height: ${(props) => props.height || '1.875rem'};
     min-height: 2rem;
     padding: ${props => props.padding || "0 20px"};
-    background-color: ${props => props.color || colors.menuOrange};
+    background-color: ${props => props.BgColor || colors.menuOrange};
     color: ${props => props.color || colors.white};
     border: 1px solid transparent;
     border-radius: 30px;

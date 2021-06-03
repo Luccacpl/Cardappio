@@ -13,7 +13,8 @@ import Header from "../../components/Header/Header";
 import Logo from "../../public/icons/logo-bk-white.svg";
 import Food from "../../public/icons/fast-food-outline.svg";
 import Button from "../../components/Button/Button";
-import MuiAlert, { AlertProps } from "@material-ui/lab/Alert";
+import DeleteModal from '../../components/DeleteModal/index'
+
 import { ChangeEventHandler } from "react";
 import { Input } from "components/Input/Input";
 import { DragFileArea } from "./style";
@@ -24,12 +25,17 @@ import Loader from "components/Loader";
 import { LiMenu } from "../../components/SubAside/style";
 import { TrashOutline, CreateOutline } from "react-ionicons";
 import Select from 'react-select'
-import { optionCSS } from "react-select/src/components/Option";
 
 interface ICategory {
   name: string;
   id: number;
   items: IItem[];
+}
+
+interface IDeleteCategory {
+  id: number
+  isActive?: boolean
+  name: string
 }
 
 interface IItem {
@@ -92,12 +98,9 @@ function Cardapio() {
   };
 
 
-  // function Alert(props: AlertProps) {
-  //   return <MuiAlert elevation={6} variant="filled" {...props} />;
-  // }
-
   const history = useHistory()
 
+  const [showDeleteModal, setShowDeleteModal] = useState<IDeleteCategory>({ id: 0, name: '', isActive: false })
   const [showLoader, setShowLoader] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showModalCreate, setShowModalCreate] = useState(false);
@@ -117,7 +120,7 @@ function Cardapio() {
 
   const [nameItem, setNameItem] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
+  const [priceItem, setPrice] = useState("");
   const [available, setAvailable] = useState(true)
   const [categoryOptions, setCategoryOptions] = useState<any>([])
   const [categoryOptionsId, setCategoryOptionsId] = useState<any>('')
@@ -128,7 +131,6 @@ function Cardapio() {
 
   const [refresh, setRefresh] = useState(0);
 
-  const [open, setOpen] = React.useState(false);
   const [step, setStep] = useState(0);
 
   const [search, setSearch] = useState("");
@@ -138,17 +140,34 @@ function Cardapio() {
 
   const [filteredCategory, setFilteredCategory] = useState<ICategory>()
 
+  var nomeCategoria = window.localStorage.getItem('CATEGORYNAME')
+
+
   const onSearch = (e: string) => {
     const searchText = e.toLowerCase();
     const newSearch = items.filter(({ name, desc }) =>
       name?.toLowerCase().includes(searchText) ||
       desc?.toLowerCase().includes(searchText)
     );
+
+    var teste = categories.filter(({ items }) => items.filter(({ name, desc }) =>
+      name?.toLowerCase().includes('Gabi')
+      // desc?.toLowerCase().includes(searchText)
+    ))
+
+    const filtro = categories.map(category => (category.items.filter(item => item.name.toLowerCase().includes('gabi'))))
+
+    console.log("filtro: ", filtro)
+
     setFilteredItems(newSearch);
+    console.log(filteredItems)
     setSearch(e);
+    console.log("Itens filtrados: ", filteredItems)
   };
 
-  const listItems = search === "" ? items : filteredItems;
+  const listItems = search === ""
+    ? categories
+    : filteredItems;
 
   const isUserAuthenticated = () =>
     localStorage.getItem("TOKEN") === null && history.push("/");
@@ -170,7 +189,7 @@ function Cardapio() {
       return alert("ocorreu algum erro");
     }
 
-    setOpen(true);
+    setShowDeleteModal({ id: id, name: showDeleteModal.name, isActive: false })
   }
 
   async function handleSubmit(event: ChangeEventHandler<HTMLInputElement>) {
@@ -202,7 +221,7 @@ function Cardapio() {
   }
 
   function validate() {
-    if (nameItem === '' || description === '' || price === '') {
+    if (nameItem === '' || description === '' || priceItem === '') {
       return alert("Complete o campo corretamente!");
     } else {
       setStep(step + 1)
@@ -218,7 +237,7 @@ function Cardapio() {
     data.append('available', String(available))
     data.append('category', categoryOptionsId.value)
     data.append('imageurl', selectedFile)
-    data.append('price', price)
+    data.append('price', priceItem)
 
     console.log("body: ", data)
     try {
@@ -256,13 +275,14 @@ function Cardapio() {
       console.log('filtered: ', filteredCategory)
       console.log('resposta: ', response)
       localStorage.setItem('CATEGORYID', response.data.id)
+      localStorage.setItem('CATEGORYNAME', response.data.name)
+
       history.push('/cardapio/' + category.id)
 
     } catch (error) {
       return alert("ocorreu algum erro");
     }
   }
-
 
   function handleSelectedFiles(files: any) {
     const file = files[0];
@@ -273,7 +293,6 @@ function Cardapio() {
       setSelectedFile(file)
     }
   }
-
 
   async function handleDeleteCategory(id: number) {
     try {
@@ -287,7 +306,7 @@ function Cardapio() {
     } catch (error) {
       return alert("ocorreu algum erro");
     }
-    setOpen(true);
+    setShowDeleteModal({ id: id, name: '', isActive: false });
   }
 
   async function handleEditCategory(category: ICategory) {
@@ -301,11 +320,8 @@ function Cardapio() {
       return alert("ocorreu algum erro");
     }
     console.log(category.id);
-
     console.log(category.name);
-
     setName(category.name);
-
     setShowModalEdit({ id: category.id, isActive: true, name: category.name });
   }
 
@@ -319,15 +335,10 @@ function Cardapio() {
     } catch (error) {
       return alert("ocorreu algum erro");
     }
-    console.log(item.id);
-
-    console.log(item.name);
-
     setNameItem(item.name)
     setDescription(item.desc)
     setPrice(String(item.price))
     setCategoryOptionsId(item.category_id)
-
     setShowModalEditItem({
       id: item.id,
       isActive: true,
@@ -340,8 +351,6 @@ function Cardapio() {
     });
   }
 
-  // arrumar edição por conta de ser form
-
   async function handleSubmitEditItem(
     item: IItem,
     id: number,
@@ -349,16 +358,14 @@ function Cardapio() {
     desc: string,
     available: string,
     price: number,
-    category: string
+    piroca: string
   ) {
-
-
     const body = {
       name: nameItem,
       desc: description,
       available,
-      price: price,
-      category: String(item.category_id)
+      price: priceItem,
+      piroca: String(item.category_id)
     }
 
     if (name === '' ||
@@ -368,7 +375,7 @@ function Cardapio() {
     } else {
       try {
         console.log('categoria 1 ', item.category_id)
-        console.log("categoria", category)
+        console.log("categoria", piroca)
         console.log("corpo: ", body)
         console.log("item id: ", id)
         await api.put(
@@ -380,11 +387,9 @@ function Cardapio() {
             },
           }
         );
-
+        GetCategory()
         history.push('/cardapio')
-
         setRefresh((chave) => chave + 1);
-
         setShowModalEditItem({
           isActive: false,
           name: item.name,
@@ -395,6 +400,7 @@ function Cardapio() {
           available: item.available,
           price: item.price
         })
+        window.location.reload()
       } catch (error) {
         return alert('Erro ao tentar editar Item' + error.message)
       }
@@ -466,6 +472,15 @@ function Cardapio() {
     }
   }
 
+  function openCreateItemModal() {
+    setNameItem('')
+    setDescription('')
+    setPrice('')
+    setCategoryOptionsId('')
+
+    setShowModalCreate(true)
+  }
+
 
 
   useEffect(() => {
@@ -496,7 +511,7 @@ function Cardapio() {
                 color="white"
                 width="3rem"
                 height="1.5rem"
-                onClick={() => handleDeleteCategory(category.id)}
+                onClick={() => setShowDeleteModal({ id: category.id, name: category.name, isActive: true })}
               />
               <CreateOutline
                 color="white"
@@ -506,6 +521,15 @@ function Cardapio() {
               />
               {category.name}
             </LiMenu>
+
+            {showDeleteModal.isActive && (
+              <DeleteModal
+                text={`Deseja excluir a categoria ${showDeleteModal.name}`}
+                clicked={() => handleDeleteCategory(showDeleteModal.id)}
+                closeClicked={() => setShowDeleteModal({ id: category.id, name: category.name, isActive: false })}
+              />
+            )}
+
             {showModalEdit.isActive && (
               <Modal
                 title={`Vamos editar a Categoria ${showModalEdit.name}`}
@@ -536,12 +560,12 @@ function Cardapio() {
       <Container height="100%" padding="0px 0px 0px 0px" flexDirection="column" overflow="auto">
         <Header
           title="Todos os seus pratos"
-          subtitle="Categoria:"
+          subtitle={nomeCategoria === null ? "Categoria: Geral" : `Categoria: ` + nomeCategoria}
           addButton="Adicionar novo prato"
           src={Food}
           logo={Logo}
           placeholder="Digite o nome de um item"
-          clickedAdd={() => setShowModalCreate(true)}
+          clickedAdd={() => openCreateItemModal()}
           onChange={(e) => {
             onSearch(e.target.value);
           }}
@@ -551,18 +575,93 @@ function Cardapio() {
             ?
             categories.map((category) => (
               category.items.map((item) => (
-                <Cards
-                  name={item.name}
-                  desc={item.desc}
-                  price={Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(item.price)}
-                  src={item.imageurl}
-                  TrashClicked={() => handleDelete(item.id)}
-                  EditClicked={() => handleEditItem(item)}
-                  key={item.id}
-                />
+                <>
+                  <Cards
+                    name={item.name}
+                    desc={item.desc}
+                    price={Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(item.price)}
+                    src={item.imageurl}
+                    TrashClicked={() => setShowDeleteModal({ id: item.id, name: item.name, isActive: true })}
+                    EditClicked={() => handleEditItem(item)}
+                    key={item.id}
+                  />
+
+                  {showDeleteModal.isActive && (
+                    <DeleteModal
+                      text={`Deseja excluir o item ${showDeleteModal.name}`}
+                      clicked={() => handleDelete(showDeleteModal.id)}
+                      closeClicked={() => setShowDeleteModal({ id: item.id, name: item.name, isActive: false })}
+                    />
+                  )}
+
+                  {showModalEditItem.isActive && (
+                    <Modal
+                      title={`Vamos Editar o item ${showModalEditItem.name}!`}
+                      ButtonTitle="Editar"
+                      text={
+                        step === 0
+                          ? "Por favor, preencha os campos abaixo, para prosseguirmos no processo de edição."
+                          : "Adicione uma foto para o item"
+                      }
+                      change={(event) => setName(event.target.value)}
+                      closeClicked={() => setShowModalEditItem({
+                        isActive: false,
+                        name: item.name,
+                        id: item.id,
+                        desc: item.desc,
+                        imageurl: item.imageurl,
+                        category_id: item.category_id,
+                        available: item.available,
+                        price: item.price
+                      })}
+                    >
+                      {step === 0 && (
+                        <>
+                          <Input
+                            width="55%"
+                            marginTop="20px"
+                            placeholder="Digite o nome do item"
+                            value={nameItem}
+                            onChange={(event) => setNameItem(event.target.value)}
+                          />
+                          <Input
+                            width="55%"
+                            marginTop="20px"
+                            placeholder="Digite sobre o item"
+                            value={description}
+                            onChange={(event) => setDescription(event.target.value)}
+                          />
+                          <Input
+                            width="55%"
+                            placeholder="Digite o preço do item"
+                            value={priceItem}
+                            onChange={(event) => setPrice(event.target.value)}
+                            margin="20px 0 20px 0"
+                          />
+                          <Button
+                            content="Editar"
+                            width="25%"
+                            height="2.25rem"
+                            marginTop="28px"
+                            isNotForm
+                            clicked={() => handleSubmitEditItem(
+                              item,
+                              showModalEditItem.id,
+                              showModalEditItem.name,
+                              showModalEditItem.desc,
+                              showModalEditItem.available,
+                              showModalEditItem.price,
+                              showModalEditItem.category_id
+                            )}
+                          />
+                        </>
+                      )}
+                    </Modal>
+                  )}
+                </>
               ))
             ))
             :
@@ -577,9 +676,17 @@ function Cardapio() {
                   }).format(item.price)}
                   src={item.imageurl}
                   EditClicked={() => handleEditItem(item)}
-                  TrashClicked={() => handleDelete(item.id)}
+                  TrashClicked={() => setShowDeleteModal({ id: item.id, name: item.name, isActive: true })}
                   key={item.id}
                 />
+
+                {showDeleteModal.isActive && (
+                  <DeleteModal
+                    text={`Deseja excluir o item ${showDeleteModal.name}`}
+                    clicked={() => handleDelete(showDeleteModal.id)}
+                    closeClicked={() => setShowDeleteModal({ id: item.id, name: item.name, isActive: false })}
+                  />
+                )}
 
                 {showModalEditItem.isActive && (
                   <Modal
@@ -621,12 +728,12 @@ function Cardapio() {
                         <Input
                           width="55%"
                           placeholder="Digite o preço do item"
-                          value={price}
+                          value={priceItem}
                           onChange={(event) => setPrice(event.target.value)}
                           margin="20px 0 20px 0"
                         />
                         <Button
-                          content="Avançar"
+                          content="Editar"
                           width="25%"
                           height="2.25rem"
                           marginTop="28px"
@@ -711,7 +818,7 @@ function Cardapio() {
                 <Input
                   width="55%"
                   placeholder="Digite o preço do item"
-                  value={price}
+                  value={priceItem}
                   onChange={(event) => setPrice(event.target.value)}
                   margin="20px 0 20px 0"
                 />
