@@ -40,6 +40,7 @@ routes.put('/restaurant',AuthControler.authentificationToken,RestaurantControlle
 routes.get('/restaurant',AuthControler.authentificationToken,RestaurantController.getFunction)
 routes.delete('/restaurant/:id',AuthControler.authentificationToken,RestaurantController.deleteFunction)
 
+routes.get('/table/:id',AuthControler.authentificationToken,TableController.getTableById);
 routes.get('/table',AuthControler.authentificationToken,TableController.getAllTable);
 routes.post('/table',AuthControler.authentificationToken,TableController.postTable);
 routes.put('/table/:id',AuthControler.authentificationToken,TableController.updateTable);

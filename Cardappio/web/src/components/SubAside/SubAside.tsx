@@ -17,12 +17,15 @@ interface ISubAside {
   addButtonText?: string
 
   items: IItems[]
+  
 }
 
 interface IItems {
-  name: string
   id: number
+  name?: string
+  
 }
+
 
 function Alert(props: AlertProps) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;

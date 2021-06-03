@@ -29,6 +29,20 @@ export default {
         }
     },
 
+    async getTableById(req: any, res: Response) {
+        console.log('entroui aqui')
+        const repoMesa = getRepository(Table) // pega repositorio
+        const { id } = req.params;
+        try {
+            const table = await repoMesa.findOneOrFail(id)
+            return res.status(200).json({ content: table });
+        }
+        catch (e) {
+            return res.status(404).json({ ERROR: 'NOT FOUND' });
+        }
+    },
+
+
     async updateTable(req: Request, res: Response) {
         const { id } = req.params;
         const { table_number } = req.body;
@@ -63,19 +77,7 @@ export default {
                 table_number: table_number,
                 restaurant_id: restaurant_id
             }
-
-
             await repoMesa.save(data);
-            /*
-        No overload matches this call.
-        Overload 1 of 4, '(entities: DeepPartial<Table>[], options?: SaveOptions): Promise<(DeepPartial<Table> & Table)[]>', gave the following error.
-        Argument of type '{ table_id: any; restaurant_id: number; table_qrcode: string; }' is not assignable to parameter of type 'DeepPartial<Table>[]'.
-        Type '{ table_id: any; restaurant_id: number; table_qrcode: string; }' is missing the following properties from type 'DeepPartial<Table>[]': length, pop, push, concat, and 26 more.
-        Overload 2 of 4, '(entity: DeepPartial<Table>, options?: SaveOptions): Promise<DeepPartial<Table> & Table>', gave the following error.
-        Argument of type '{ table_id: any; restaurant_id: number; table_qrcode: string; }' is not assignable to parameter of type 'DeepPartial<Table>'.
-        Types of property 'restaurant_id' are incompatible. 
-        Type 'number' is not assignable to type 'User | DeepPartial<User>'.ts(2769)
-            */
 
             return res.status(201).json()
         } catch (e) {

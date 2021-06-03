@@ -7,6 +7,7 @@ import Cardapio from './pages/Cardapio/Cardapio';
 import Comandas from './pages/Comandas/Comandas';
 // import Usuarios from './pages/Usuarios/Usuarios';
 import Pedidos from './pages/Pedidos/Pedidos';
+import Mesas from './pages/Mesas/Mesas';
 
 function Routes() {
     return(
@@ -18,6 +19,7 @@ function Routes() {
                 <Route path="/cardapio" component={Cardapio}/>
                 {/* <Route path="/cardapio/:id" component={Cardapio}/>  */}
                 <Route path="/comandas" component={Comandas}/>
+                <Route path="/mesas" component={Mesas}/>
                 {/* <Route path="/usuarios" component={Usuarios}/> */}
                 <Route path="/pedidos" component={Pedidos}/>
             </Switch>

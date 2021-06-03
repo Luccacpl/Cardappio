@@ -23,6 +23,7 @@ interface ITitle {
     fontFamily?: string
     fontSizeResponsive?: string
     marginLeftResponsive?: string
+    marginBottom?: string
 }
 
 const P = styled.p<IP>`
@@ -45,6 +46,7 @@ const Title = styled.h1<ITitle>`
     font-weight: ${props => props.fontWeight || '500'};
     margin-top: ${props => props.marginTop};
     margin-left: ${props => props.marginLeft};
+    margin-bottom: ${props => props.marginBottom};
     @media screen and (min-width: 1481px){
         font-size: ${props => props.fontSizeResponsive || fontsSizes.large40};
         margin-left: ${props => props.marginLeftResponsive};
