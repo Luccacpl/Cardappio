@@ -1,6 +1,6 @@
-import { CreateOutline, TrashOutline } from 'react-ionicons'
+import { AlarmOutline, CloseCircleOutline, CheckmarkCircleOutline } from 'react-ionicons'
 
-import { DivCard, DivPicture, DivMenu, DivDetail, TitleCard, DescriptionCard, PriceCard } from './style'
+import { DivCard, DivPicture, DivMenu, DivDetail, TitleCard, DescriptionCard, Circle } from './style'
 
 interface ICards {
   gridStart?: string
@@ -10,13 +10,14 @@ interface ICards {
   margin?: string
   name?: string
   desc?: string
-  price?: string
   src?: string
-  EditClicked?: any
+  checkClicked?: any
+  AlarmClicked?: any
   TrashClicked?: any
+  TableNumber?: any
 }
 
-function CommandCards(props: ICards) {
+function OrderCards(props: ICards) {
   return (
     <DivCard
       display={props.display}
@@ -25,15 +26,25 @@ function CommandCards(props: ICards) {
       margin={props.margin}
     >
       <DivPicture imgUrl={props.src}>
+        <Circle style={{ marginLeft: "10px", marginTop: "5px" }} >
+          <TitleCard style={{ color: "white" }}>{props.TableNumber}</TitleCard>
+        </Circle>
         <DivMenu>
-          <CreateOutline
+          <CheckmarkCircleOutline
             color="white"
             width="3rem"
             height="1.5rem"
             style={{ margin: "10% 0px", cursor: "pointer" }}
-            onClick={props.EditClicked}
+            onClick={props.checkClicked}
           />
-          <TrashOutline
+          <AlarmOutline
+            color="white"
+            width="3rem"
+            height="1.5rem"
+            style={{ margin: "10% 0px", cursor: "pointer" }}
+            onClick={props.AlarmClicked}
+          />
+          <CloseCircleOutline
             color="white"
             width="3rem"
             height="1.5rem"
@@ -45,7 +56,6 @@ function CommandCards(props: ICards) {
       <DivDetail>
         <div style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
           <TitleCard color="white">{props.name}</TitleCard>
-          <PriceCard>{props.price}</PriceCard>
         </div>
         <DescriptionCard>
           {props.desc}
@@ -55,4 +65,4 @@ function CommandCards(props: ICards) {
   );
 }
 
-export default CommandCards;
+export default OrderCards;

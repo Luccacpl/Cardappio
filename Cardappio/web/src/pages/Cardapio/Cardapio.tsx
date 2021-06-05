@@ -358,7 +358,7 @@ function Cardapio() {
     desc: string,
     available: string,
     price: number,
-    piroca: string
+    piroca: string,
   ) {
     const body = {
       name: nameItem,

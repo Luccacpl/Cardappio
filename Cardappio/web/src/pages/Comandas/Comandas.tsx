@@ -10,7 +10,7 @@ import CardsCommand from '../../components/CardsCommand/index'
 import Button from '../../components/Button/Button'
 
 
-import { TableWithTabs, Body, TabsContainer, CardsContainer } from './style'
+import { TableWithTabs, Body, CardsContainer } from './style'
 
 import { LiMenu } from '../../components/SubAside/style'
 
@@ -32,7 +32,6 @@ interface IItems {
 function Comandas() {
   const [tables, setTables] = useState<IMesas[]>([])
   const [items, setItems] = useState<IItems[]>([])
-  const [countItems, setCountItems] = useState(0)
 
   useEffect(() => {
     const mesas: IMesas[] = [
@@ -105,7 +104,6 @@ function Comandas() {
       },
     ]
 
-    setCountItems(mesas.length)
     setItems(itens)
     setTables(mesas)
   }, [])
