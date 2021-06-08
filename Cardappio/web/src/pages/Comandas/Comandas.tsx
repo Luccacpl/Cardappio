@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useHistory } from "react-router-dom";
 import Aside from '../../components/Aside/Aside'
 import SubAside from '../../components/SubAside/SubAside'
 import Container from '../../components/Container/Container'
@@ -12,13 +13,40 @@ import Button from '../../components/Button/Button'
 
 import { TableWithTabs, Body, CardsContainer } from './style'
 
+import api from "../../services/api";
+
 import { LiMenu } from '../../components/SubAside/style'
 
-import { ClipboardOutline} from 'react-ionicons'
+import { ClipboardOutline } from 'react-ionicons'
 
 interface IMesas {
   name: string,
   id: number
+}
+
+interface IItem {
+  item_id: number;
+  item_name: string;
+  item_desc: string;
+  item_available: boolean;
+  item_price: string;
+}
+interface IItemsCommand {
+  item_command_id: number;
+  item_command_qtd: number;
+  item_id: number;
+  item_time_confirmed: string;
+  item_command_status: number;
+  item: IItem
+}
+
+interface ICommands {
+  command_id: number;
+  command_checkin: string;
+  command_checkout: string;
+  command_total_prince: string;
+  table_number: number;
+  itemsCommand: IItemsCommand[];
 }
 
 interface IItems {
@@ -30,82 +58,59 @@ interface IItems {
 
 
 function Comandas() {
+
+  const history = useHistory()
+
   const [tables, setTables] = useState<IMesas[]>([])
   const [items, setItems] = useState<IItems[]>([])
+  const [showLoader, setShowLoader] = useState(false);
+  const [commands, setCommands] = useState<ICommands[]>([])
+  const [filteredCommands, setFilteredCommands] = useState<ICommands>()
+
+  const getTokenFromStorage = (): string =>
+    localStorage.getItem("TOKEN") as string;
+
+
+
+  async function getCommands() {
+    setShowLoader(true);
+    try {
+      await api
+        .get("/admactivecommand", {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then((response) => {
+          setCommands(response.data.content)
+        });
+    } catch (error) {
+      return alert("ocorreu algum erro");
+    }
+  }
+
+  async function goToCommand(command: ICommands) {
+    try {
+      const response = await api.get(`admactivecommand/${command.command_id}`, {
+        headers: {
+          authorization: getTokenFromStorage(),
+        },
+      });
+      setFilteredCommands(response.data.content.command)
+      console.log('filtered: ', filteredCommands)
+      console.log('resposta: ', response)
+
+      history.push('/comandas/' + command.command_id)
+
+    } catch (error) {
+      return alert(`ocorreu algum erro:  ${error.message}`);
+    }
+  }
 
   useEffect(() => {
-    const mesas: IMesas[] = [
-      {
-        id: 0,
-        name: "Comanda 1"
-      },
-      {
-        id: 1,
-        name: "Comanda 2"
-      },
-      {
-        id: 2,
-        name: "Comanda 3"
-      },
-      {
-        id: 3,
-        name: "Comanda 4"
-      },
-    ]
+    getCommands()
+    console.log("comandas: ", commands)
 
-    const itens: IItems[] = [
-      {
-        id: 0,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 1,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 2,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 3,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 4,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 5,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 6,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-      {
-        id: 7,
-        name: "Batata Frita",
-        price: "R$ 20,00",
-        desc: "batata frita, cheddar e bacon",
-      },
-    ]
-
-    setItems(itens)
-    setTables(mesas)
   }, [])
 
 
@@ -113,18 +118,16 @@ function Comandas() {
     <Grid>
       <Aside />
       <SubAside
-        items={tables}
         title="Gerenciamento de Comandas"
-        addButtonText="+ Adicionar nova comanda"
       >
-        {tables.map(table => (
-          <div key={table.id}>
-            <LiMenu>
+        {commands.map((command, i) => (
+          <div key={command.command_id}>
+            <LiMenu onClick={() => goToCommand(command)}>
               <ClipboardOutline
                 color="#B2DA5A"
                 width="3rem" height="1.5rem"
               />
-              {table.name}
+              {`Comanda ${command.command_id}`}
             </LiMenu>
           </div>
         ))}
@@ -189,13 +192,24 @@ function Comandas() {
                 alignitems="center"
                 gap="30px"
               >
-                {items.map(item => (
-                  <CardsCommand
-                    name={item.name}
-                    price={item.price}
-                    desc={item.desc}
-                  />
-                ))}
+                {filteredCommands === undefined
+                  ?
+                  null
+                  :
+                  filteredCommands.itemsCommand.map(itemcommand => (
+                    <CardsCommand
+                      name={itemcommand.item.item_name}
+                      price={itemcommand.item.item_price}
+                      desc={itemcommand.item.item_desc}
+                    />
+                  ))
+                }
+
+                {/* <CardsCommand
+                  name={command.item.item_name}
+                  price={command.item.item_price}
+                  desc={command.item.item_desc}
+                /> */}
               </Container>
             </CardsContainer>
           </TableWithTabs>

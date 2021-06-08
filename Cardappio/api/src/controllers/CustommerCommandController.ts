@@ -39,7 +39,7 @@ export default {
                 command_id: thiscommand.command_id
             }
 
-            const acessToken = jwt.sign(env, process.env.CUSTOMER_TOKEN_SECRET, { expiresIn: "10d" });
+            const acessToken = jwt.sign(env, process.env.CUSTOMER_TOKEN_SECRET, { expiresIn: "30d" });
             return res.json({
                 authorization: acessToken
             })
