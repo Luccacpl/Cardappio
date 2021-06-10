@@ -20,7 +20,7 @@ interface DivMenuProps {
 }
 
 interface DivDetailProps {
-
+    bgColor?: string
 }
 
 interface TitleCardProps {
@@ -74,6 +74,7 @@ const DivMenu = styled.div<DivMenuProps>`
 const DivDetail = styled.div<DivDetailProps>`
     height: 120px;
     width: ${dimensions.widthFull};
+    background-color: ${props => props.bgColor} ;
 `
 
 const TitleCard = styled.h2<TitleCardProps>`

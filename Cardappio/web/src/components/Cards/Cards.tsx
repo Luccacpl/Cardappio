@@ -13,6 +13,7 @@ interface ICards {
     src: string
     EditClicked?: any
     TrashClicked?: any
+    bgColor?: any
 }
 
 function Cards(props: ICards) {
@@ -40,7 +41,7 @@ function Cards(props: ICards) {
                     />
                 </DivMenu>
             </DivPicture>
-            <DivDetail>
+            <DivDetail bgColor={props.bgColor}>
                 <TitleCard>{props.name}</TitleCard>
                 <DescriptionCard>{props.desc}</DescriptionCard>
                 <PriceCard>{props.price}</PriceCard>

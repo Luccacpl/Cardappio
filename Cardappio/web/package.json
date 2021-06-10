@@ -28,6 +28,7 @@
     "react-dropzone": "^11.3.2",
     "react-icons": "^4.2.0",
     "react-ionicons": "^4.2.0",
+    "react-qr-scanner": "^1.0.0-alpha.7",
     "react-qrcode-logo": "^2.4.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
