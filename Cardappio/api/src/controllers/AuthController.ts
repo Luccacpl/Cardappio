@@ -70,7 +70,9 @@ export default {
 
         const authHeader = req.headers['authorization']
         const token = authHeader
-        if (token == null) return res.sendStatus(401)
+        if (token == null){
+            console.log('Token está nulo');
+            return res.sendStatus(401)} 
 
         try {
             const user = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
@@ -80,7 +82,8 @@ export default {
             next();
         }
         catch (e) {
-            return res.sendStatus(401);
+            console.log(e);
+            return res.status(401).json({ERRO:e.message});
         }
 
     },

@@ -44,10 +44,10 @@ export default {
                 relations: ['itemsCommand', 'itemsCommand.item']
             })
             const totalCOnfirmed = await Promise.resolve(CalculateCommandPrice.totalPriceFinalizado(commands));
+            commands.total_Price_Confirmed = totalCOnfirmed
             return res.json({
                 content: {
-                    command: commands,
-                    totalPriceConfirmed: totalCOnfirmed
+                    command: commands
                 }
             });
         }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import api from "../../services/api";
 
 import Aside from '../../components/Aside/Aside'
 import SubAside from '../../components/SubAside/SubAside'
@@ -8,40 +9,71 @@ import { Grid } from '../../components/Grid/style'
 import CardsOrder from '../../components/CardsOrder/index'
 import { TableWithTabs, Body, CardsContainer } from './style'
 
+interface IOrder {
+  item_command_id: number
+  item_name: string
+  item_desc: string
+  item_command_status: number
+  table_number: number
+}
+
 function Pedidos() {
 
-  const [items, setItems] = useState([
-    {
-      id: 0,
-      name: 'Teste',
-      desc: "teste teste",
-      tableNumber: "3"
-    },
-    {
-      id: 1,
-      name: 'Teste',
-      desc: "teste teste",
-      tableNumber: "2"
-    },
-    {
-      id: 2,
-      name: 'Teste',
-      desc: "teste teste",
-      tableNumber: "1"
-    },
-    {
-      id: 3,
-      name: 'Teste',
-      desc: "teste teste",
-      tableNumber: "5"
-    },
-  ])
+  const [showLoader, setShowLoader] = useState(false)
+  
+  const [orders, setOrders] = useState<IOrder[]>([])
+  
+
+
+  const getTokenFromStorage = (): string =>
+  localStorage.getItem("TOKEN") as string;
+
+
+  async function getOrders() {
+    setShowLoader(true);
+    try {
+      await api
+        .get("/kitchenorder", {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then((response) => {
+          setOrders(response.data.content)
+        });
+    } catch (error) {
+      return alert("ocorreu algum erro");
+    }
+  }
+
+  async function updateItemStatus(id: any, status: number) {
+    try {
+      await api
+        .put(`/admupdateorder/${id}`, { status: status }, {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then((response) => {
+          console.log(response)
+          getOrders()
+        })
+    }
+    catch (error) {
+      return alert(error.message)
+    }
+  }
+
+
+
+  useEffect(() => {
+    getOrders()
+  }, [])
 
   return (
     <Grid>
       <Aside />
       <SubAside
-        // items={tables}
         title="Gerenciamento de Pedidos"
       >
 
@@ -60,12 +92,15 @@ function Pedidos() {
                 alignitems="center"
                 gap="30px"
               >
-                {items.map(item => (
+                {orders.map(order => (
                   <CardsOrder
-                    key={item.id}
-                    name={item.name}
-                    desc={item.desc}
-                    TableNumber={item.tableNumber}
+                    key={order.item_command_id}
+                    name={order.item_name}
+                    desc={order.item_desc}
+                    TableNumber={order.table_number}
+                    cancelClicked={() => updateItemStatus(order.item_command_id, 4)}
+                    readyClicked={() => updateItemStatus(order.item_command_id, 3)}
+                    preparationClicked={() => updateItemStatus(order.item_command_id, 2)}
                   />
                 ))}
               </Container>

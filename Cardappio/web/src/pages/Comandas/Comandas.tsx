@@ -7,6 +7,7 @@ import { Grid } from '../../components/Grid/style'
 import { Title, P } from '../../components/Text/text'
 import { Linha } from '../../components/Linha/style'
 import CardsCommand from '../../components/CardsCommand/index'
+import Loader from "components/Loader";
 
 import Button from '../../components/Button/Button'
 
@@ -44,7 +45,8 @@ interface ICommands {
   command_id: number;
   command_checkin: string;
   command_checkout: string;
-  command_total_prince: string;
+  command_total_price: string;
+  totalPriceConfirmed: number;
   table_number: number;
   itemsCommand: IItemsCommand[];
 }
@@ -61,8 +63,6 @@ function Comandas() {
 
   const history = useHistory()
 
-  const [tables, setTables] = useState<IMesas[]>([])
-  const [items, setItems] = useState<IItems[]>([])
   const [showLoader, setShowLoader] = useState(false);
   const [commands, setCommands] = useState<ICommands[]>([])
   const [filteredCommands, setFilteredCommands] = useState<ICommands>()
@@ -83,6 +83,7 @@ function Comandas() {
         })
         .then((response) => {
           setCommands(response.data.content)
+          setShowLoader(false);
         });
     } catch (error) {
       return alert("ocorreu algum erro");
@@ -107,10 +108,38 @@ function Comandas() {
     }
   }
 
+  async function updateItemStatus(id: any, status: number) {
+    try {
+      await api
+        .put(`/admupdateorder/${id}`, { status: status }, {
+          headers: {
+            authorization: getTokenFromStorage(),
+          },
+        })
+        .then((response) => {
+          console.log(response)
+        })
+    }
+    catch (error) {
+      return alert(error.message)
+    }
+  }
+
+  async function closeCommand(id: any) {
+    await api.put(`/admclosecommand/${id}`, {}, {
+      headers: {
+        authorization: getTokenFromStorage(),
+      }
+    })
+      .then((response) => {
+        console.log(response)
+        getCommands()
+      })
+  }
+
   useEffect(() => {
     getCommands()
     console.log("comandas: ", commands)
-
   }, [])
 
 
@@ -150,13 +179,14 @@ function Comandas() {
                   fontWeight="400"
                 >
                   Deseja finalizar a comanda ?
-              </Title>
+                </Title>
                 <Button
                   content="Fechar comanda"
                   width="20%"
                   height="40px"
                   heightResponsive="40px"
                   margin="0 0 0 24px"
+                  clicked={() => closeCommand(filteredCommands?.command_id)}
                 />
               </div>
 
@@ -169,16 +199,17 @@ function Comandas() {
                 padding: "5px",
                 marginTop: "36px"
               }}>
-                <P color="#B2DA5A" fontSizeResponsive="18px" fontWeight="bold">Total: </P>
+                <P color="#B2DA5A" fontSizeResponsive="18px" fontWeight="bold">Total Confirmados: </P>
                 <P
                   marginLeft="14px"
                   color="#B2DA5A"
                   fontSizeResponsive="18px"
                   fontWeight="bold"
                 >
-                  R$ 120,00
-              </P>
+                  {filteredCommands?.totalPriceConfirmed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                </P>
               </div>
+
 
               <Linha />
 
@@ -198,18 +229,19 @@ function Comandas() {
                   :
                   filteredCommands.itemsCommand.map(itemcommand => (
                     <CardsCommand
+                      key={itemcommand.item_id}
                       name={itemcommand.item.item_name}
                       price={itemcommand.item.item_price}
                       desc={itemcommand.item.item_desc}
+                      cancelClicked={() => updateItemStatus(itemcommand.item_command_id, 4)}
+                      readyClicked={() => updateItemStatus(itemcommand.item_command_id, 3)}
+                      preparationClicked={() => updateItemStatus(itemcommand.item_command_id, 2)}
                     />
                   ))
                 }
 
-                {/* <CardsCommand
-                  name={command.item.item_name}
-                  price={command.item.item_price}
-                  desc={command.item.item_desc}
-                /> */}
+                {showLoader && <Loader />}
+
               </Container>
             </CardsContainer>
           </TableWithTabs>

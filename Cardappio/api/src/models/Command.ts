@@ -21,6 +21,8 @@ export default class Command {
     @Column()
     command_total_price:number;
 
+    total_Price_Confirmed:number;
+
     @ManyToOne(()=> Table, table => table.table_commands)
     @JoinColumn({name: 'table_id'})
     table_id: number;

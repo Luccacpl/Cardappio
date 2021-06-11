@@ -1,4 +1,4 @@
-import { CreateOutline, TrashOutline } from 'react-ionicons'
+import { CloseCircleOutline, RestaurantOutline, CheckmarkCircleOutline } from 'react-ionicons'
 
 import { DivCard, DivPicture, DivMenu, DivDetail, TitleCard, DescriptionCard, PriceCard } from './style'
 
@@ -12,8 +12,9 @@ interface ICards {
   desc?: string
   price?: string
   src?: string
-  EditClicked?: any
-  TrashClicked?: any
+  cancelClicked?: any
+  preparationClicked?: any
+  readyClicked?: any
 }
 
 function CommandCards(props: ICards) {
@@ -26,19 +27,26 @@ function CommandCards(props: ICards) {
     >
       <DivPicture imgUrl={props.src}>
         <DivMenu>
-          <CreateOutline
+          <CheckmarkCircleOutline
             color="white"
             width="3rem"
             height="1.5rem"
             style={{ margin: "10% 0px", cursor: "pointer" }}
-            onClick={props.EditClicked}
+            onClick={props.readyClicked}
           />
-          <TrashOutline
+          <RestaurantOutline
             color="white"
             width="3rem"
             height="1.5rem"
             style={{ margin: "10% 0px", cursor: "pointer" }}
-            onClick={props.TrashClicked}
+            onClick={props.preparationClicked}
+          />
+          <CloseCircleOutline
+            color="white"
+            width="3rem"
+            height="1.5rem"
+            style={{ margin: "10% 0px", cursor: "pointer" }}
+            onClick={props.cancelClicked}
           />
         </DivMenu>
       </DivPicture>

@@ -54,7 +54,7 @@ const DivPicture = styled.div<DivPictureProps>`
 `;
 
 const DivMenu = styled.div<DivMenuProps>`
-  width: 95px;
+  width: 145px;
   height: 40px;
   background-color: ${colors.menuOrange};
   border-radius: 0px 5px 0px 10px;
