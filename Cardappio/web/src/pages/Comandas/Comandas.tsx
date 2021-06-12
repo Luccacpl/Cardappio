@@ -22,11 +22,6 @@ import { LiMenu } from '../../components/SubAside/style'
 
 import { ClipboardOutline } from 'react-ionicons'
 
-interface IMesas {
-  name: string,
-  id: number
-}
-
 interface IItem {
   item_id: number;
   item_name: string;

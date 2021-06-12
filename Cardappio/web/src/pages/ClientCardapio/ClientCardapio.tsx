@@ -2,17 +2,14 @@ import { useState, useEffect } from 'react'
 import api from "../../services/api";
 import { P } from 'components/Text/text'
 import Cards from '../../components/Cards/Cards'
-import { Container, Menu, CategoryContainer, ItemContainer } from './style'
+import MenuMobile from '../../components/MenuMobile/index'
+
+import { Container, CategoryContainer, ItemContainer } from './style'
 
 import { useHistory } from 'react-router-dom';
 
-import { ArrowBackCircleOutline } from 'react-ionicons'
 import Loader from "components/Loader";
 
-
-interface IContent {
-  content: ICategory[]
-}
 interface IItems {
   id: number,
   name: string,
@@ -88,33 +85,7 @@ const ClientCardapio = () => {
       backgroundColor: "#2C2C2C"
     }}>
       <Container>
-        <Menu>
-          <div style={{
-            width: "80%",
-            display: 'flex',
-            flexDirection: "row",
-            justifyContent: "flex-start",
-            alignItems: "center",
-            paddingLeft: "20px"
-          }}>
-            <P color="#FC8533" fontWeight="Bold" fontSize="18px">Cardappio</P>
-          </div>
-          <div style={{
-            width: "20px",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            paddingRight: "20px"
-          }}>
-            <ArrowBackCircleOutline
-              color="#B2DA5A"
-              width="30px" height="30px"
-              style={{ cursor: "pointer" }}
-              onClick={() => history.push('/client')}
-            />
-          </div>
-        </Menu>
-
+        <MenuMobile clicked={() => history.push('/client')} />
         {categories.map(category => (
           <CategoryContainer key={category.id}>
             <P color="#B2DA5A" fontSize="18px">{category.name}</P>

@@ -10,6 +10,7 @@ import Pedidos from './pages/Pedidos/Pedidos';
 import Mesas from './pages/Mesas/Mesas';
 import Client from './pages/Client/Client';
 import ClientCardapio from './pages/ClientCardapio/ClientCardapio'
+import ClientCommand from './pages/ClientCommand/ClientCommand'
 import QrScan from './pages/QrScan/QrScan'
 
 function Routes() {
@@ -27,6 +28,7 @@ function Routes() {
                 <Route path="/pedidos" component={Pedidos}/>
                 <Route path="/client" exact component={Client} />
                 <Route path="/client/cardapio" component={ClientCardapio} />
+                <Route path="/client/comanda" component={ClientCommand} />
                 <Route path="/qrscan" component={QrScan} />
             </Switch>
         </BrowserRouter>

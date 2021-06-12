@@ -24,7 +24,7 @@ const Client = () => {
               <BookOutline color="white" width="34px" height="34px" />
               <P color="white">Confira o nosso Cardapio</P>
             </Button>
-            <Button>
+            <Button onClick={() => history.push('/client/comanda')}>
               <CardOutline color="white" width="34px" height="34px"/>
               <P color="white">Veja a sua Comanda</P>
             </Button>
