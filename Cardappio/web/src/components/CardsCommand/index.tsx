@@ -15,6 +15,10 @@ interface ICards {
   cancelClicked?: any
   preparationClicked?: any
   readyClicked?: any
+
+  checkColor: string
+  preparationColor: string
+  closeColor: string
 }
 
 function CommandCards(props: ICards) {
@@ -28,21 +32,21 @@ function CommandCards(props: ICards) {
       <DivPicture imgUrl={props.src}>
         <DivMenu>
           <CheckmarkCircleOutline
-            color="white"
+            color={props.checkColor}
             width="3rem"
             height="1.5rem"
             style={{ margin: "10% 0px", cursor: "pointer" }}
             onClick={props.readyClicked}
           />
           <RestaurantOutline
-            color="white"
+            color={props.preparationColor}
             width="3rem"
             height="1.5rem"
             style={{ margin: "10% 0px", cursor: "pointer" }}
             onClick={props.preparationClicked}
           />
           <CloseCircleOutline
-            color="white"
+            color={props.closeColor}
             width="3rem"
             height="1.5rem"
             style={{ margin: "10% 0px", cursor: "pointer" }}

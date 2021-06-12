@@ -23,7 +23,7 @@ export default {
     },
 
     async updateFunction(req: Request, res: Response) {
-
+        
     },
     async deleteFunction(req: Request, res: Response) {
         const { id } = req.params;

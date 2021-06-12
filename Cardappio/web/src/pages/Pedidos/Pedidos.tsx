@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import api from "../../services/api";
 
 import Aside from '../../components/Aside/Aside'
@@ -8,6 +7,8 @@ import Container from '../../components/Container/Container'
 import { Grid } from '../../components/Grid/style'
 import CardsOrder from '../../components/CardsOrder/index'
 import { TableWithTabs, Body, CardsContainer } from './style'
+
+import FundoMenor from '../../Images/FundoMenor.png'
 
 interface IOrder {
   item_command_id: number
@@ -97,6 +98,7 @@ function Pedidos() {
                     key={order.item_command_id}
                     name={order.item_name}
                     desc={order.item_desc}
+                    src={FundoMenor}
                     TableNumber={order.table_number}
                     cancelClicked={() => updateItemStatus(order.item_command_id, 4)}
                     readyClicked={() => updateItemStatus(order.item_command_id, 3)}

@@ -47,10 +47,10 @@ const DivPicture = styled.div<DivPictureProps>`
   width: 100%;
   background-color: grey;
   border-radius: 5px;
-  /* background: url(${(props) => props.imgUrl});
-    background-position: center;
-    background-size: cover; */
-  background-color: white;
+  background: url(${(props) => props.imgUrl});
+  background-position: center;
+  background-size: cover;
+  /* background-color: white; */
 `;
 
 const DivMenu = styled.div<DivMenuProps>`

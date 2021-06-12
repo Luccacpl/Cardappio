@@ -8,6 +8,7 @@ interface IDeleteModal {
   clicked?: any
   text?: string
   closeClicked?: any
+  content?: string 
 }
 
 const DeleteModal = (props: IDeleteModal) => {
@@ -30,7 +31,7 @@ const DeleteModal = (props: IDeleteModal) => {
         </WarningDiv>
 
         <FooterDiv>
-          <Button isNotForm content="Excluir" width="200px" BgColor="#AE1111" clicked={props.clicked} />
+          <Button isNotForm content={props.content || "Excluir"} width="200px" BgColor="#AE1111" clicked={props.clicked} />
         </FooterDiv>
 
       </MiddleContainer>

@@ -8,6 +8,7 @@ import { Title, P } from '../../components/Text/text'
 import { Linha } from '../../components/Linha/style'
 import CardsCommand from '../../components/CardsCommand/index'
 import Loader from "components/Loader";
+import DeleteModal from '../../components/DeleteModal/index'
 
 import Button from '../../components/Button/Button'
 
@@ -15,6 +16,7 @@ import Button from '../../components/Button/Button'
 import { TableWithTabs, Body, CardsContainer } from './style'
 
 import api from "../../services/api";
+import FundoMenor from '../../Images/FundoMenor.png'
 
 import { LiMenu } from '../../components/SubAside/style'
 
@@ -46,16 +48,14 @@ interface ICommands {
   command_checkin: string;
   command_checkout: string;
   command_total_price: string;
-  totalPriceConfirmed: number;
+  total_Price_Confirmed: number;
   table_number: number;
   itemsCommand: IItemsCommand[];
 }
 
-interface IItems {
-  name: string,
-  id: number,
-  desc: string,
-  price: string,
+interface IDeleteCategory {
+  command_id: any
+  isActive?: boolean
 }
 
 
@@ -66,6 +66,9 @@ function Comandas() {
   const [showLoader, setShowLoader] = useState(false);
   const [commands, setCommands] = useState<ICommands[]>([])
   const [filteredCommands, setFilteredCommands] = useState<ICommands>()
+  const [showCloseModal, setShowCloseModal] = useState<IDeleteCategory>({ command_id: 0,  isActive: false })
+
+  const [itemStatus, setItemStatus] = useState(1)
 
   const getTokenFromStorage = (): string =>
     localStorage.getItem("TOKEN") as string;
@@ -117,6 +120,7 @@ function Comandas() {
           },
         })
         .then((response) => {
+          setItemStatus(id)
           console.log(response)
         })
     }
@@ -134,8 +138,11 @@ function Comandas() {
       .then((response) => {
         console.log(response)
         getCommands()
+        
       })
+      setShowCloseModal({ command_id: filteredCommands?.command_id,  isActive: false })
   }
+
 
   useEffect(() => {
     getCommands()
@@ -178,7 +185,7 @@ function Comandas() {
                   fontSizeResponsive="24px"
                   fontWeight="400"
                 >
-                  Deseja finalizar a comanda ?
+                  {`Deseja finalizar a comanda ${filteredCommands?.command_id} ?`}
                 </Title>
                 <Button
                   content="Fechar comanda"
@@ -186,7 +193,8 @@ function Comandas() {
                   height="40px"
                   heightResponsive="40px"
                   margin="0 0 0 24px"
-                  clicked={() => closeCommand(filteredCommands?.command_id)}
+                  // clicked={() => closeCommand(filteredCommands?.command_id)}
+                  clicked={() => setShowCloseModal({ command_id: filteredCommands?.command_id,  isActive: true })}
                 />
               </div>
 
@@ -206,7 +214,7 @@ function Comandas() {
                   fontSizeResponsive="18px"
                   fontWeight="bold"
                 >
-                  {filteredCommands?.totalPriceConfirmed.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                  {filteredCommands?.total_Price_Confirmed === undefined ? "R$: 0,00" : filteredCommands?.total_Price_Confirmed?.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                 </P>
               </div>
 
@@ -229,16 +237,29 @@ function Comandas() {
                   :
                   filteredCommands.itemsCommand.map(itemcommand => (
                     <CardsCommand
-                      key={itemcommand.item_id}
+                      key={itemcommand.item_command_id}
+                      src={FundoMenor}
                       name={itemcommand.item.item_name}
                       price={itemcommand.item.item_price}
                       desc={itemcommand.item.item_desc}
                       cancelClicked={() => updateItemStatus(itemcommand.item_command_id, 4)}
                       readyClicked={() => updateItemStatus(itemcommand.item_command_id, 3)}
                       preparationClicked={() => updateItemStatus(itemcommand.item_command_id, 2)}
+                      checkColor={itemcommand.item_command_status === 3 ? "black" : "white" }
+                      preparationColor={itemcommand.item_command_status === 2 ? "black" : "white" }
+                      closeColor={itemcommand.item_command_status === 4 ? "black" : "white" }
                     />
                   ))
                 }
+
+                {showCloseModal.isActive && (
+                  <DeleteModal
+                    text={`Deseja fechar a comanda ${showCloseModal.command_id}`}
+                    clicked={() => closeCommand(filteredCommands?.command_id)}
+                    closeClicked={() => setShowCloseModal({ command_id: showCloseModal.command_id, isActive: false })}
+                    content={"Fechar"}
+                  />
+                )}
 
                 {showLoader && <Loader />}
 
